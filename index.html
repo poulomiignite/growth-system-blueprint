@@ -163,9 +163,20 @@
   }
   .sidebar-link.active .sidebar-num { color: var(--magenta); }
   .sidebar-icon {
-    font-size: 18px;
     min-width: 20px;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sidebar-icon svg {
+    width: 16px;
+    height: 16px;
+    stroke: currentColor;
+    stroke-width: 2;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
   }
   .sidebar-footer {
     padding: 20px 20px 0;
@@ -481,7 +492,16 @@
     align-items: center;
     gap: 16px;
   }
-  .collapsible-icon { font-size: 22px; min-width: 30px; }
+  .collapsible-icon { min-width: 30px; display: flex; align-items: center; justify-content: center; }
+  .collapsible-icon svg {
+    width: 22px;
+    height: 22px;
+    stroke: var(--magenta);
+    stroke-width: 2;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
   .collapsible-title { font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 700; }
   .collapsible-subtitle { font-size: 16px; margin-top: 3px; }
   .chevron {
@@ -530,7 +550,16 @@
     transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
   }
   .system-card:hover { transform: translateY(-2px); }
-  .system-icon { font-size: 26px; margin-bottom: 12px; display: block; }
+  .system-icon { margin-bottom: 12px; display: block; }
+  .system-icon svg {
+    width: 28px;
+    height: 28px;
+    stroke: var(--magenta);
+    stroke-width: 2;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
   .system-card h3 { font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 8px; }
   .system-card p { font-size: 16px; line-height: 1.65; }
   /* ── LEVEL TRACKER ── */
@@ -804,52 +833,52 @@
     <div class="sidebar-label">Contents</div>
     <a href="#s1" class="sidebar-link active" data-section="s1">
       <span class="sidebar-num">01</span>
-      <span class="sidebar-icon">🧩</span>
+      <span class="sidebar-icon"><svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg></span>
       <span>The Problem</span>
     </a>
     <a href="#s2" class="sidebar-link" data-section="s2">
       <span class="sidebar-num">02</span>
-      <span class="sidebar-icon">🔁</span>
+      <span class="sidebar-icon"><svg viewBox="0 0 24 24"><polyline points="13 17 18 12 13 7"></polyline><polyline points="6 17 11 12 6 7"></polyline></svg></span>
       <span>AI Solution</span>
     </a>
     <a href="#s3" class="sidebar-link" data-section="s3">
       <span class="sidebar-num">03</span>
-      <span class="sidebar-icon">⚙️</span>
+      <span class="sidebar-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></span>
       <span>6 Systems</span>
     </a>
     <a href="#s4" class="sidebar-link" data-section="s4">
       <span class="sidebar-num">04</span>
-      <span class="sidebar-icon">📊</span>
+      <span class="sidebar-icon"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg></span>
       <span>8 Levels</span>
     </a>
     <a href="#s5" class="sidebar-link" data-section="s5">
       <span class="sidebar-num">05</span>
-      <span class="sidebar-icon">🏗️</span>
+      <span class="sidebar-icon"><svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg></span>
       <span>The 5 I's</span>
     </a>
     <a href="#s6" class="sidebar-link" data-section="s6">
       <span class="sidebar-num">06</span>
-      <span class="sidebar-icon">🎯</span>
+      <span class="sidebar-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg></span>
       <span>Which Systems</span>
     </a>
     <a href="#s7" class="sidebar-link" data-section="s7">
       <span class="sidebar-num">07</span>
-      <span class="sidebar-icon">🚀</span>
+      <span class="sidebar-icon"><svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></span>
       <span>Quick Wins</span>
     </a>
     <a href="#s8" class="sidebar-link" data-section="s8">
       <span class="sidebar-num">08</span>
-      <span class="sidebar-icon">💬</span>
+      <span class="sidebar-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></span>
       <span>Testimonials</span>
     </a>
     <a href="#s9" class="sidebar-link" data-section="s9">
       <span class="sidebar-num">09</span>
-      <span class="sidebar-icon">📞</span>
+      <span class="sidebar-icon"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></span>
       <span>Roadmap</span>
     </a>
     <a href="#s10" class="sidebar-link" data-section="s10">
       <span class="sidebar-num">10</span>
-      <span class="sidebar-icon">✅</span>
+      <span class="sidebar-icon"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg></span>
       <span>Audit Tool</span>
     </a>
   </nav>
@@ -945,37 +974,37 @@
   <p class="section-intro">These are the 6 areas of your business where AI infrastructure creates the most impact. Some free up your time. Some actively drive growth. Most do both.</p>
   <div class="systems-grid">
     <div class="system-card">
-      <span class="system-icon">🧭</span>
+      <span class="system-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg></span>
       <h3>Clarity & Strategy</h3>
       <p style="font-size:13px; color:var(--magenta); font-weight:600; letter-spacing:1px; text-transform:uppercase; margin-bottom:8px;">Operational + Growth</p>
       <p>Pulls your industry trends, competitor data, and business numbers into one place. Gives you strategic insight for positioning and high-value conversations — without hours of research.</p>
     </div>
     <div class="system-card">
-      <span class="system-icon">📢</span>
+      <span class="system-icon"><svg viewBox="0 0 24 24"><line x1="17" y1="10" x2="3" y2="10"></line><line x1="21" y1="6" x2="3" y2="6"></line><line x1="21" y1="14" x2="3" y2="14"></line><line x1="17" y1="18" x2="3" y2="18"></line></svg></span>
       <h3>Visibility & Content</h3>
       <p style="font-size:13px; color:var(--magenta); font-weight:600; letter-spacing:1px; text-transform:uppercase; margin-bottom:8px;">Growth</p>
       <p>Takes one idea and turns it into content across LinkedIn, email, and newsletters — all in your voice. No more blank page. No more choosing between billable work and showing up online.</p>
     </div>
     <div class="system-card">
-      <span class="system-icon">💰</span>
+      <span class="system-icon"><svg viewBox="0 0 24 24"><path d="m6 15-4-4 6.75-6.77a7.79 7.79 0 0 1 11 11L13 22l-4-4 6.39-6.36a2.14 2.14 0 0 0-3-3.07L6 15"></path></svg></span>
       <h3>Sales & Pipeline</h3>
       <p style="font-size:13px; color:var(--magenta); font-weight:600; letter-spacing:1px; text-transform:uppercase; margin-bottom:8px;">Growth</p>
       <p>Handles lead qualification, follow-up sequences, and proposal generation. Every inquiry gets a thoughtful response. You only step in to close.</p>
     </div>
     <div class="system-card">
-      <span class="system-icon">⭐</span>
+      <span class="system-icon"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17 11 19 13 23 9"></polyline></svg></span>
       <h3>Client Experience</h3>
       <p style="font-size:13px; color:var(--magenta); font-weight:600; letter-spacing:1px; text-transform:uppercase; margin-bottom:8px;">Operational</p>
       <p>Automates onboarding, answers repetitive questions, manages client communication — using your SOPs. Premium experience without the manual hand-holding.</p>
     </div>
     <div class="system-card">
-      <span class="system-icon">⚙️</span>
+      <span class="system-icon"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg></span>
       <h3>Ops & Admin</h3>
       <p style="font-size:13px; color:var(--magenta); font-weight:600; letter-spacing:1px; text-transform:uppercase; margin-bottom:8px;">Operational</p>
       <p>Data entry, scheduling, invoice processing, document management. The work that drains your brain before you even get to the real work. Off your plate.</p>
     </div>
     <div class="system-card">
-      <span class="system-icon">🧠</span>
+      <span class="system-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span>
       <h3>Custom IP System</h3>
       <p style="font-size:13px; color:var(--magenta); font-weight:600; letter-spacing:1px; text-transform:uppercase; margin-bottom:8px;">Growth</p>
       <p>Gets your expertise out of your head and into tools your team (and clients) can use — calculators, frameworks, decision trees. Your knowledge becomes a business asset.</p>
@@ -1047,7 +1076,7 @@
     <div class="collapsible open" data-id="arch1">
       <div class="collapsible-header">
         <div class="collapsible-left">
-          <div class="collapsible-icon">🗄️</div>
+          <div class="collapsible-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg></div>
           <div>
             <div class="collapsible-title">#1 Information</div>
             <div class="collapsible-subtitle">Everything AI needs to know about your business</div>
@@ -1064,7 +1093,7 @@
     <div class="collapsible" data-id="arch2" style="border-top: none; border-radius: 0;">
       <div class="collapsible-header">
         <div class="collapsible-left">
-          <div class="collapsible-icon">📥</div>
+          <div class="collapsible-icon"><svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg></div>
           <div>
             <div class="collapsible-title">#2 Input</div>
             <div class="collapsible-subtitle">The training that shapes how AI works</div>
@@ -1081,7 +1110,7 @@
     <div class="collapsible" data-id="arch3" style="border-top: none; border-radius: 0;">
       <div class="collapsible-header">
         <div class="collapsible-left">
-          <div class="collapsible-icon">🧠</div>
+          <div class="collapsible-icon"><svg viewBox="0 0 24 24"><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="17" x2="12.01" y2="17"></line></svg></div>
           <div>
             <div class="collapsible-title">#3 Intelligence</div>
             <div class="collapsible-subtitle">The AI model itself — the engine</div>
@@ -1098,7 +1127,7 @@
     <div class="collapsible" data-id="arch4" style="border-top: none; border-radius: 0;">
       <div class="collapsible-header">
         <div class="collapsible-left">
-          <div class="collapsible-icon">🔗</div>
+          <div class="collapsible-icon"><svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg></div>
           <div>
             <div class="collapsible-title">#4 Integration</div>
             <div class="collapsible-subtitle">AI connected to your other tools</div>
@@ -1115,7 +1144,7 @@
     <div class="collapsible" data-id="arch5" style="border-top: none; border-radius: 0 0 16px 16px;">
       <div class="collapsible-header">
         <div class="collapsible-left">
-          <div class="collapsible-icon">🎯</div>
+          <div class="collapsible-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg></div>
           <div>
             <div class="collapsible-title">#5 Ideal Output</div>
             <div class="collapsible-subtitle">What you actually want to get out of it</div>
