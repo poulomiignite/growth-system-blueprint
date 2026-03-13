@@ -10,20 +10,19 @@
     --magenta: #DA3FF6;
     --magenta-dark: #b020d0;
     --magenta-light: #FF42F9;
-    --purple-deep: #1C0029;
-    --purple-mid: #2A003E;
-    --purple-card: #250036;
+    --purple-deep: #1A1A1A;
+    --purple-mid: #222222;
+    --purple-card: #1E1E1E;
     --lavender: #C28BFC;
     --white: #FFFFFF;
     --charcoal: #121212;
-    /* Light section palette */
     --light-bg: #FAFAFA;
-    --light-bg-alt: #F3EEF8;
+    --light-bg-alt: #F5F5F5;
     --light-text: #1a1a2e;
     --light-text-muted: #5a5a72;
     --light-card-bg: #FFFFFF;
-    --light-card-border: rgba(180,100,220,0.18);
-    --light-card-border-hover: rgba(218,63,246,0.45);
+    --light-card-border: rgba(0,0,0,0.08);
+    --light-card-border-hover: rgba(218,63,246,0.35);
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -35,798 +34,222 @@
     line-height: 1.7;
     overflow-x: hidden;
   }
-  /* ── SECTION THEMES ── */
-  .section-dark {
-    background: var(--purple-deep);
-    color: var(--white);
-  }
+  .section-dark { background: var(--purple-deep); color: var(--white); }
   .section-dark .section-label { color: var(--magenta); }
   .section-dark h2 { color: var(--white); }
   .section-dark h2 span { color: var(--magenta); }
   .section-dark .section-intro { color: rgba(255,255,255,0.72); }
-  .section-light {
-    background: var(--light-bg);
-    color: var(--light-text);
-  }
+  .section-light { background: var(--light-bg); color: var(--light-text); }
   .section-light .section-label { color: var(--magenta-dark); }
   .section-light h2 { color: var(--light-text); }
   .section-light h2 span { color: var(--magenta); }
   .section-light .section-intro { color: var(--light-text-muted); }
-  .section-light-alt {
-    background: var(--light-bg-alt);
-    color: var(--light-text);
-  }
+  .section-light-alt { background: var(--light-bg-alt); color: var(--light-text); }
   .section-light-alt .section-label { color: var(--magenta-dark); }
   .section-light-alt h2 { color: var(--light-text); }
   .section-light-alt h2 span { color: var(--magenta); }
   .section-light-alt .section-intro { color: var(--light-text-muted); }
-  /* ── LAYOUT WRAPPER ── */
-  .page-layout {
-    display: flex;
-    min-height: 100vh;
-  }
-  .main-content {
-    flex: 1;
-    margin-left: 220px;
-  }
+  .page-layout { display: flex; min-height: 100vh; }
+  .main-content { flex: 1; margin-left: 220px; }
   /* ── LEFT SIDEBAR ── */
   .sidebar {
-    position: fixed;
-    top: 0; left: 0;
-    width: 220px;
-    height: 100vh;
-    background: rgba(14,0,22,0.97);
-    border-right: 1px solid rgba(218,63,246,0.15);
-    z-index: 200;
-    display: flex;
-    flex-direction: column;
-    padding: 28px 0 24px;
-    overflow-y: auto;
+    position: fixed; top: 0; left: 0; width: 220px; height: 100vh;
+    background: rgba(14,14,14,0.98); border-right: 1px solid rgba(255,255,255,0.06);
+    z-index: 200; display: flex; flex-direction: column; padding: 28px 0 24px; overflow-y: auto;
   }
   .sidebar::-webkit-scrollbar { width: 4px; }
   .sidebar::-webkit-scrollbar-track { background: transparent; }
-  .sidebar::-webkit-scrollbar-thumb { background: rgba(218,63,246,0.2); border-radius: 4px; }
-  .sidebar-logo {
-    padding: 0 20px 28px;
-    border-bottom: 1px solid rgba(218,63,246,0.12);
-    margin-bottom: 20px;
-  }
-  .sidebar-logo-text {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 16px;
-    font-weight: 900;
-    color: var(--magenta);
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    line-height: 1.3;
-  }
-  .sidebar-logo-sub {
-    font-size: 14px;
-    color: rgba(255,255,255,0.3);
-    margin-top: 4px;
-    font-weight: 400;
-  }
+  .sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+  .sidebar-logo { padding: 0 20px 28px; border-bottom: 1px solid rgba(255,255,255,0.06); margin-bottom: 20px; }
+  .sidebar-logo-text { font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 900; color: #fff; letter-spacing: 1.5px; text-transform: uppercase; line-height: 1.3; }
+  .sidebar-logo-sub { font-size: 14px; color: rgba(255,255,255,0.3); margin-top: 4px; font-weight: 400; }
   .sidebar-nav { flex: 1; padding: 0 12px; }
-  .sidebar-label {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 15px;
-    font-weight: 700;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.2);
-    padding: 0 8px;
-    margin-bottom: 8px;
-    margin-top: 4px;
-  }
+  .sidebar-label { font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.2); padding: 0 8px; margin-bottom: 8px; margin-top: 4px; }
   .sidebar-link {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 12px;
-    border-radius: 10px;
-    text-decoration: none;
-    color: rgba(255,255,255,0.45);
-    font-size: 16px;
-    font-weight: 500;
-    transition: all 0.2s;
-    margin-bottom: 2px;
-    border: 1px solid transparent;
-    position: relative;
+    display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 10px;
+    text-decoration: none; color: rgba(255,255,255,0.45); font-size: 15px; font-weight: 500;
+    transition: all 0.2s; margin-bottom: 2px; border: 1px solid transparent; position: relative;
   }
-  .sidebar-link:hover {
-    color: rgba(255,255,255,0.85);
-    background: rgba(218,63,246,0.08);
-    border-color: rgba(218,63,246,0.15);
-  }
-  .sidebar-link.active {
-    color: var(--magenta);
-    background: rgba(218,63,246,0.1);
-    border-color: rgba(218,63,246,0.25);
-    font-weight: 600;
-  }
-  .sidebar-link.active::before {
-    content: '';
-    position: absolute;
-    left: -12px;
-    top: 50%; transform: translateY(-50%);
-    width: 3px; height: 20px;
-    background: var(--magenta);
-    border-radius: 0 3px 3px 0;
-  }
-  .sidebar-num {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 13px;
-    font-weight: 700;
-    color: rgba(218,63,246,0.4);
-    min-width: 18px;
-    transition: color 0.2s;
-  }
+  .sidebar-link:hover { color: rgba(255,255,255,0.85); background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.08); }
+  .sidebar-link.active { color: var(--magenta); background: rgba(218,63,246,0.06); border-color: rgba(218,63,246,0.15); font-weight: 600; }
+  .sidebar-link.active::before { content: ''; position: absolute; left: -12px; top: 50%; transform: translateY(-50%); width: 3px; height: 20px; background: var(--magenta); border-radius: 0 3px 3px 0; }
+  .sidebar-num { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.2); min-width: 18px; transition: color 0.2s; }
   .sidebar-link.active .sidebar-num { color: var(--magenta); }
-  .sidebar-icon {
-    min-width: 20px;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .sidebar-icon svg {
-    width: 16px;
-    height: 16px;
-    stroke: currentColor;
-    stroke-width: 2;
-    fill: none;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
-  .sidebar-footer {
-    padding: 20px 20px 0;
-    border-top: 1px solid rgba(218,63,246,0.12);
-    margin-top: 16px;
-  }
-  .sidebar-cta-btn {
-    display: block;
-    background: linear-gradient(90deg, var(--magenta), var(--magenta-light));
-    color: white;
-    text-decoration: none;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    padding: 11px 14px;
-    border-radius: 10px;
-    text-align: center;
-    transition: all 0.2s;
-    box-shadow: 0 0 20px rgba(218,63,246,0.3);
-  }
-  .sidebar-cta-btn:hover {
-    box-shadow: 0 0 30px rgba(218,63,246,0.5);
-    transform: translateY(-1px);
-  }
-  /* Mobile: hide sidebar, show top nav */
-  @media (max-width: 768px) {
-    .sidebar { display: none; }
-    .main-content { margin-left: 0; }
-    .sticky-nav { display: flex; }
-  }
-  @media (min-width: 769px) {
-    .sticky-nav { display: none; }
-  }
-  /* ── STICKY NAV (mobile fallback) ── */
-  .sticky-nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    background: rgba(28,0,41,0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(218,63,246,0.2);
-    padding: 0 32px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 54px;
-  }
+  .sidebar-icon { min-width: 20px; text-align: center; display: flex; align-items: center; justify-content: center; }
+  .sidebar-icon svg { width: 16px; height: 16px; stroke: currentColor; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .sidebar-footer { padding: 20px 20px 0; border-top: 1px solid rgba(255,255,255,0.06); margin-top: 16px; }
+  .sidebar-cta-btn { display: block; background: var(--magenta); color: white; text-decoration: none; font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 11px 14px; border-radius: 10px; text-align: center; transition: all 0.2s; }
+  .sidebar-cta-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+  @media (max-width: 768px) { .sidebar { display: none; } .main-content { margin-left: 0; } .sticky-nav { display: flex; } }
+  @media (min-width: 769px) { .sticky-nav { display: none; } }
+  .sticky-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(18,18,18,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.06); padding: 0 32px; display: flex; align-items: center; justify-content: space-between; height: 54px; }
   .sticky-nav::-webkit-scrollbar { display: none; }
-  .nav-logo {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 19px;
-    font-weight: 800;
-    color: var(--magenta);
-    white-space: nowrap;
-    letter-spacing: 0.5px;
-  }
-  .nav-link {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.45);
-    text-decoration: none;
-    padding: 6px 14px;
-    border-radius: 50px;
-    white-space: nowrap;
-    transition: all 0.2s;
-    border: 1px solid transparent;
-  }
-  .nav-link:hover, .nav-link.active {
-    color: var(--magenta);
-    border-color: rgba(218,63,246,0.3);
-    background: rgba(218,63,246,0.08);
-  }
+  .nav-logo { font-family: 'Montserrat', sans-serif; font-size: 19px; font-weight: 800; color: #fff; white-space: nowrap; letter-spacing: 0.5px; }
   /* ── COVER ── */
   .cover {
     min-height: 100vh;
-    background: linear-gradient(135deg, #0D0019 0%, #1C0029 40%, #2A003E 70%, #1C0029 100%);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 100px 40px 60px;
-    position: relative;
-    overflow: hidden;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1A1A1A 40%, #222222 70%, #1A1A1A 100%);
+    display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+    padding: 100px 40px 60px; position: relative; overflow: hidden;
   }
-  .cover::before {
-    content: '';
-    position: absolute;
-    top: -200px; left: -200px;
-    width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(218,63,246,0.15) 0%, transparent 70%);
-    border-radius: 50%;
-    animation: pulse 6s ease-in-out infinite;
-  }
-  .cover::after {
-    content: '';
-    position: absolute;
-    bottom: -100px; right: -100px;
-    width: 500px; height: 500px;
-    background: radial-gradient(circle, rgba(194,139,252,0.1) 0%, transparent 70%);
-    border-radius: 50%;
-    animation: pulse 8s ease-in-out infinite reverse;
-  }
-  @keyframes pulse {
-    0%, 100% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.1); opacity: 0.7; }
-  }
-  .cover-badge {
-    display: inline-block;
-    background: rgba(218,63,246,0.15);
-    border: 1px solid rgba(218,63,246,0.4);
-    color: var(--magenta);
-    font-family: 'Montserrat', sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    padding: 8px 20px;
-    border-radius: 50px;
-    margin-bottom: 32px;
-    position: relative; z-index: 1;
-  }
-  .cover h1 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(40px, 6vw, 76px);
-    font-weight: 900;
-    line-height: 1.05;
-    margin-bottom: 24px;
-    position: relative; z-index: 1;
-    color: #ffffff;
-  }
-  .cover h1 span {
-    background: linear-gradient(90deg, var(--magenta), var(--lavender));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  .cover-subtitle {
-    font-size: 21px;
-    color: rgba(255,255,255,0.7);
-    max-width: 640px;
-    margin: 0 auto 48px;
-    line-height: 1.6;
-    position: relative; z-index: 1;
-  }
-  .cover-author {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    position: relative; z-index: 1;
-  }
-  .author-name {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 16px;
-    color: var(--lavender);
-  }
-  .author-title {
-    font-size: 16px;
-    color: rgba(255,255,255,0.45);
-    letter-spacing: 1px;
-  }
-  .cover-divider {
-    width: 60px; height: 2px;
-    background: linear-gradient(90deg, var(--magenta), var(--lavender));
-    margin: 28px auto;
-    position: relative; z-index: 1;
-  }
+  .cover::before { content: ''; position: absolute; top: -200px; left: -200px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(218,63,246,0.06) 0%, transparent 70%); border-radius: 50%; animation: pulse 6s ease-in-out infinite; }
+  .cover::after { content: ''; position: absolute; bottom: -100px; right: -100px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(194,139,252,0.04) 0%, transparent 70%); border-radius: 50%; animation: pulse 8s ease-in-out infinite reverse; }
+  @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.1); opacity: 0.7; } }
+  .cover-badge { display: inline-block; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.6); font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; padding: 8px 20px; border-radius: 50px; margin-bottom: 32px; position: relative; z-index: 1; }
+  .cover h1 { font-family: 'Montserrat', sans-serif; font-size: clamp(40px, 6vw, 76px); font-weight: 900; line-height: 1.05; margin-bottom: 24px; position: relative; z-index: 1; color: #ffffff; }
+  .cover h1 span { color: var(--magenta); }
+  .cover-subtitle { font-size: 21px; color: rgba(255,255,255,0.6); max-width: 640px; margin: 0 auto 48px; line-height: 1.6; position: relative; z-index: 1; }
+  .cover-author { display: flex; flex-direction: column; align-items: center; gap: 6px; position: relative; z-index: 1; }
+  .author-name { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 16px; color: rgba(255,255,255,0.7); }
+  .author-title { font-size: 16px; color: rgba(255,255,255,0.35); letter-spacing: 1px; }
+  .cover-divider { width: 60px; height: 2px; background: var(--magenta); margin: 28px auto; position: relative; z-index: 1; }
   /* ── TOC ── */
-  .toc {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(218,63,246,0.25);
-    border-radius: 18px;
-    padding: 32px;
-    max-width: 560px;
-    margin: 0 auto;
-    position: relative; z-index: 1;
-  }
-  .toc h3 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--magenta);
-    margin-bottom: 20px;
-  }
-  .toc-item {
-    display: flex;
-    gap: 14px;
-    align-items: center;
-    padding: 10px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-    text-decoration: none;
-    transition: all 0.2s;
-  }
+  .toc { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 18px; padding: 32px; max-width: 560px; margin: 0 auto; position: relative; z-index: 1; }
+  .toc h3 { font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--magenta); margin-bottom: 20px; }
+  .toc-item { display: flex; gap: 14px; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.04); text-decoration: none; transition: all 0.2s; }
   .toc-item:last-child { border-bottom: none; }
-  .toc-item:hover .toc-label { color: var(--magenta); }
-  .toc-n {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--magenta);
-    min-width: 24px;
-  }
-  .toc-label {
-    font-size: 20px;
-    color: rgba(255,255,255,0.7);
-    transition: color 0.2s;
-  }
+  .toc-item:hover .toc-label { color: rgba(255,255,255,0.9); }
+  .toc-n { font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700; color: var(--magenta); min-width: 24px; }
+  .toc-label { font-size: 20px; color: rgba(255,255,255,0.55); transition: color 0.2s; }
   /* ── SECTIONS ── */
-  .section-wrap {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 80px 40px;
-  }
-  .section-label {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--magenta);
-    margin-bottom: 10px;
-  }
-  .section-wrap h2 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(28px, 4vw, 44px);
-    font-weight: 800;
-    line-height: 1.12;
-    margin-bottom: 20px;
-  }
+  .section-wrap { max-width: 900px; margin: 0 auto; padding: 80px 40px; }
+  .section-label { font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--magenta); margin-bottom: 10px; text-align: center; }
+  .section-wrap h2 { font-family: 'Montserrat', sans-serif; font-size: clamp(28px, 4vw, 44px); font-weight: 800; line-height: 1.12; margin-bottom: 20px; text-align: center; }
   .section-wrap h2 span { color: var(--magenta); }
-  .section-intro {
-    font-size: 17px;
-    max-width: 700px;
-    margin-bottom: 44px;
-    line-height: 1.7;
-  }
-  .divider { width: 100%; height: 1px; background: rgba(218,63,246,0.12); }
+  .section-intro { font-size: 17px; max-width: 700px; margin-bottom: 44px; line-height: 1.7; text-align: center; margin-left: auto; margin-right: auto; }
+  .divider { width: 100%; height: 1px; background: rgba(0,0,0,0.06); }
   /* ── HIGHLIGHT BOX ── */
-  .section-dark .highlight-box {
-    background: linear-gradient(135deg, rgba(218,63,246,0.1), rgba(194,139,252,0.06));
-    border: 1px solid rgba(218,63,246,0.28);
-    color: var(--white);
-  }
-  .section-light .highlight-box,
-  .section-light-alt .highlight-box {
-    background: linear-gradient(135deg, #f5e6ff, #ede0ff);
-    border: 1px solid rgba(180,80,230,0.25);
-    color: var(--light-text);
-  }
-  .highlight-box {
-    border-radius: 14px;
-    padding: 28px 32px;
-    margin: 32px 0;
-    font-size: 16px;
-    line-height: 1.7;
-  }
+  .section-dark .highlight-box { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); color: var(--white); }
+  .section-light .highlight-box, .section-light-alt .highlight-box { background: #f0f0f0; border: 1px solid rgba(0,0,0,0.06); color: var(--light-text); }
+  .highlight-box { border-radius: 14px; padding: 28px 32px; margin: 32px 0; font-size: 17px; line-height: 1.7; }
   .highlight-box strong { color: var(--magenta); }
   /* ── COLLAPSIBLE ── */
-  .section-dark .collapsible {
-    background: var(--purple-card);
-    border: 1px solid rgba(218,63,246,0.2);
-  }
-  .section-dark .collapsible:hover { border-color: rgba(218,63,246,0.4); }
-  .section-dark .collapsible.open { border-color: rgba(218,63,246,0.5); }
+  .section-dark .collapsible { background: var(--purple-card); border: 1px solid rgba(255,255,255,0.08); }
+  .section-dark .collapsible:hover { border-color: rgba(255,255,255,0.15); }
+  .section-dark .collapsible.open { border-color: rgba(218,63,246,0.3); }
   .section-dark .collapsible-title { color: var(--white); }
-  .section-dark .collapsible-subtitle { color: rgba(255,255,255,0.5); }
-  .section-dark .collapsible-content { border-top: 1px solid rgba(218,63,246,0.12); }
-  .section-dark .collapsible-content p { color: rgba(255,255,255,0.72); }
-  .section-light .collapsible,
-  .section-light-alt .collapsible {
-    background: var(--light-card-bg);
-    border: 1px solid var(--light-card-border);
-    box-shadow: 0 2px 12px rgba(160,80,220,0.06);
-  }
-  .section-light .collapsible:hover,
-  .section-light-alt .collapsible:hover { border-color: var(--light-card-border-hover); box-shadow: 0 4px 20px rgba(218,63,246,0.1); }
-  .section-light .collapsible.open,
-  .section-light-alt .collapsible.open { border-color: rgba(218,63,246,0.45); }
-  .section-light .collapsible-title,
-  .section-light-alt .collapsible-title { color: var(--light-text); }
-  .section-light .collapsible-subtitle,
-  .section-light-alt .collapsible-subtitle { color: var(--light-text-muted); }
-  .section-light .collapsible-content,
-  .section-light-alt .collapsible-content { border-top: 1px solid rgba(180,100,220,0.1); }
-  .section-light .collapsible-content p,
-  .section-light-alt .collapsible-content p { color: var(--light-text-muted); }
-  .collapsible {
-    border-radius: 16px;
-    margin-bottom: 12px;
-    overflow: hidden;
-    transition: border-color 0.2s, box-shadow 0.2s;
-  }
-  .collapsible-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 22px 28px;
-    cursor: pointer;
-    user-select: none;
-    gap: 16px;
-  }
-  .collapsible-left {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
+  .section-dark .collapsible-subtitle { color: rgba(255,255,255,0.4); }
+  .section-dark .collapsible-content { border-top: 1px solid rgba(255,255,255,0.06); }
+  .section-dark .collapsible-content p { color: rgba(255,255,255,0.65); }
+  .section-light .collapsible, .section-light-alt .collapsible { background: var(--light-card-bg); border: 1px solid var(--light-card-border); box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
+  .section-light .collapsible:hover, .section-light-alt .collapsible:hover { border-color: rgba(0,0,0,0.15); box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+  .section-light .collapsible.open, .section-light-alt .collapsible.open { border-color: rgba(218,63,246,0.3); }
+  .section-light .collapsible-title, .section-light-alt .collapsible-title { color: var(--light-text); }
+  .section-light .collapsible-subtitle, .section-light-alt .collapsible-subtitle { color: var(--light-text-muted); }
+  .section-light .collapsible-content, .section-light-alt .collapsible-content { border-top: 1px solid rgba(0,0,0,0.06); }
+  .section-light .collapsible-content p, .section-light-alt .collapsible-content p { color: var(--light-text-muted); }
+  .collapsible { border-radius: 16px; margin-bottom: 12px; overflow: hidden; transition: border-color 0.2s, box-shadow 0.2s; }
+  .collapsible-header { display: flex; align-items: center; justify-content: space-between; padding: 22px 28px; cursor: pointer; user-select: none; gap: 16px; }
+  .collapsible-left { display: flex; align-items: center; gap: 16px; }
   .collapsible-icon { min-width: 30px; display: flex; align-items: center; justify-content: center; }
-  .collapsible-icon svg {
-    width: 22px;
-    height: 22px;
-    stroke: var(--magenta);
-    stroke-width: 2;
-    fill: none;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
+  .collapsible-icon svg { width: 22px; height: 22px; stroke: var(--magenta); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
   .collapsible-title { font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 700; }
-  .collapsible-subtitle { font-size: 16px; margin-top: 3px; }
-  .chevron {
-    width: 24px; height: 24px;
-    border: 1px solid rgba(218,63,246,0.3);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    color: var(--magenta);
-    font-size: 12px;
-    transition: transform 0.3s;
-    flex-shrink: 0;
-  }
+  .collapsible-subtitle { font-size: 17px; margin-top: 3px; }
+  .chevron { width: 24px; height: 24px; border: 1px solid rgba(255,255,255,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.4); font-size: 12px; transition: transform 0.3s; flex-shrink: 0; }
+  .section-light .chevron, .section-light-alt .chevron { border-color: rgba(0,0,0,0.1); color: rgba(0,0,0,0.3); }
   .collapsible.open .chevron { transform: rotate(180deg); }
   .collapsible-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
   .collapsible.open .collapsible-body { max-height: 2000px; }
   .collapsible-content { padding: 24px 28px 28px; }
-  /* ── SYSTEMS GRID ── */
-  .systems-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
+  .collapsible-content p { font-size: 17px; line-height: 1.7; margin-bottom: 12px; }
+  /* ── SYSTEM TABS ── */
+  .sys-tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 36px; }
+  .sys-tab { display: flex; align-items: center; gap: 12px; padding: 18px 20px; border-radius: 12px; cursor: pointer; transition: all 0.2s; border: 1px solid rgba(0,0,0,0.12); background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+  .sys-tab:hover { border-color: rgba(218,63,246,0.3); box-shadow: 0 4px 16px rgba(218,63,246,0.1); }
+  .sys-tab.active { border-color: var(--magenta); background: rgba(218,63,246,0.04); box-shadow: 0 2px 12px rgba(218,63,246,0.1); }
+  .sys-tab-icon { min-width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; }
+  .sys-tab-icon svg { width: 20px; height: 20px; stroke: var(--magenta); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .sys-tab-name { font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 700; color: var(--light-text); }
+  .sys-tab.active .sys-tab-name { color: var(--magenta); }
+  .sys-tab-tag { font-size: 12px; color: var(--light-text-muted); margin-top: 2px; }
+  .sys-panel { display: none; border-radius: 16px; background: var(--light-card-bg); border: 1px solid rgba(218,63,246,0.15); padding: 36px; box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
+  .sys-panel.active { display: block; }
+  .sys-panel-title { font-family: 'Montserrat', sans-serif; font-size: 22px; font-weight: 800; color: var(--light-text); margin-bottom: 6px; }
+  .sys-panel-tag { font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--magenta); margin-bottom: 16px; }
+  .sys-panel p { font-size: 17px; line-height: 1.7; color: var(--light-text-muted); margin-bottom: 12px; }
+  .sys-panel ul { font-size: 17px; line-height: 2; color: var(--light-text-muted); padding-left: 20px; margin: 0 0 16px; }
+  .sys-panel .sys-solve { font-weight: 700; color: var(--magenta); font-size: 17px; margin: 20px 0 12px; }
+  @media (max-width: 700px) {
+    .sys-tabs { grid-template-columns: repeat(2, 1fr); }
+    .about-flex { flex-direction: column; align-items: center; text-align: center; }
+    .about-flex .about-links { justify-content: center; }
   }
-  @media (max-width: 600px) { .systems-grid { grid-template-columns: 1fr; } .diagnostic-grid { grid-template-columns: 1fr; } }
-  .section-dark .system-card {
-    background: var(--purple-card);
-    border: 1px solid rgba(218,63,246,0.18);
-  }
-  .section-dark .system-card:hover { border-color: rgba(218,63,246,0.45); }
-  .section-dark .system-card h3 { color: var(--white); }
-  .section-dark .system-card p { color: rgba(255,255,255,0.58); }
-  .section-light .system-card,
-  .section-light-alt .system-card {
-    background: var(--light-card-bg);
-    border: 1px solid var(--light-card-border);
-    box-shadow: 0 2px 12px rgba(160,80,220,0.06);
-  }
-  .section-light .system-card:hover,
-  .section-light-alt .system-card:hover { border-color: var(--light-card-border-hover); box-shadow: 0 6px 24px rgba(218,63,246,0.12); }
-  .section-light .system-card h3,
-  .section-light-alt .system-card h3 { color: var(--light-text); }
-  .section-light .system-card p,
-  .section-light-alt .system-card p { color: var(--light-text-muted); }
-  .system-card {
-    border-radius: 14px;
-    padding: 26px;
-    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
-  }
-  .system-card:hover { transform: translateY(-2px); }
-  .system-icon { margin-bottom: 12px; display: block; }
-  .system-icon svg {
-    width: 28px;
-    height: 28px;
-    stroke: var(--magenta);
-    stroke-width: 2;
-    fill: none;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
-  .system-card h3 { font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 8px; }
-  .system-card p { font-size: 16px; line-height: 1.65; }
-  /* ── LEVEL TRACKER ── */
-  .level-grid { display: flex; flex-direction: column; gap: 10px; }
-  .section-dark .level-item {
-    background: var(--purple-card);
-    border: 2px solid rgba(218,63,246,0.15);
-  }
-  .section-dark .level-item:hover { border-color: rgba(218,63,246,0.4); }
-  .section-dark .level-item.selected { border-color: var(--magenta); background: rgba(218,63,246,0.1); box-shadow: 0 0 24px rgba(218,63,246,0.2); }
-  .section-dark .level-item.target-zone { border-color: rgba(218,63,246,0.3); background: rgba(42,0,62,0.7); }
-  .section-dark .level-content h4 { color: var(--white); }
-  .section-dark .level-content p { color: rgba(255,255,255,0.55); }
-  .section-dark .level-num { color: rgba(218,63,246,0.25); }
-  .section-dark .level-item.selected .level-num { color: var(--magenta); }
-  .section-dark .level-result { background: rgba(218,63,246,0.08); border: 1px solid rgba(218,63,246,0.3); }
-  .section-dark .level-result p { color: rgba(255,255,255,0.78); }
-  .section-light .level-item,
-  .section-light-alt .level-item {
-    background: var(--light-card-bg);
-    border: 2px solid var(--light-card-border);
-    box-shadow: 0 2px 8px rgba(160,80,220,0.05);
-  }
-  .section-light .level-item:hover,
-  .section-light-alt .level-item:hover { border-color: var(--light-card-border-hover); box-shadow: 0 4px 16px rgba(218,63,246,0.1); }
-  .section-light .level-item.selected,
-  .section-light-alt .level-item.selected { border-color: var(--magenta); background: #fdf0ff; box-shadow: 0 0 20px rgba(218,63,246,0.15); }
-  .section-light .level-item.target-zone,
-  .section-light-alt .level-item.target-zone { border-color: rgba(180,80,220,0.3); background: #f8eeff; }
-  .section-light .level-content h4,
-  .section-light-alt .level-content h4 { color: var(--light-text); }
-  .section-light .level-content p,
-  .section-light-alt .level-content p { color: var(--light-text-muted); }
-  .section-light .level-num,
-  .section-light-alt .level-num { color: rgba(180,80,220,0.25); }
-  .section-light .level-item.selected .level-num,
-  .section-light-alt .level-item.selected .level-num { color: var(--magenta); }
-  .section-light .level-result,
-  .section-light-alt .level-result { background: #fdf0ff; border: 1px solid rgba(218,63,246,0.3); }
-  .section-light .level-result p,
-  .section-light-alt .level-result p { color: var(--light-text-muted); }
-  .level-item {
-    border-radius: 14px;
-    padding: 18px 22px;
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    cursor: pointer;
-    transition: all 0.25s;
-    position: relative;
-  }
-  .level-num { font-family: 'Montserrat', sans-serif; font-size: 26px; font-weight: 900; line-height: 1; min-width: 32px; }
-  .level-content h4 { font-family: 'Montserrat', sans-serif; font-size: 17px; font-weight: 700; margin-bottom: 3px; }
-  .level-content p { font-size: 16px; }
-  .level-tag {
-    position: absolute;
-    right: 16px; top: 50%;
-    transform: translateY(-50%);
-    font-family: 'Montserrat', sans-serif;
-    font-size: 13px; font-weight: 700; letter-spacing: 1.5px;
-    text-transform: uppercase;
-    padding: 3px 10px; border-radius: 50px;
-  }
-  .tag-stuck { background: rgba(0,0,0,0.06); color: rgba(100,100,120,0.6); }
-  .section-dark .tag-stuck { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.35); }
-  .tag-target { background: rgba(218,63,246,0.15); color: var(--magenta-dark); border: 1px solid rgba(218,63,246,0.35); }
-  .section-dark .tag-target { color: var(--magenta); }
-  .tag-vision { background: rgba(194,139,252,0.15); color: #8b44c8; border: 1px solid rgba(194,139,252,0.3); }
-  .section-dark .tag-vision { color: var(--lavender); }
-  .tag-you { background: var(--magenta); color: white; }
-  .level-result {
-    border-radius: 14px;
-    padding: 24px 28px;
-    margin-top: 20px;
-    display: none;
-    animation: fadeIn 0.3s ease;
-  }
+  /* ── LADDER LEVELS ── */
+  .ladder { display: flex; flex-direction: column; gap: 0; margin-bottom: 32px; }
+  .ladder-step { display: grid; grid-template-columns: 64px 1fr; gap: 0; cursor: pointer; transition: all 0.25s; position: relative; }
+  .ladder-left { display: flex; flex-direction: column; align-items: center; position: relative; }
+  .ladder-num { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 900; background: var(--purple-card); border: 2px solid rgba(255,255,255,0.08); color: rgba(255,255,255,0.25); transition: all 0.25s; position: relative; z-index: 2; }
+  .ladder-line { width: 2px; flex: 1; background: rgba(255,255,255,0.06); }
+  .ladder-step:last-child .ladder-line { display: none; }
+  .ladder-card { border-radius: 14px; padding: 24px 28px; margin: 6px 0 6px 0; border: 2px solid rgba(255,255,255,0.06); background: var(--purple-card); transition: all 0.25s; }
+  .ladder-step:hover .ladder-card { border-color: rgba(255,255,255,0.12); }
+  .ladder-step.active .ladder-num { background: var(--magenta); border-color: var(--magenta); color: #fff; box-shadow: 0 0 20px rgba(218,63,246,0.3); }
+  .ladder-step.active .ladder-card { border-color: var(--magenta); background: rgba(218,63,246,0.06); box-shadow: 0 2px 24px rgba(218,63,246,0.1); }
+  .ladder-step.active .ladder-line { background: var(--magenta); opacity: 0.3; }
+  .ladder-header { display: flex; align-items: center; gap: 14px; margin-bottom: 8px; }
+  .ladder-name { font-family: 'Montserrat', sans-serif; font-size: 19px; font-weight: 700; color: var(--white); }
+  .ladder-tag { font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; padding: 3px 10px; border-radius: 50px; }
+  .ladder-tag.tag-most { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.35); }
+  .ladder-tag.tag-vision { background: rgba(218,63,246,0.1); color: rgba(218,63,246,0.6); }
+  .ladder-what { font-size: 17px; line-height: 1.7; color: rgba(255,255,255,0.6); margin-bottom: 10px; }
+  .ladder-impl { font-size: 15px; line-height: 1.6; color: rgba(255,255,255,0.35); font-style: italic; }
+  .ladder-impl strong { color: rgba(255,255,255,0.5); font-style: normal; }
+  .level-result { border-radius: 14px; padding: 24px 28px; margin-top: 24px; display: none; animation: fadeIn 0.3s ease; background: rgba(218,63,246,0.04); border: 1px solid rgba(218,63,246,0.15); }
   .level-result.visible { display: block; }
   .level-result h4 { font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 700; color: var(--magenta); margin-bottom: 8px; }
-  /* ── DIAGNOSTIC ── */
-  .diagnostic-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin-bottom: 32px;
+  .level-result p { font-size: 17px; color: rgba(255,255,255,0.7); line-height: 1.7; }
+  @media (max-width: 700px) {
+    .ladder-step { grid-template-columns: 48px 1fr; }
+    .ladder-num { width: 40px; height: 40px; font-size: 17px; }
+    .ladder-card { padding: 18px 20px; }
+    .ladder-name { font-size: 17px; }
   }
-  .section-dark .diag-category { background: var(--purple-card); border: 1px solid rgba(218,63,246,0.2); }
-  .section-dark .diag-category h4 { color: var(--lavender); }
-  .section-dark .diag-text { color: rgba(255,255,255,0.7); }
-  .section-dark .diag-question-row.checked .diag-text { color: rgba(255,255,255,0.35); }
-  .section-dark .diag-checkbox { border: 2px solid rgba(218,63,246,0.3); }
-  .section-dark .diag-score-wrap { background: rgba(218,63,246,0.06); border: 1px solid rgba(218,63,246,0.25); }
-  .section-dark .score-label { color: rgba(255,255,255,0.5); }
-  .section-dark .score-result { color: rgba(255,255,255,0.75); }
-  .section-dark .score-bar-wrap { background: rgba(255,255,255,0.08); }
-  .section-light .diag-category,
-  .section-light-alt .diag-category {
-    background: var(--light-card-bg);
-    border: 1px solid var(--light-card-border);
-    box-shadow: 0 2px 10px rgba(160,80,220,0.06);
-  }
-  .section-light .diag-category h4,
-  .section-light-alt .diag-category h4 { color: #7b35b8; }
-  .section-light .diag-text,
-  .section-light-alt .diag-text { color: var(--light-text-muted); }
-  .section-light .diag-question-row.checked .diag-text,
-  .section-light-alt .diag-question-row.checked .diag-text { color: rgba(90,90,114,0.4); }
-  .section-light .diag-checkbox,
-  .section-light-alt .diag-checkbox { border: 2px solid rgba(180,80,220,0.3); }
-  .section-light .diag-score-wrap,
-  .section-light-alt .diag-score-wrap { background: #fdf5ff; border: 1px solid rgba(218,63,246,0.2); }
-  .section-light .score-label,
-  .section-light-alt .score-label { color: var(--light-text-muted); }
-  .section-light .score-result,
-  .section-light-alt .score-result { color: var(--light-text-muted); }
-  .section-light .score-bar-wrap,
-  .section-light-alt .score-bar-wrap { background: rgba(180,80,220,0.1); }
-  .diag-category { border-radius: 14px; padding: 24px; }
-  .diag-category h4 { font-family: 'Montserrat', sans-serif; font-size: 17px; font-weight: 700; margin-bottom: 16px; }
-  .diag-question-row {
-    display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;
-    cursor: pointer; transition: opacity 0.2s;
-  }
-  .diag-question-row:hover { opacity: 0.85; }
-  .diag-checkbox {
-    width: 20px; height: 20px; border-radius: 6px; flex-shrink: 0; margin-top: 1px;
-    display: flex; align-items: center; justify-content: center;
-    transition: all 0.2s; background: transparent; cursor: pointer;
-  }
-  .diag-question-row.checked .diag-checkbox { background: var(--magenta); border-color: var(--magenta) !important; }
-  .diag-check-icon { font-size: 12px; color: white; opacity: 0; transition: opacity 0.2s; }
-  .diag-question-row.checked .diag-check-icon { opacity: 1; }
-  .diag-text { font-size: 17px; line-height: 1.5; }
-  .diag-question-row.checked .diag-text { text-decoration: line-through; }
-  .diag-score-wrap { border-radius: 14px; padding: 28px 32px; margin-top: 8px; transition: all 0.3s; }
-  .diag-score-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 12px; }
-  .score-label { font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
-  .score-number { font-family: 'Montserrat', sans-serif; font-size: 36px; font-weight: 900; color: var(--magenta); }
-  .score-bar-wrap { height: 8px; border-radius: 50px; overflow: hidden; margin-bottom: 16px; }
-  .score-bar { height: 100%; background: linear-gradient(90deg, var(--magenta), var(--lavender)); border-radius: 50px; transition: width 0.5s ease; width: 0%; }
-  .score-result { font-size: 18px; line-height: 1.6; }
-  .score-result strong { color: var(--magenta); }
-  /* ── ARCHITECTURE ── */
-  .section-dark .arch-layer { background: var(--purple-card); border: 1px solid rgba(218,63,246,0.2); }
-  .section-dark .arch-layer h4 { color: var(--white); }
-  .section-dark .arch-layer p { color: rgba(255,255,255,0.62); }
-  .section-light .arch-layer,
-  .section-light-alt .arch-layer {
-    background: var(--light-card-bg);
-    border: 1px solid var(--light-card-border);
-    box-shadow: 0 1px 8px rgba(160,80,220,0.05);
-  }
-  .section-light .arch-layer h4,
-  .section-light-alt .arch-layer h4 { color: var(--light-text); }
-  .section-light .arch-layer p,
-  .section-light-alt .arch-layer p { color: var(--light-text-muted); }
-  .arch-layers { display: flex; flex-direction: column; }
-  .arch-layer { padding: 26px 30px; }
-  .arch-layer:first-child { border-radius: 16px 16px 0 0; border-bottom: none; }
-  .arch-layer:last-child { border-radius: 0 0 16px 16px; border-top: none; }
-  .arch-layer:not(:first-child):not(:last-child) { border-top: none; border-bottom: none; }
-  .arch-label { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--magenta); margin-bottom: 6px; }
-  .arch-layer h4 { font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 800; margin-bottom: 8px; }
-  .arch-layer p { font-size: 17px; }
-  /* ── PRIORITY TABLE ── */
-  .section-dark .priority-intro { background: rgba(218,63,246,0.07); border: 1px solid rgba(218,63,246,0.25); color: rgba(255,255,255,0.8); }
-  .section-light .priority-intro,
-  .section-light-alt .priority-intro { background: #fdf0ff; border: 1px solid rgba(218,63,246,0.2); color: var(--light-text-muted); }
-  .priority-intro { border-radius: 14px; padding: 24px 28px; margin-bottom: 28px; font-size: 19px; }
-  .priority-intro strong { color: var(--magenta); }
-  .section-dark .priority-table th { color: var(--lavender); border-bottom: 1px solid rgba(218,63,246,0.2); }
-  .section-dark .priority-table td { border-bottom: 1px solid rgba(255,255,255,0.05); color: rgba(255,255,255,0.72); }
-  .section-dark .priority-table td:first-child { color: var(--white); }
-  .section-dark .priority-table tr:hover td { background: rgba(218,63,246,0.04); }
-  .section-light .priority-table th,
-  .section-light-alt .priority-table th { color: #7b35b8; border-bottom: 1px solid rgba(180,80,220,0.2); }
-  .section-light .priority-table td,
-  .section-light-alt .priority-table td { border-bottom: 1px solid rgba(0,0,0,0.06); color: var(--light-text-muted); }
-  .section-light .priority-table td:first-child,
-  .section-light-alt .priority-table td:first-child { color: var(--light-text); }
-  .section-light .priority-table tr:hover td,
-  .section-light-alt .priority-table tr:hover td { background: rgba(218,63,246,0.04); }
-  .priority-table { width: 100%; border-collapse: collapse; font-size: 17px; }
-  .priority-table th { font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; text-align: left; padding: 14px 16px; }
-  .priority-table td { padding: 14px 16px; vertical-align: top; }
-  .priority-table td:first-child { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 16px; }
-  .priority-table tr:last-child td { border-bottom: none; }
-  .ptag { display: inline-block; padding: 3px 10px; border-radius: 50px; font-size: 14px; font-weight: 700; font-family: 'Montserrat', sans-serif; letter-spacing: 1px; text-transform: uppercase; }
-  .ptag-high { background: rgba(218,63,246,0.15); color: var(--magenta-dark); }
-  .ptag-med { background: rgba(194,139,252,0.15); color: #7b35b8; }
-  .section-dark .ptag-high { color: var(--magenta); }
-  .section-dark .ptag-med { color: var(--lavender); }
-  /* ── QUICK WINS ── */
-  .wins-list { display: flex; flex-direction: column; gap: 14px; }
-  .section-dark .win-item { background: var(--purple-card); border: 1px solid rgba(218,63,246,0.18); }
-  .section-dark .win-item:hover { border-color: rgba(218,63,246,0.4); }
-  .section-dark .win-content h4 { color: var(--white); }
-  .section-dark .win-content p { color: rgba(255,255,255,0.62); }
-  .section-dark .win-num { color: rgba(218,63,246,0.22); }
-  .section-light .win-item,
-  .section-light-alt .win-item {
-    background: var(--light-card-bg);
-    border: 1px solid var(--light-card-border);
-    box-shadow: 0 2px 10px rgba(160,80,220,0.06);
-  }
-  .section-light .win-item:hover,
-  .section-light-alt .win-item:hover { border-color: var(--light-card-border-hover); box-shadow: 0 6px 20px rgba(218,63,246,0.1); }
-  .section-light .win-content h4,
-  .section-light-alt .win-content h4 { color: var(--light-text); }
-  .section-light .win-content p,
-  .section-light-alt .win-content p { color: var(--light-text-muted); }
-  .section-light .win-num,
-  .section-light-alt .win-num { color: rgba(180,80,220,0.2); }
-  .win-item { display: flex; gap: 18px; align-items: flex-start; border-radius: 14px; padding: 22px 26px; transition: border-color 0.2s, box-shadow 0.2s; }
-  .win-num { font-family: 'Montserrat', sans-serif; font-size: 34px; font-weight: 900; line-height: 1; min-width: 36px; }
-  .win-content h4 { font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 6px; }
-  .win-content p { font-size: 17px; line-height: 1.65; }
+  /* ── 4-STEP PATH ── */
+  .step-card { display: flex; gap: 24px; align-items: flex-start; margin-bottom: 28px; padding: 28px; border-radius: 12px; }
+  .step-num { font-family: 'Montserrat', sans-serif; font-size: 48px; font-weight: 900; line-height: 1; min-width: 52px; color: rgba(255,255,255,0.08); }
+  .section-light .step-num, .section-light-alt .step-num { color: rgba(0,0,0,0.06); }
+  .step-body h4 { font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 800; margin-bottom: 8px; }
+  .section-dark .step-body h4 { color: var(--white); }
+  .section-light .step-body h4, .section-light-alt .step-body h4 { color: var(--light-text); }
+  .step-body p { font-size: 17px; line-height: 1.7; }
+  .section-dark .step-body p { color: rgba(255,255,255,0.65); }
+  .section-light .step-body p, .section-light-alt .step-body p { color: var(--light-text-muted); }
+  /* ── IMPACT CARDS ── */
+  .impact-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+  .impact-card { border-radius: 16px; padding: 32px; }
+  .section-dark .impact-card { background: var(--purple-card); border: 1px solid rgba(255,255,255,0.08); }
+  .section-light .impact-card, .section-light-alt .impact-card { background: var(--light-card-bg); border: 1px solid var(--light-card-border); box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
+  .impact-card .impact-icon { font-size: 32px; margin-bottom: 16px; }
+  .impact-card h4 { font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 800; margin-bottom: 12px; }
+  .section-dark .impact-card h4 { color: var(--white); }
+  .section-light .impact-card h4, .section-light-alt .impact-card h4 { color: var(--light-text); }
+  .impact-stat { font-family: 'Montserrat', sans-serif; font-size: 28px; font-weight: 900; color: var(--magenta); margin-bottom: 12px; }
+  .impact-card p { font-size: 17px; line-height: 1.7; }
+  .section-dark .impact-card p { color: rgba(255,255,255,0.65); }
+  .section-light .impact-card p, .section-light-alt .impact-card p { color: var(--light-text-muted); }
   /* ── TESTIMONIALS ── */
-  .testimonial-section { background: var(--purple-deep); padding: 80px 40px; }
-  .testimonial-inner { max-width: 900px; margin: 0 auto; }
-  .testimonial-inner .section-label { color: var(--magenta); }
-  .testimonial-inner h2 { color: var(--white); font-family: 'Montserrat', sans-serif; font-size: clamp(26px, 3.5vw, 40px); font-weight: 800; margin-bottom: 8px; }
-  .testimonial-inner h2 span { color: var(--magenta); }
-  .testimonial-inner .section-intro { color: rgba(255,255,255,0.65); }
   .testimonials-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 36px; }
   @media (max-width: 600px) { .testimonials-grid { grid-template-columns: 1fr; } }
-  .testimonial-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(218,63,246,0.2); border-radius: 16px; padding: 28px; transition: border-color 0.2s; }
-  .testimonial-card:hover { border-color: rgba(218,63,246,0.4); }
-  .testimonial-quote { font-size: 18px; color: rgba(255,255,255,0.78); line-height: 1.7; margin-bottom: 18px; font-style: italic; }
-  .testimonial-author { font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: var(--lavender); }
+  .testimonial-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 28px; transition: border-color 0.2s; }
+  .testimonial-card:hover { border-color: rgba(255,255,255,0.15); }
+  .testimonial-quote { font-size: 18px; color: rgba(255,255,255,0.7); line-height: 1.7; margin-bottom: 18px; font-style: italic; }
+  .testimonial-author { font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: rgba(255,255,255,0.5); }
   /* ── CTA ── */
-  .cta-section { background: linear-gradient(135deg, #1C0029 0%, #2A003E 50%, #1C0029 100%); padding: 100px 40px; text-align: center; position: relative; overflow: hidden; }
-  .cta-section::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 700px; height: 700px; background: radial-gradient(circle, rgba(218,63,246,0.12) 0%, transparent 70%); pointer-events: none; }
-  .cta-inner { max-width: 640px; margin: 0 auto; position: relative; z-index: 1; }
-  .cta-inner h2 { font-family: 'Montserrat', sans-serif; font-size: clamp(30px, 4vw, 48px); font-weight: 900; line-height: 1.1; margin-bottom: 18px; color: var(--white); }
-  .cta-inner h2 span { color: var(--magenta); }
-  .cta-inner > p { color: rgba(255,255,255,0.68); font-size: 19px; margin-bottom: 36px; line-height: 1.7; }
-  .cta-btn {
-    display: inline-block;
-    background: linear-gradient(90deg, var(--magenta), var(--magenta-light));
-    color: var(--white);
-    font-family: 'Montserrat', sans-serif;
-    font-size: 17px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase;
-    text-decoration: none; padding: 18px 48px; border-radius: 50px;
-    box-shadow: 0 0 40px rgba(218,63,246,0.4); transition: all 0.2s;
-  }
-  .cta-btn:hover { box-shadow: 0 0 60px rgba(218,63,246,0.6); transform: translateY(-2px); }
-  .cta-subtext { margin-top: 18px; font-size: 16px; color: rgba(255,255,255,0.35); }
+  .cta-btn { display: inline-block; background: var(--magenta); color: var(--white); font-family: 'Montserrat', sans-serif; font-size: 17px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; padding: 18px 48px; border-radius: 50px; transition: all 0.2s; }
+  .cta-btn:hover { opacity: 0.9; transform: translateY(-2px); }
   /* ── FOOTER ── */
-  .footer { background: var(--charcoal); padding: 36px 40px; text-align: center; }
-  .footer p { font-size: 16px; color: rgba(255,255,255,0.3); }
+  .footer { background: #0a0a0a; padding: 36px 40px; text-align: center; }
+  .footer p { font-size: 16px; color: rgba(255,255,255,0.25); }
   .footer a { color: var(--magenta); text-decoration: none; }
-  /* ── ANIMATIONS ── */
   @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
   .fade-in { animation: fadeIn 0.5s ease both; }
-  /* ── MISC ── */
-  .bg-alt-wrap { }
-  .nav-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(218,63,246,0.3); display: inline-block; margin: 0 4px; }
-  /* Collapsible content p tag base */
-  .collapsible-content p { font-size: 18px; line-height: 1.7; margin-bottom: 12px; }
 </style>
 </head>
 <body>
 <!-- LEFT SIDEBAR -->
 <aside class="sidebar" id="sidebar">
   <div class="sidebar-logo">
-    <div class="sidebar-logo-text">BrandAI<br>Blueprint</div>
+    <div class="sidebar-logo-text">Growth Systems<br>Blueprint</div>
     <div class="sidebar-logo-sub">by Poulomi Basu</div>
   </div>
   <nav class="sidebar-nav">
@@ -839,7 +262,7 @@
     <a href="#s2" class="sidebar-link" data-section="s2">
       <span class="sidebar-num">02</span>
       <span class="sidebar-icon"><svg viewBox="0 0 24 24"><polyline points="13 17 18 12 13 7"></polyline><polyline points="6 17 11 12 6 7"></polyline></svg></span>
-      <span>AI Solution</span>
+      <span>The Solution</span>
     </a>
     <a href="#s3" class="sidebar-link" data-section="s3">
       <span class="sidebar-num">03</span>
@@ -849,7 +272,7 @@
     <a href="#s4" class="sidebar-link" data-section="s4">
       <span class="sidebar-num">04</span>
       <span class="sidebar-icon"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg></span>
-      <span>8 Levels</span>
+      <span>5 Levels</span>
     </a>
     <a href="#s5" class="sidebar-link" data-section="s5">
       <span class="sidebar-num">05</span>
@@ -858,206 +281,345 @@
     </a>
     <a href="#s6" class="sidebar-link" data-section="s6">
       <span class="sidebar-num">06</span>
-      <span class="sidebar-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg></span>
-      <span>Which Systems</span>
+      <span class="sidebar-icon"><svg viewBox="0 0 24 24"><path d="M12 20V10"></path><path d="M18 20V4"></path><path d="M6 20v-4"></path></svg></span>
+      <span>The Impact</span>
     </a>
     <a href="#s7" class="sidebar-link" data-section="s7">
       <span class="sidebar-num">07</span>
-      <span class="sidebar-icon"><svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></span>
-      <span>Quick Wins</span>
+      <span class="sidebar-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg></span>
+      <span>Getting Started</span>
     </a>
     <a href="#s8" class="sidebar-link" data-section="s8">
       <span class="sidebar-num">08</span>
-      <span class="sidebar-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></span>
-      <span>Testimonials</span>
+      <span class="sidebar-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="12" x2="21" y2="12"></line><line x1="12" y1="3" x2="12" y2="21"></line></svg></span>
+      <span>ROI Matrix</span>
     </a>
     <a href="#s9" class="sidebar-link" data-section="s9">
       <span class="sidebar-num">09</span>
       <span class="sidebar-icon"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></span>
-      <span>Roadmap</span>
+      <span>Next Step</span>
     </a>
     <a href="#s10" class="sidebar-link" data-section="s10">
       <span class="sidebar-num">10</span>
-      <span class="sidebar-icon"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg></span>
-      <span>Audit Tool</span>
+      <span class="sidebar-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></span>
+      <span>Testimonials</span>
     </a>
   </nav>
   <div class="sidebar-footer">
-    <a href="https://calendly.com/pbasu-ignite/" class="sidebar-cta-btn">Book Clarity Call →</a>
+    <a href="https://weignitegrowth.com" class="sidebar-cta-btn">Get Your Roadmap &rarr;</a>
   </div>
 </aside>
 <div class="main-content">
 <!-- STICKY NAV (mobile) -->
 <nav class="sticky-nav">
-  <span class="nav-logo">AI Growth System Blueprint</span>
-  <a href="https://contentsystems.weignitegrowth.com/powerhour" target="_blank" rel="noopener noreferrer" style="display:inline-block; padding: 9px 22px; background: linear-gradient(90deg, var(--magenta), var(--lavender)); border-radius: 50px; color: #fff; font-family:'Montserrat',sans-serif; font-weight:700; font-size:13px; text-decoration:none; letter-spacing:0.3px; white-space:nowrap;">Create Your AI Growth System Roadmap</a>
+  <span class="nav-logo">Growth Systems Blueprint</span>
+  <a href="https://weignitegrowth.com" target="_blank" rel="noopener noreferrer" style="display:inline-block; padding: 9px 22px; background: var(--magenta); border-radius: 50px; color: #fff; font-family:'Montserrat',sans-serif; font-weight:700; font-size:13px; text-decoration:none; letter-spacing:0.3px; white-space:nowrap;">Get Your AI Roadmap</a>
 </nav>
 <!-- COVER -->
 <div class="cover">
-  <div class="cover-badge">The Official Guide by Poulomi Basu</div>
-  <h1>The BrandAI<br><span>Growth System</span><br>Blueprint</h1>
-  <p class="cover-subtitle">How to use AI as your business operating system — so you can finally grow without burning out.</p>
+  <h1>The AI<br><span>Growth Systems</span><br>Blueprint</h1>
+  <p class="cover-subtitle">How to use AI to free your team from operational drag — and build the systems that actually grow your business.</p>
   <div class="cover-divider"></div>
   <div class="cover-author">
     <div class="author-name">Poulomi Basu</div>
-    <div class="author-title">Strategic AI Architect · weignitegrowth.com</div>
+    <div class="author-title">Strategic AI Architect &middot; weignitegrowth.com</div>
   </div>
   <div style="margin-top: 52px; width: 100%;">
     <div class="toc">
       <h3>What's Inside</h3>
       <a href="#s1" class="toc-item"><span class="toc-n">01</span><span class="toc-label">Why Most Businesses Are Stuck</span></a>
       <a href="#s2" class="toc-item"><span class="toc-n">02</span><span class="toc-label">How AI Breaks the Growth Paradox</span></a>
-      <a href="#s3" class="toc-item"><span class="toc-n">03</span><span class="toc-label">The 6 Growth Systems</span></a>
-      <a href="#s4" class="toc-item"><span class="toc-n">04</span><span class="toc-label">The 8 Levels of AI Adoption</span></a>
+      <a href="#s3" class="toc-item"><span class="toc-n">03</span><span class="toc-label">The 6 Growth Systems (with examples)</span></a>
+      <a href="#s4" class="toc-item"><span class="toc-n">04</span><span class="toc-label">The 5 Levels of AI in Your Business</span></a>
       <a href="#s5" class="toc-item"><span class="toc-n">05</span><span class="toc-label">The 5 I's: How You Actually Build This</span></a>
-      <a href="#s6" class="toc-item"><span class="toc-n">06</span><span class="toc-label">Which Systems to Build First</span></a>
-      <a href="#s7" class="toc-item"><span class="toc-n">07</span><span class="toc-label">Quick Wins to Start This Week</span></a>
-      <a href="#s8" class="toc-item"><span class="toc-n">08</span><span class="toc-label">What Founders Are Saying</span></a>
-      <a href="#s9" class="toc-item"><span class="toc-n">09</span><span class="toc-label">Your Strategic Roadmap</span></a>
-      <a href="#s10" class="toc-item"><span class="toc-n">10</span><span class="toc-label">Take the Business Efficiency Audit</span></a>
+      <a href="#s6" class="toc-item"><span class="toc-n">06</span><span class="toc-label">The Real Impact (in Numbers)</span></a>
+      <a href="#s7" class="toc-item"><span class="toc-n">07</span><span class="toc-label">The 4-Step Path to Your Growth System</span></a>
+      <a href="#s8" class="toc-item"><span class="toc-n">08</span><span class="toc-label">How to Prioritise: The ROI Matrix</span></a>
+      <a href="#s9" class="toc-item"><span class="toc-n">09</span><span class="toc-label">Your Next Step</span></a>
+      <a href="#s10" class="toc-item"><span class="toc-n">10</span><span class="toc-label">What Founders Are Saying</span></a>
     </div>
   </div>
 </div>
 <div class="divider"></div>
-<!-- ── SECTION 01: WHAT IS AN AI GROWTH SYSTEM ── -->
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- ── SECTION 01: THE PROBLEM ── -->
+<!-- ══════════════════════════════════════════════ -->
 <div id="s1" class="section-light" style="background:#fff;">
 <div class="section-wrap">
   <div class="section-label">Section 01</div>
   <h2>You don't have a growth problem. <span>You have a capacity problem.</span></h2>
   <p class="section-intro">Here's what I see again and again with service business founders: They're good at what they do. Really good. Clients love them. Results are strong. <strong style="color:var(--magenta)">But growth? It keeps getting pushed to tomorrow.</strong></p>
-  <div class="highlight-box" style="background: var(--purple-deep); border-color: rgba(218,63,246,0.3);">
+  <div class="highlight-box" style="background: #1A1A1A; border-color: rgba(255,255,255,0.08);">
     <h4 style="font-family:'Montserrat',sans-serif; color:var(--magenta); font-size:14px; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:16px;">The Growth Paradox</h4>
-    <p style="color: rgba(255,255,255,0.85); font-size:17px; line-height:1.8;">To grow, you need to do more growth activities — marketing, sales, content, lead gen, follow-ups, new offers.</p>
-    <p style="color: rgba(255,255,255,0.85); font-size:17px; line-height:1.8;">To do those activities, you need people. But you and your team are already stretched thin on delivery.</p>
-    <p style="color: rgba(255,255,255,0.85); font-size:17px; line-height:1.8;">So you think: I need to hire. But to hire, you need more revenue. And to get more revenue, you need to grow.</p>
+    <p style="color: rgba(255,255,255,0.8); font-size:17px; line-height:1.8;">To grow, you need to do more growth activities — marketing, sales, content, lead gen, follow-ups, new offers.</p>
+    <p style="color: rgba(255,255,255,0.8); font-size:17px; line-height:1.8;">To do those activities, you need people. But you and your team are already stretched thin on delivery.</p>
+    <p style="color: rgba(255,255,255,0.8); font-size:17px; line-height:1.8;">So you think: I need to hire. But to hire, you need more revenue. And to get more revenue, you need to grow.</p>
     <p style="color:var(--magenta); font-weight:700; font-size:17px; margin-top:12px;">And there it is. The loop that keeps you stuck.</p>
   </div>
   <div style="margin-top: 36px;">
-    <h4 style="font-family:'Montserrat',sans-serif; font-size: 19px; font-weight: 700; color: var(--light-text); margin-bottom: 14px;">And here's what makes it worse:</h4>
+    <h4 style="font-family:'Montserrat',sans-serif; font-size: 19px; font-weight: 700; color: var(--light-text); margin-bottom: 14px;">How many hours a week do you spend on work that shouldn't need you?</h4>
     <p style="font-size: 17px; color: var(--light-text-muted); line-height: 1.8; margin-bottom: 16px;">You've probably adapted to it. The operational grind — the admin, the follow-ups, the repetitive tasks, the content scramble — it just becomes your normal. You don't even see it as a problem anymore. It's just... Tuesday.</p>
-    <p style="font-size: 19px; color: var(--magenta); font-weight: 700; line-height: 1.7;">But it is costing you. Every hour spent on operational work is an hour not spent on growth.</p>
+    <p style="font-size: 17px; color: var(--light-text-muted); line-height: 1.8; margin-bottom: 16px;">Your processes were built with duct tape when you were a 2-person team. Now you've got 5&ndash;15 SaaS tools that don't talk to each other. No internal tech person. And the founder — you — is the bottleneck for everything.</p>
+    <p style="font-size: 19px; color: var(--magenta); font-weight: 700; line-height: 1.7;">Every hour spent on operational work is an hour not spent on growth.</p>
   </div>
 </div>
 </div>
 <div class="divider"></div>
-<!-- ── SECTION 02: 5-I MODEL ── -->
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- ── SECTION 02: THE SOLUTION ── -->
+<!-- ══════════════════════════════════════════════ -->
 <div id="s2" class="section-dark">
 <div class="section-wrap">
   <div class="section-label">Section 02</div>
-  <h2>AI breaks the cycle. <span>But not the way you think.</span></h2>
-  <p class="section-intro">Most people use AI like a smarter Google. Type a question, get an answer, close the tab. That's fine. But it saves you maybe <strong style="color:var(--magenta)">5% of what's actually possible</strong>. Here's what AI actually does when you build it right:</p>
+  <h2>AI runs your operations <span>and drives your growth.</span></h2>
+  <p class="section-intro">Most people use AI like a smarter Google. Type a question, get an answer, close the tab. That's fine. But it's maybe <strong style="color:var(--magenta)">5% of what's actually possible</strong>. Here's what changes when you build it as infrastructure:</p>
   <div style="margin-top: 36px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
-    <div style="padding: 28px; border-radius: 14px; border: 1px solid rgba(218,63,246,0.25); background: rgba(218,63,246,0.06);">
+    <div style="padding: 28px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.03);">
       <h4 style="font-family:'Montserrat',sans-serif; font-size:14px; letter-spacing:1.5px; text-transform:uppercase; color:var(--magenta); margin-bottom:14px;">Frees Your Team</h4>
-      <p style="font-size:17px; color:rgba(255,255,255,0.8); line-height:1.7;">Automates repetitive tasks so your team stops spending time on work that doesn't move the needle.</p>
+      <p style="font-size:17px; color:rgba(255,255,255,0.7); line-height:1.7;">Automates repetitive tasks so your team stops spending time on work that doesn't move the needle.</p>
     </div>
-    <div style="padding: 28px; border-radius: 14px; border: 1px solid rgba(218,63,246,0.25); background: rgba(218,63,246,0.06);">
+    <div style="padding: 28px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.03);">
       <h4 style="font-family:'Montserrat',sans-serif; font-size:14px; letter-spacing:1.5px; text-transform:uppercase; color:var(--magenta); margin-bottom:14px;">Powers Your Growth</h4>
-      <p style="font-size:17px; color:rgba(255,255,255,0.8); line-height:1.7;">Does growth activities faster — content, outreach, proposals, follow-ups — at a scale one person never could.</p>
+      <p style="font-size:17px; color:rgba(255,255,255,0.7); line-height:1.7;">Does growth activities faster — content, outreach, proposals, follow-ups — at a scale one person never could.</p>
     </div>
   </div>
-  <div class="highlight-box" style="margin-top: 36px; background: rgba(218,63,246,0.12); border-color: rgba(218,63,246,0.3);">
-    <p style="font-size:19px; color:#fff; font-weight:700; line-height:1.6;">AI only works at this level when it's your infrastructure. Not a tool you use occasionally. Not a band-aid for when things get chaotic. <span style="color:var(--magenta)">Infrastructure.</span></p>
+  <div class="highlight-box" style="margin-top: 36px;">
+    <p style="font-size:19px; color:#fff; font-weight:700; line-height:1.6;">I help founders find where their team is losing time and money — then build the systems that fix it. <span style="color:var(--magenta);">AI is how we do it.</span></p>
   </div>
   <div style="margin-top: 28px;">
-    <p style="font-size:17px; color:rgba(255,255,255,0.75); line-height:1.8; margin-bottom:16px;">That means you train it on your business. Give it your brand voice, your workflows, your client data, your SOPs. Connect it to your tools. Set it up so it can run tasks repeatedly — just like an actual team member would.</p>
-    <p style="font-size:17px; color:rgba(255,255,255,0.75); line-height:1.8;">When you build it that way, AI doesn't just save you time on one task. It becomes the engine behind how your whole business operates.</p>
+    <p style="font-size:17px; color:rgba(255,255,255,0.65); line-height:1.8; margin-bottom:16px;">That means training AI on your business. Give it your brand voice, your workflows, your client data, your SOPs. Connect it to your tools. Set it up so it can run tasks repeatedly — just like an actual team member would.</p>
+    <p style="font-size:17px; color:rgba(255,255,255,0.65); line-height:1.8;">When you build it that way, AI doesn't just save you time on one task. It becomes the engine behind how your whole business operates.</p>
   </div>
 </div>
 </div>
 <div class="divider"></div>
-<!-- ── SECTION 03: 6 SYSTEMS ── -->
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- ── ABOUT ME ── -->
+<!-- ══════════════════════════════════════════════ -->
+<div style="max-width: 900px; margin: 0 auto; padding: 64px 40px;">
+  <div class="about-flex" style="display: flex; gap: 40px; align-items: flex-start;">
+    <div style="flex-shrink: 0;">
+      <img src="../../../08-brand/visual-identity/poulomi-headshot.png" alt="Poulomi Basu" style="width: 160px; height: 160px; border-radius: 50%; object-fit: cover; object-position: top; border: 3px solid rgba(218,63,246,0.25);">
+    </div>
+    <div>
+      <h3 style="font-family:'Montserrat',sans-serif; font-size: 24px; font-weight: 800; color: var(--light-text); margin-bottom: 14px;">About Me</h3>
+      <p style="font-size: 17px; color: var(--light-text-muted); line-height: 1.7; margin-bottom: 14px;">I'm <strong style="color: var(--light-text);">Poulomi Basu</strong> — AI Strategy Consultant & Architect. I've spent 17 years building business systems for companies of all sizes, from startups to global enterprises. Today I work exclusively with service business founders who have teams of 2&ndash;20 people.</p>
+      <p style="font-size: 17px; color: var(--light-text-muted); line-height: 1.7; margin-bottom: 14px;">I've helped dozens of founders move from "using ChatGPT like Google" to running AI as actual business infrastructure — the kind that saves 50+ hours a week, recovers lost revenue, and lets them stop being the bottleneck in their own company.</p>
+      <p style="font-size: 17px; color: var(--light-text-muted); line-height: 1.7; margin-bottom: 18px;">This blueprint is the framework I use with every client. It's how I think about AI for service businesses — and it's yours to keep.</p>
+      <div class="about-links" style="display: flex; gap: 16px; flex-wrap: wrap;">
+        <a href="https://linkedin.com/in/brandpoulomi" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 8px; border: 1px solid rgba(0,0,0,0.1); text-decoration: none; font-family:'Montserrat',sans-serif; font-size: 14px; font-weight: 600; color: var(--light-text); transition: border-color 0.2s;">
+          <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:var(--magenta);"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          LinkedIn
+        </a>
+        <a href="https://youtube.com/@ignite_growth" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 8px; border: 1px solid rgba(0,0,0,0.1); text-decoration: none; font-family:'Montserrat',sans-serif; font-size: 14px; font-weight: 600; color: var(--light-text); transition: border-color 0.2s;">
+          <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:var(--magenta);"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.43z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" style="fill:#fff;"></polygon></svg>
+          YouTube
+        </a>
+        <a href="https://weignitegrowth.com" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 8px; border: 1px solid rgba(0,0,0,0.1); text-decoration: none; font-family:'Montserrat',sans-serif; font-size: 14px; font-weight: 600; color: var(--light-text); transition: border-color 0.2s;">
+          <svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:var(--magenta);stroke-width:2;fill:none;"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+          Website
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- ── SECTION 03: THE 6 GROWTH SYSTEMS ── -->
+<!-- ══════════════════════════════════════════════ -->
 <div id="s3" class="section-light" style="background:#fff;">
 <div class="section-wrap">
   <div class="section-label">Section 03</div>
   <h2><span>The 6 Growth Systems.</span></h2>
-  <p class="section-intro">These are the 6 areas of your business where AI infrastructure creates the most impact. Some free up your time. Some actively drive growth. Most do both.</p>
-  <div class="systems-grid">
-    <div class="system-card">
-      <span class="system-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg></span>
-      <h3>Clarity & Strategy</h3>
-      <p style="font-size:13px; color:var(--magenta); font-weight:600; letter-spacing:1px; text-transform:uppercase; margin-bottom:8px;">Operational + Growth</p>
-      <p>Pulls your industry trends, competitor data, and business numbers into one place. Gives you strategic insight for positioning and high-value conversations — without hours of research.</p>
+  <p class="section-intro">There are dozens of ways AI can help across your business operations — from writing emails to analysing data to managing client relationships to running your back office. When you step back and look at all of them, they broadly fall into 6 categories. Six systems that, together, cover almost everything a service business does day-to-day.</p>
+  <p style="font-size: 17px; color: var(--light-text-muted); line-height: 1.7; margin-bottom: 8px;">Each system tackles a different part of your operations. Some are about growth — getting more visible, closing more deals, bringing in new business. Others are about efficiency — streamlining what your team already does so they can do more of the work that actually matters. Most businesses start with the system that solves their biggest bottleneck, then expand from there.</p>
+  <p style="font-size: 17px; color: var(--light-text-muted); line-height: 1.7; margin-bottom: 36px;">Click any system to see the problem it solves and exactly what it can do.</p>
+
+  <!-- TAB BUTTONS -->
+  <div class="sys-tabs">
+    <div class="sys-tab active" onclick="showSystem(1)">
+      <div class="sys-tab-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg></div>
+      <div><div class="sys-tab-name">Clarity & Strategy</div><div class="sys-tab-tag">Operational + Growth</div></div>
     </div>
-    <div class="system-card">
-      <span class="system-icon"><svg viewBox="0 0 24 24"><line x1="17" y1="10" x2="3" y2="10"></line><line x1="21" y1="6" x2="3" y2="6"></line><line x1="21" y1="14" x2="3" y2="14"></line><line x1="17" y1="18" x2="3" y2="18"></line></svg></span>
-      <h3>Visibility & Content</h3>
-      <p style="font-size:13px; color:var(--magenta); font-weight:600; letter-spacing:1px; text-transform:uppercase; margin-bottom:8px;">Growth</p>
-      <p>Takes one idea and turns it into content across LinkedIn, email, and newsletters — all in your voice. No more blank page. No more choosing between billable work and showing up online.</p>
+    <div class="sys-tab" onclick="showSystem(2)">
+      <div class="sys-tab-icon"><svg viewBox="0 0 24 24"><line x1="17" y1="10" x2="3" y2="10"></line><line x1="21" y1="6" x2="3" y2="6"></line><line x1="21" y1="14" x2="3" y2="14"></line><line x1="17" y1="18" x2="3" y2="18"></line></svg></div>
+      <div><div class="sys-tab-name">Visibility & Content</div><div class="sys-tab-tag">Growth</div></div>
     </div>
-    <div class="system-card">
-      <span class="system-icon"><svg viewBox="0 0 24 24"><path d="m6 15-4-4 6.75-6.77a7.79 7.79 0 0 1 11 11L13 22l-4-4 6.39-6.36a2.14 2.14 0 0 0-3-3.07L6 15"></path></svg></span>
-      <h3>Sales & Pipeline</h3>
-      <p style="font-size:13px; color:var(--magenta); font-weight:600; letter-spacing:1px; text-transform:uppercase; margin-bottom:8px;">Growth</p>
-      <p>Handles lead qualification, follow-up sequences, and proposal generation. Every inquiry gets a thoughtful response. You only step in to close.</p>
+    <div class="sys-tab" onclick="showSystem(3)">
+      <div class="sys-tab-icon"><svg viewBox="0 0 24 24"><path d="m6 15-4-4 6.75-6.77a7.79 7.79 0 0 1 11 11L13 22l-4-4 6.39-6.36a2.14 2.14 0 0 0-3-3.07L6 15"></path></svg></div>
+      <div><div class="sys-tab-name">Sales & Pipeline</div><div class="sys-tab-tag">Growth</div></div>
     </div>
-    <div class="system-card">
-      <span class="system-icon"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17 11 19 13 23 9"></polyline></svg></span>
-      <h3>Client Experience</h3>
-      <p style="font-size:13px; color:var(--magenta); font-weight:600; letter-spacing:1px; text-transform:uppercase; margin-bottom:8px;">Operational</p>
-      <p>Automates onboarding, answers repetitive questions, manages client communication — using your SOPs. Premium experience without the manual hand-holding.</p>
+    <div class="sys-tab" onclick="showSystem(4)">
+      <div class="sys-tab-icon"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17 11 19 13 23 9"></polyline></svg></div>
+      <div><div class="sys-tab-name">Client Experience</div><div class="sys-tab-tag">Operational</div></div>
     </div>
-    <div class="system-card">
-      <span class="system-icon"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg></span>
-      <h3>Ops & Admin</h3>
-      <p style="font-size:13px; color:var(--magenta); font-weight:600; letter-spacing:1px; text-transform:uppercase; margin-bottom:8px;">Operational</p>
-      <p>Data entry, scheduling, invoice processing, document management. The work that drains your brain before you even get to the real work. Off your plate.</p>
+    <div class="sys-tab" onclick="showSystem(5)">
+      <div class="sys-tab-icon"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg></div>
+      <div><div class="sys-tab-name">Operations & Admin</div><div class="sys-tab-tag">Operational</div></div>
     </div>
-    <div class="system-card">
-      <span class="system-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span>
-      <h3>Custom IP System</h3>
-      <p style="font-size:13px; color:var(--magenta); font-weight:600; letter-spacing:1px; text-transform:uppercase; margin-bottom:8px;">Growth</p>
-      <p>Gets your expertise out of your head and into tools your team (and clients) can use — calculators, frameworks, decision trees. Your knowledge becomes a business asset.</p>
+    <div class="sys-tab" onclick="showSystem(6)">
+      <div class="sys-tab-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div>
+      <div><div class="sys-tab-name">Custom IP Tools</div><div class="sys-tab-tag">Growth</div></div>
     </div>
   </div>
+
+  <!-- TAB PANELS -->
+  <div class="sys-panel active" data-panel="1">
+    <div class="sys-panel-title">Clarity & Strategy</div>
+    <div class="sys-panel-tag">Operational + Growth</div>
+    <p>Picture this: you've got a big pitch next week. You need competitor data, market trends, and your own numbers in one place. So you spend half a day digging through reports, scanning competitor websites, pulling up old spreadsheets, and trying to piece together a story. By the time you're done, you're exhausted — and you haven't even started the actual pitch deck.</p>
+    <p class="sys-solve">With a Clarity & Strategy system, AI does the research for you:</p>
+    <ul>
+      <li>Monitors your competitors automatically — tracking their positioning, pricing changes, and new service offerings</li>
+      <li>Pulls industry trends and market data into regular briefings you can scan in minutes</li>
+      <li>Analyses your own revenue patterns, client retention, and service profitability to surface insights you'd miss in raw data</li>
+      <li>Generates strategic briefing documents checked against your brand positioning — ready to share or present</li>
+      <li>Exports polished PDFs for board updates, pitch decks, and stakeholder presentations</li>
+      <li>Remembers your business context across sessions — every briefing builds on the last one, getting sharper over time</li>
+    </ul>
+    <p>What used to take half a day of digging takes minutes. And the quality of your decisions goes up because you're working from real data instead of instinct.</p>
+  </div>
+
+  <div class="sys-panel" data-panel="2">
+    <div class="sys-panel-title">Visibility & Content</div>
+    <div class="sys-panel-tag">Growth</div>
+    <p>It's Monday. You told yourself this would be the week you finally post consistently. But by 10am you're in client delivery, and by Friday, nothing went out. Again. Or worse — you ask ChatGPT to "write a LinkedIn post," get something generic that sounds nothing like you, spend 30 minutes rewriting it, and wonder why you bothered.</p>
+    <p class="sys-solve">With a Visibility & Content system, one idea becomes a full week of on-brand content:</p>
+    <ul>
+      <li>Takes a single insight, lesson, or point of view and turns it into blog posts, LinkedIn posts, social threads, and newsletters</li>
+      <li>Writes in your actual voice — trained on your tone, vocabulary, phrases you use and the ones you avoid</li>
+      <li>Builds full email sequences for nurture campaigns, launches, and weekly newsletters</li>
+      <li>Checks every draft against your brand voice and style rules — off-brand content gets flagged before you see it</li>
+      <li>Creates content calendars and plans cross-channel campaigns so you always know what's going out and when</li>
+      <li>Produces a full week of content in about 90 minutes instead of 5+ hours</li>
+    </ul>
+    <p>The quality stays consistent because the system works from the same foundation every time — not whatever energy level you happen to have on a Friday afternoon.</p>
+  </div>
+
+  <div class="sys-panel" data-panel="3">
+    <div class="sys-panel-title">Sales & Pipeline</div>
+    <div class="sys-panel-tag">Growth</div>
+    <p>Think about the last time a great lead came in while you were deep in client delivery. Maybe you saw the email, told yourself you'd reply after this meeting. Two days later you remembered — and by then they'd already talked to someone else. Multiply that by every lead, every week, all year. That's the real cost.</p>
+    <p class="sys-solve">With a Sales & Pipeline system, no lead falls through the cracks:</p>
+    <ul>
+      <li>Researches and qualifies inbound leads automatically — company size, industry, role, fit against your ideal client profile</li>
+      <li>Flags hot leads immediately and nurtures cold ones with personalised email sequences until they're ready</li>
+      <li>Writes outbound emails built from actual prospect research — not mail-merge templates that scream "mass email"</li>
+      <li>Builds 4&ndash;5 email nurture sequences per prospect that sound like you wrote them individually</li>
+      <li>Surfaces your top priorities every morning — who needs a follow-up, who opened your email three times, who visited your pricing page</li>
+      <li>Handles routine enquiries about services, pricing, and availability with consistent, on-brand replies</li>
+    </ul>
+    <p>You only step in for the conversations that actually require your expertise. Everything else runs on its own.</p>
+  </div>
+
+  <div class="sys-panel" data-panel="4">
+    <div class="sys-panel-title">Client Experience</div>
+    <div class="sys-panel-tag">Operational</div>
+    <p>A new client signs the contract on Thursday. On Friday, you're in back-to-back meetings. By Monday, they still haven't received a welcome email. The project setup hasn't started. The kickoff meeting doesn't have an agenda. The client is already wondering if they made the right choice — and you haven't even started the actual work yet.</p>
+    <p class="sys-solve">With a Client Experience system, every client gets white-glove treatment automatically:</p>
+    <ul>
+      <li>Reads signed contracts and extracts deliverables, milestones, and deadlines the moment a deal closes</li>
+      <li>Generates personalised welcome packets and onboarding checklists built from the actual contract terms</li>
+      <li>Creates polished kickoff meeting agendas so the first interaction feels professional and prepared</li>
+      <li>Sends status updates, progress reports, and check-in emails on a consistent schedule without anyone chasing them</li>
+      <li>Produces monthly reports showing clients exactly what's been delivered and what's coming next</li>
+      <li>Stores each client's goals, preferences, and communication style — so every touchpoint feels personal and specific</li>
+    </ul>
+    <p>Clients feel like they're your only client — even when you're managing ten at once. And your team isn't spending hours assembling update decks.</p>
+  </div>
+
+  <div class="sys-panel" data-panel="5">
+    <div class="sys-panel-title">Operations & Admin</div>
+    <div class="sys-panel-tag">Operational</div>
+    <p>Your ops manager just spent two hours manually entering invoice data into a spreadsheet. Your team lead is writing the same SOP for the third time because nobody can find the first version. Someone missed a task from last week's meeting because the notes were in a Google Doc nobody opened. This is the hidden tax on every growing business.</p>
+    <p class="sys-solve">With an Operations & Admin system, the back office runs itself:</p>
+    <ul>
+      <li>Extracts data from PDF invoices automatically — no more manual entry from supplier bills</li>
+      <li>Updates financial spreadsheets with pivot tables and charts so your numbers are always current</li>
+      <li>Tracks budget categories and flags when spending goes off track before it becomes a problem</li>
+      <li>Writes and formats SOPs from rough notes or verbal descriptions — you describe the process, it produces the document</li>
+      <li>Converts meeting transcripts into tracked tasks with owners and deadlines so nothing falls through the cracks</li>
+      <li>Builds role-specific onboarding plans and training materials for new hires so every person gets a consistent experience</li>
+    </ul>
+    <p>Your team stops spending hours on work that doesn't move the needle — and starts spending that time on work that does.</p>
+  </div>
+
+  <div class="sys-panel" data-panel="6">
+    <div class="sys-panel-title">Custom IP Tools</div>
+    <div class="sys-panel-tag">Growth</div>
+    <p>You've spent years developing your approach — the frameworks you use, the way you diagnose problems, the methodology that gets results. But right now, all of that lives in your head. It can't be delegated. It can't sell for you. Your team can't use it without asking you. That's a bottleneck — and a missed opportunity.</p>
+    <p class="sys-solve">With a Custom IP Tools system, your knowledge becomes a reusable business asset:</p>
+    <ul>
+      <li>Turns your methodology into shareable sales assets — something you hand a prospect that demonstrates your thinking before the first call</li>
+      <li>Designs visual lead magnets that showcase your actual approach, not generic advice</li>
+      <li>Packages your frameworks as polished PDFs, interactive tools, or Word documents you can share, embed, or sell</li>
+      <li>Lets your team apply your decision-making frameworks to client problems independently — without pulling you into the room</li>
+      <li>Stores and versions your IP so every new tool builds on your existing library of expertise</li>
+      <li>Creates assessment tools, calculators, and decision trees from your proprietary processes</li>
+    </ul>
+    <p>Your knowledge compounds over time instead of being limited by how many hours you can personally work.</p>
+  </div>
+
 </div>
 </div>
 <div class="divider"></div>
-<!-- ── SECTION 04: 8 LEVELS ── -->
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- ── SECTION 04: 5 LEVELS ── -->
+<!-- ══════════════════════════════════════════════ -->
 <div id="s4" class="section-dark">
 <div class="section-wrap">
   <div class="section-label">Section 04</div>
-  <h2>The <span>8 Levels</span> of AI Adoption.</h2>
-  <p class="section-intro">Not all AI use is equal. There's a spectrum — from 'AI as a search engine' to 'AI as your operating system.' Most businesses are at Level 1 or 2. Here's what the full spectrum looks like. Click on your current level to see what it means for your business.</p>
-  <div class="level-grid">
-    <div class="level-item" data-level="1" onclick="selectLevel(1)">
-      <div class="level-num">1</div>
-      <div class="level-content"><h4>ChatGPT as Google</h4><p>Ask. Get answer. Close tab. Repeat. Useful, but maybe 5% of what's possible.</p></div>
-      <span class="level-tag tag-stuck">Most founders here</span>
+  <h2>The <span>5 Levels</span> of AI in Your Business.</h2>
+  <p class="section-intro">There's a spectrum — from 'I've heard of ChatGPT' to 'AI runs our operations.' Most founders are at Level 1 or 2. Click where you think you are to see what it means — and what's next.</p>
+  <div class="ladder">
+    <div class="ladder-step" data-level="1" onclick="selectLevel(1)">
+      <div class="ladder-left"><div class="ladder-num">1</div><div class="ladder-line"></div></div>
+      <div class="ladder-card">
+        <div class="ladder-header"><span class="ladder-name">Exploring</span><span class="ladder-tag tag-most">Most founders here</span></div>
+        <div class="ladder-what">You know AI exists. You open ChatGPT, ask a question, get an answer, close the tab. Next time you start from zero — no memory, no context, no system.</div>
+        <div class="ladder-impl"><strong>What this means:</strong> Every interaction is one-off. You're getting maybe 5% of what AI can actually do for your business. It feels useful, but nothing compounds.</div>
+      </div>
     </div>
-    <div class="level-item" data-level="2" onclick="selectLevel(2)">
-      <div class="level-num">2</div>
-      <div class="level-content"><h4>Custom AI Assistant</h4><p>You've trained it on your business context, but still doing the same tasks manually every time.</p></div>
-      <span class="level-tag tag-stuck">Still limited</span>
+    <div class="ladder-step" data-level="2" onclick="selectLevel(2)">
+      <div class="ladder-left"><div class="ladder-num">2</div><div class="ladder-line"></div></div>
+      <div class="ladder-card">
+        <div class="ladder-header"><span class="ladder-name">Experimenting</span></div>
+        <div class="ladder-what">You've set up a Custom GPT or a simple workflow for a specific task. AI knows some context about your business — your tone, your offer, your audience.</div>
+        <div class="ladder-impl"><strong>What this means:</strong> You're getting better outputs, but you're still the one running everything. Each task still needs you to initiate it, prompt it, review it. It saves minutes, not hours.</div>
+      </div>
     </div>
-    <div class="level-item" data-level="3" onclick="selectLevel(3)">
-      <div class="level-num">3</div>
-      <div class="level-content"><h4>AI Workflow</h4><p>AI plays a reliable role in specific, recurring processes. Real leverage starts here.</p></div>
+    <div class="ladder-step" data-level="3" onclick="selectLevel(3)">
+      <div class="ladder-left"><div class="ladder-num">3</div><div class="ladder-line"></div></div>
+      <div class="ladder-card">
+        <div class="ladder-header"><span class="ladder-name">Operating</span></div>
+        <div class="ladder-what">Multi-step workflows are running real processes — content production, sales outreach sequences, client onboarding. AI handles the heavy lifting across multiple steps.</div>
+        <div class="ladder-impl"><strong>What this means:</strong> You're seeing real time savings — hours, not minutes. Your team produces more without growing headcount. Processes that used to need 3 people now need 1 person and a workflow.</div>
+      </div>
     </div>
-    <div class="level-item" data-level="4" onclick="selectLevel(4)">
-      <div class="level-num">4</div>
-      <div class="level-content"><h4>AI Automation</h4><p>Connected to your tools, running without a manual trigger from you.</p></div>
+    <div class="ladder-step" data-level="4" onclick="selectLevel(4)">
+      <div class="ladder-left"><div class="ladder-num">4</div><div class="ladder-line"></div></div>
+      <div class="ladder-card">
+        <div class="ladder-header"><span class="ladder-name">Systemising</span></div>
+        <div class="ladder-what">AI agents are connected to your actual tools — CRM, email, calendar, project management. They take action in the real world, not just generate text you copy-paste.</div>
+        <div class="ladder-impl"><strong>What this means:</strong> AI becomes a team member, not a tool. It books meetings, updates your CRM, sends follow-ups, flags issues — without waiting for you. Your business runs faster even when you're not in it.</div>
+      </div>
     </div>
-    <div class="level-item" data-level="5" onclick="selectLevel(5)">
-      <div class="level-num">5</div>
-      <div class="level-content"><h4>AI Agent</h4><p>It reasons, makes decisions, and completes multi-step tasks independently.</p></div>
-    </div>
-    <div class="level-item" data-level="6" onclick="selectLevel(6)">
-      <div class="level-num">6</div>
-      <div class="level-content"><h4>Agentic Workflow</h4><p>Agents working in structured sequences. Entire processes run end-to-end.</p></div>
-    </div>
-    <div class="level-item" data-level="7" onclick="selectLevel(7)">
-      <div class="level-num">7</div>
-      <div class="level-content"><h4>Multi-Agent System</h4><p>Specialised agents across multiple business domains, each driving scale.</p></div>
-    </div>
-    <div class="level-item" data-level="8" onclick="selectLevel(8)" style="border-color: rgba(194,139,252,0.25);">
-      <div class="level-num" style="color: rgba(194,139,252,0.3);">8</div>
-      <div class="level-content"><h4>AI as Business Infrastructure</h4><p>AI is woven into how your business operates. This is where real leverage lives.</p></div>
-      <span class="level-tag tag-vision">The vision</span>
+    <div class="ladder-step" data-level="5" onclick="selectLevel(5)">
+      <div class="ladder-left"><div class="ladder-num">5</div><div class="ladder-line"></div></div>
+      <div class="ladder-card">
+        <div class="ladder-header"><span class="ladder-name">Infrastructure</span><span class="ladder-tag tag-vision">The vision</span></div>
+        <div class="ladder-what">Specialised AI across every department — strategy, content, sales, delivery, ops. Woven into how the business runs, the same way email or your CRM is.</div>
+        <div class="ladder-impl"><strong>What this means:</strong> Your business has multiplied its capacity without multiplying its headcount. AI handles the predictable work, your team handles the human work. Growth becomes structural, not dependent on hiring.</div>
+      </div>
     </div>
   </div>
-  <div style="margin-top: 28px; padding: 18px 24px; background: rgba(218,63,246,0.1); border-radius: 12px; border-left: 3px solid var(--magenta);">
-    <p style="font-size:17px; color:var(--magenta); font-weight:700; line-height:1.6;">Most businesses think they're at Level 4 or 5. When we do an audit, they're usually at Level 2. That gap is exactly where the opportunity is.</p>
+  <div style="margin-top: 28px; padding: 18px 24px; background: rgba(255,255,255,0.04); border-radius: 12px; border-left: 3px solid var(--magenta);">
+    <p style="font-size:17px; color:var(--magenta); font-weight:700; line-height:1.6;">Most businesses think they're at Level 3. In reality, they're at Level 1 or 2. That gap is the opportunity.</p>
   </div>
   <div class="level-result" id="level-result">
     <h4 id="level-result-title"></h4>
@@ -1066,12 +628,17 @@
 </div>
 </div>
 <div class="divider"></div>
-<!-- ── SECTION 05: 3-LAYER ARCHITECTURE ── -->
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- ── SECTION 05: THE 5 I'S ── -->
+<!-- ══════════════════════════════════════════════ -->
 <div id="s5" class="section-light-alt">
 <div class="section-wrap">
   <div class="section-label">Section 05</div>
   <h2>The 5 I's: <span>How You Actually Build This.</span></h2>
-  <p class="section-intro" style="color: var(--light-text-muted);">So — how do you turn AI from a tool into infrastructure? There are 5 elements. Every element has to work together. Miss one and the whole system underperforms. Click each element to explore.</p>
+  <p class="section-intro" style="color: var(--light-text-muted);">You've seen what the 6 systems can do. But how do you actually build them? How do you go from "I use ChatGPT sometimes" to "AI runs half my operations"?</p>
+  <p style="font-size: 17px; color: var(--light-text-muted); line-height: 1.7; margin-bottom: 8px;">It comes down to 5 elements — the 5 I's. Think of them as the architecture behind every AI system that actually works. Miss one, and the system underperforms. Get all 5 right, and you have something that genuinely multiplies your team's capacity.</p>
+  <p style="font-size: 17px; color: var(--light-text-muted); line-height: 1.7; margin-bottom: 32px;">Click each element to understand what it means and why it matters.</p>
   <div class="arch-layers">
     <div class="collapsible open" data-id="arch1">
       <div class="collapsible-header">
@@ -1082,11 +649,14 @@
             <div class="collapsible-subtitle">Everything AI needs to know about your business</div>
           </div>
         </div>
-        <div class="chevron">▼</div>
+        <div class="chevron">&#9660;</div>
       </div>
       <div class="collapsible-body">
         <div class="collapsible-content">
-          <p>Everything AI needs to know about your business. Your brand voice, positioning, client personas, past work, business model, market context. The richer this is, the smarter AI operates.</p>
+          <p>This is the foundation. Before AI can do anything useful for your business, it needs to understand your business. And not in a vague, surface-level way — deeply.</p>
+          <p style="margin-top: 10px;">That means your brand voice: how you talk, what words you use, what tone feels right. Your positioning: what you stand for, what makes you different, who you serve. Your client personas: who your ideal customers are, what they care about, what language resonates with them. Your business model: your offers, pricing, delivery process, how revenue flows.</p>
+          <p style="margin-top: 10px;">It also means your history. Past projects, case studies, client feedback, proposals that won deals. The more context AI has about what's worked for you before, the smarter it operates going forward. It stops generating generic content or suggestions and starts producing output that actually sounds like your business — because it knows your business.</p>
+          <p style="margin-top: 10px;">Here's the thing most people miss: this isn't a one-time setup. Your Information layer grows over time. Every client project, every campaign result, every strategic decision adds to what AI knows. The system gets sharper the longer you use it. That's what makes this fundamentally different from asking ChatGPT a one-off question — there's no memory, no accumulation, no compounding value in that approach.</p>
         </div>
       </div>
     </div>
@@ -1099,11 +669,14 @@
             <div class="collapsible-subtitle">The training that shapes how AI works</div>
           </div>
         </div>
-        <div class="chevron">▼</div>
+        <div class="chevron">&#9660;</div>
       </div>
       <div class="collapsible-body">
         <div class="collapsible-content">
-          <p>The training that shapes how AI works. Your SOPs, workflows, process documentation, templates. This is how you teach AI to do tasks the way YOU do them — not generically.</p>
+          <p>Information tells AI <em>what</em> your business is. Input tells AI <em>how</em> your business works.</p>
+          <p style="margin-top: 10px;">These are your SOPs, workflows, process documentation, templates, checklists — all the operational knowledge that currently lives in people's heads or scattered across Google Docs. When you feed these into your AI systems, you're essentially training it to do tasks the way your team does them. Not generically. Not in some default style. Your way.</p>
+          <p style="margin-top: 10px;">For example: your onboarding process has specific steps in a specific order. Your proposal format follows a structure that works for your clients. Your content has a rhythm and format that your audience expects. Without this Input layer, AI will produce something — but it won't match how you actually operate. It'll feel "off" and your team will end up rewriting everything, which defeats the purpose.</p>
+          <p style="margin-top: 10px;">The better your Input, the less editing and oversight you need. Most businesses that say "AI doesn't work for us" haven't done this step. They're asking a general-purpose tool to do a specific job without giving it the specific instructions. That's like hiring someone and never telling them how you do things, then being surprised when they do it differently.</p>
         </div>
       </div>
     </div>
@@ -1116,11 +689,14 @@
             <div class="collapsible-subtitle">The AI model itself — the engine</div>
           </div>
         </div>
-        <div class="chevron">▼</div>
+        <div class="chevron">&#9660;</div>
       </div>
       <div class="collapsible-body">
         <div class="collapsible-content">
-          <p>The AI model itself. The engine. There are different models for different tasks, and choosing the right one for each part of your business matters more than most people realise.</p>
+          <p>This is the AI model itself — the engine that does the thinking. And here's something most people don't realise: not all AI models are the same, and the right model for one task might be wrong for another.</p>
+          <p style="margin-top: 10px;">Some models are excellent at writing long-form content. Others are better at analysing data, summarising documents, or handling complex reasoning. Some are fast and cheap — perfect for high-volume tasks like categorising emails or drafting quick replies. Others are slower but more thoughtful — better for strategic analysis or writing that needs nuance.</p>
+          <p style="margin-top: 10px;">A well-built system uses different models for different jobs, just like you'd assign different team members to different tasks based on their strengths. Your content system might use one model. Your data analysis might use another. Your client communication might use a third. This isn't about chasing the "best" AI — it's about matching the right intelligence to each specific need.</p>
+          <p style="margin-top: 10px;">This is also the layer that evolves fastest. New models come out regularly, and each one brings new capabilities. When your system is properly architected, swapping in a better model is straightforward — you upgrade the engine without rebuilding the car.</p>
         </div>
       </div>
     </div>
@@ -1133,11 +709,14 @@
             <div class="collapsible-subtitle">AI connected to your other tools</div>
           </div>
         </div>
-        <div class="chevron">▼</div>
+        <div class="chevron">&#9660;</div>
       </div>
       <div class="collapsible-body">
         <div class="collapsible-content">
-          <p>AI connected to your other tools — your CRM, email platform, Google Suite, Notion, design tools, calendar. An AI that only lives inside one model can only do so much. Connected, it can run your business.</p>
+          <p>This is where the magic really happens. An AI that lives inside one chat window can answer questions and write drafts. An AI that's connected to your actual business tools can run your operations.</p>
+          <p style="margin-top: 10px;">Integration means connecting AI to the platforms you already use — your CRM, email, Google Workspace, calendar, project management tools, invoicing software, design tools, Slack, Notion. When these connections are in place, AI doesn't just generate text — it takes action. It can create a proposal in your Google Docs, update a deal in your CRM, send a follow-up email through your email platform, schedule a meeting on your calendar, or post content to your social channels.</p>
+          <p style="margin-top: 10px;">Without integration, every AI output requires manual copy-pasting, reformatting, and transferring between tools. That might save you some thinking time, but it doesn't save you much actual time. With integration, the entire workflow happens automatically. AI researches a lead, drafts a personalised email, and queues it in your outreach tool — all without you touching three different platforms.</p>
+          <p style="margin-top: 10px;">This is the element that separates "using AI" from "having AI infrastructure." Most businesses stop at the chat window. The ones that see real transformation connect AI to everything it needs to actually do the job end-to-end.</p>
         </div>
       </div>
     </div>
@@ -1150,178 +729,240 @@
             <div class="collapsible-subtitle">What you actually want to get out of it</div>
           </div>
         </div>
-        <div class="chevron">▼</div>
+        <div class="chevron">&#9660;</div>
       </div>
       <div class="collapsible-body">
         <div class="collapsible-content">
-          <p>What you actually want to get out of it. Clear, specific, measurable. Because if you don't define what 'done' looks like, AI will give you something — just not necessarily what you needed.</p>
+          <p>This is the element most people skip — and it's the reason most AI experiments feel disappointing. If you don't define exactly what "good" looks like, AI will give you <em>something</em>. Just not necessarily what you needed.</p>
+          <p style="margin-top: 10px;">Ideal Output means getting specific about what you want each system to produce. Not "write me a blog post" — but what format, what length, what structure, what tone, what audience, what call to action. Not "summarise this data" — but what metrics matter, how the summary should be structured, who's going to read it, and what decisions it needs to support.</p>
+          <p style="margin-top: 10px;">When you define your Ideal Outputs clearly, two things happen. First, the quality of what AI produces jumps dramatically — because it's working toward a specific target rather than guessing. Second, you can measure whether it's working. You know what "done" looks like, so you know when the system is performing and when it needs adjustment.</p>
+          <p style="margin-top: 10px;">Think of it this way: if you hired a new team member and said "handle our marketing," you'd get wildly unpredictable results. But if you said "create two LinkedIn posts per week in this format, targeting this audience, with this type of CTA" — you'd get something useful from day one. AI works the same way. Precision in, precision out.</p>
         </div>
       </div>
     </div>
   </div>
-  <div style="margin-top: 32px; padding: 22px 28px; background: rgba(218,63,246,0.06); border-radius: 12px; border: 1px solid rgba(218,63,246,0.15);">
-    <p style="font-size: 17px; color: var(--magenta-dark); font-weight: 700; line-height: 1.7;">When all 5 work together, you don't have an AI tool. You have an AI team.</p>
+  <div style="margin-top: 32px; padding: 22px 28px; background: rgba(0,0,0,0.03); border-radius: 12px; border: 1px solid rgba(0,0,0,0.06);">
+    <p style="font-size: 17px; color: var(--light-text); font-weight: 700; line-height: 1.7;">When all 5 work together, you don't have an AI tool. <span style="color:var(--magenta);">You have an AI team.</span> Each element reinforces the others — and the system gets smarter every time you use it.</p>
   </div>
 </div>
 </div>
 <div class="divider"></div>
-<!-- ── SECTION 06: WHICH SYSTEMS TO BUILD ── -->
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- ── SECTION 06: THE REAL IMPACT ── -->
+<!-- ══════════════════════════════════════════════ -->
 <div id="s6" class="section-light" style="background:#fff;">
 <div class="section-wrap">
   <div class="section-label">Section 06</div>
-  <h2>Which Systems to Build <span>for Your Business</span></h2>
-  <p class="section-intro">All six systems can be built. Each one targets a specific growth constraint — and each one compounds on the others. Look at where friction currently lives in your business. That's your answer.</p>
-  <div style="overflow-x: auto; border-radius: 14px; border: 1px solid rgba(218,63,246,0.2);">
-    <table class="priority-table">
-      <thead>
-        <tr>
-          <th>System</th>
-          <th>What it addresses</th>
-          <th>What changes</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Visibility & Content</td>
-          <td>Inconsistent posting, time-heavy content creation</td>
-          <td>Full week of content drafts in 90 minutes</td>
-        </tr>
-        <tr>
-          <td>Sales & Pipeline</td>
-          <td>Leads going cold, follow-up falling through</td>
-          <td>Automated first-response and proposal templates</td>
-        </tr>
-        <tr>
-          <td>Client Experience</td>
-          <td>Onboarding, check-ins, and communication taking your time</td>
-          <td>White-glove experience delivered automatically</td>
-        </tr>
-        <tr>
-          <td>Ops & Admin</td>
-          <td>Back-office work draining strategic hours daily</td>
-          <td>Invoice extraction, meeting summaries, SOP drafts</td>
-        </tr>
-        <tr>
-          <td>Clarity & Strategy</td>
-          <td>Decisions made without clear data or market context</td>
-          <td>Weekly strategic briefing and competitor snapshot</td>
-        </tr>
-        <tr>
-          <td>Custom IP Tools</td>
-          <td>Expertise locked in your head, impossible to delegate</td>
-          <td>Packaged frameworks your team uses independently</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="highlight-box" style="margin-top: 32px;">
-    Not sure where to start? The <strong>Business Efficiency Audit</strong> in Section 10 helps you identify exactly where AI infrastructure would make the biggest difference in your specific business — in about 3 minutes.
+  <h2>The Difference Between Using AI <span>and Using It to Grow Your Business</span></h2>
+  <p class="section-intro">I know what you're thinking. "Poulomi, I barely have time to eat lunch. Why would I add another project to my plate?"</p>
+  <p style="font-size: 19px; color: var(--light-text); font-weight: 700; line-height: 1.7; margin-bottom: 20px;">Here's why: because these systems are how you STOP being the person who does everything.</p>
+  <p style="font-size: 17px; color: var(--light-text-muted); line-height: 1.7; margin-bottom: 12px;">Most founders resist adding anything new to their plate. That's rational. You're already stretched. But here's the thing — you're stretched precisely because you don't have these systems. Every hour you spend on admin, follow-ups, content creation, and manual processes is an hour you're not spending on growth, strategy, or the high-value work that only you can do.</p>
+  <p style="font-size: 17px; color: var(--light-text-muted); line-height: 1.7; margin-bottom: 36px;">Let me break it down with real numbers so you can see what's actually at stake:</p>
+
+  <div class="impact-grid">
+    <!-- Time -->
+    <div class="impact-card">
+      <div class="impact-icon">&#128340;</div>
+      <h4>You get your time back.</h4>
+      <div class="impact-stat">~58 hours / week</div>
+      <p>We're talking about recovering the equivalent of 1.5 full-time employees' worth of hours every week. That's not a hypothetical. It's the sum of all the data entry, manual follow-ups, content drafting, report generation, scheduling, and admin work that's currently spread across your team.</p>
+      <p style="margin-top: 12px;">When you get that time back, you stop being the "human router" — the person every question, task, and decision flows through. Your team starts handling more independently. You go back to doing the strategic work that actually grows your business. And for the first time in a while, you might actually finish a workday at a reasonable hour.</p>
+    </div>
+    <!-- Revenue -->
+    <div class="impact-card">
+      <div class="impact-icon">&#128176;</div>
+      <h4>The revenue impact is massive.</h4>
+      <div class="impact-stat">$600K annual revenue potential</div>
+      <p>Here's the math most founders never do: take the hours your team spends on manual operational work, multiply by their blended hourly rate, and you'll see the waste. For most service businesses with 8&ndash;20 people, recovering 250 billable hours per month translates to roughly $600,000 in annual revenue potential that's currently sitting on the table.</p>
+      <p style="margin-top: 12px;">And these systems pay for themselves fast — typically within 30&ndash;60 days. You're not just saving money. You're creating the capacity to take on those bigger clients you've been turning away because you were too stretched thin. The deals that kept slipping because nobody followed up. The proposals that never got written because everyone was buried in delivery.</p>
+    </div>
+    <!-- Responsiveness -->
+    <div class="impact-card">
+      <div class="impact-icon">&#128640;</div>
+      <h4>Your business stays responsive — even when you're not.</h4>
+      <div class="impact-stat">~15% boost in total output</div>
+      <p>A 15% boost in total output might sound modest until you realise what it actually means. That's handling significantly more client volume with your existing team. That's every inquiry getting a thoughtful reply within minutes, not days. That's every piece of client communication sounding like you, even when you didn't write it.</p>
+      <p style="margin-top: 12px;">Your business doesn't miss a $10K inquiry because you were in a meeting or, you know, sleeping. Leads get nurtured. Clients get updates. Proposals get sent. Content gets published. All while you focus on the work that requires your actual brain — not the work that just requires your time.</p>
+    </div>
   </div>
 </div>
 </div>
 <div class="divider"></div>
-<!-- ── SECTION 07: QUICK WINS ── -->
-<div id="s7" class="section-dark">
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- ── SECTION 07: TESTIMONIALS ── -->
+<!-- ══════════════════════════════════════════════ -->
+<!-- ══════════════════════════════════════════════ -->
+<!-- ── SECTION 07: 4-STEP PATH (HOW TO GET STARTED) ── -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="s7" class="section-light" style="background:#fff;">
 <div class="section-wrap">
   <div class="section-label">Section 07</div>
-  <h2><span>Quick Wins</span> to Start This Week</h2>
-  <p class="section-intro">You don't need to build everything before you feel the difference. These five actions can each create a measurable result in your business — this week. Each one also builds toward the full system.</p>
-  <div class="wins-list">
-    <div class="win-item">
-      <div class="win-num">1</div>
-      <div class="win-content">
-        <h4>Document Your Brand Voice</h4>
-        <p>Write down 3 things your content always says, 3 things it never says, and the tone your ideal client would use to describe you. Feed this to any AI assistant before creating content. Your outputs will immediately stop sounding generic — and start sounding like you at scale.</p>
-      </div>
+  <h2>How to Get Started: <span>4 Steps to Building Your Growth System</span></h2>
+  <p class="section-intro">Building AI systems for your business isn't as complicated as it sounds. It follows a clear, logical process. Here's how it works — whether you do it yourself or bring in help.</p>
+
+  <div class="step-card" style="background: rgba(0,0,0,0.02); border: 1px solid rgba(0,0,0,0.06);">
+    <div class="step-num" style="color: var(--magenta);">01</div>
+    <div class="step-body">
+      <h4 style="color: var(--light-text);">Map Your Operations</h4>
+      <p style="color: var(--light-text-muted);">Before you touch any AI tool, you need to understand where your time and energy are actually going. Start by listing every recurring task across your team — the admin work, the follow-ups, the reporting, the content creation, the client communication. Write down who does each task, how long it takes, and how often it happens.</p>
+      <p style="margin-top: 10px; color: var(--light-text-muted);">Then look for patterns. Where are the bottlenecks? Which tasks eat the most hours but create the least value? What processes were cobbled together when you were a 3-person team and never updated? Where do things fall through the cracks — leads that go cold, follow-ups that don't happen, deliverables that slip?</p>
+      <p style="margin-top: 10px; color: var(--light-text-muted);">This step is about getting honest visibility into your operations. Most founders are surprised by what they find. The goal is to identify the 3&ndash;5 areas where AI would have the biggest immediate impact — the ones that would save the most time or recover the most revenue.</p>
     </div>
-    <div class="win-item">
-      <div class="win-num">2</div>
-      <div class="win-content">
-        <h4>Build Your First Custom Assistant</h4>
-        <p>Create a Claude Project or Custom GPT. Upload your brand voice doc, offer descriptions, and 3–5 content examples you've written. Ask it to draft a LinkedIn post. You'll be surprised what context alone does for quality — this is your Base Layer in action.</p>
-      </div>
+  </div>
+
+  <div class="step-card" style="background: rgba(0,0,0,0.02); border: 1px solid rgba(0,0,0,0.06);">
+    <div class="step-num" style="color: var(--magenta);">02</div>
+    <div class="step-body">
+      <h4 style="color: var(--light-text);">Design &amp; Build Your Systems</h4>
+      <p style="color: var(--light-text-muted);">Once you know where the biggest gaps are, you start building. Pick the system that solves your most painful bottleneck first — the one your team complains about, the one that costs you the most time or money every week.</p>
+      <p style="margin-top: 10px; color: var(--light-text-muted);">This is where the 5 I's come in. You feed the system your business Information (brand voice, positioning, client details). You provide the Input (your SOPs, templates, workflows). You choose the right Intelligence (the AI model that fits the task). You set up Integration (connecting to your existing tools — CRM, email, calendar). And you define your Ideal Output (exactly what the system should produce).</p>
+      <p style="margin-top: 10px; color: var(--light-text-muted);">The key is that this plugs into the way you already work. You're not learning new software or switching platforms. Your AI systems work inside and alongside the tools your team already uses — they just start handling the repetitive work that used to eat everyone's time.</p>
     </div>
-    <div class="win-item">
-      <div class="win-num">3</div>
-      <div class="win-content">
-        <h4>Map One Leaking Process</h4>
-        <p>Pick one task you do at least weekly that takes more than 30 minutes. Write down every step in order. This is your first SOP — and the foundation for your first automation. You can't automate what isn't documented, and you can't scale what you can't automate.</p>
-      </div>
+  </div>
+
+  <div class="step-card" style="background: rgba(0,0,0,0.02); border: 1px solid rgba(0,0,0,0.06);">
+    <div class="step-num" style="color: var(--magenta);">03</div>
+    <div class="step-body">
+      <h4 style="color: var(--light-text);">Train Your Team</h4>
+      <p style="color: var(--light-text-muted);">The best system in the world is worthless if your team doesn't use it. Once a system is built, everyone who interacts with it needs to understand how it works, how to use it, and how to spot when something needs adjusting.</p>
+      <p style="margin-top: 10px; color: var(--light-text-muted);">This doesn't mean a 200-slide training deck. It means hands-on, practical walkthroughs: "Here's what used to take you 45 minutes. Here's how it works now. Here's what you check, and here's what you approve." Each person sees exactly how their daily work changes — and why it's better.</p>
+      <p style="margin-top: 10px; color: var(--light-text-muted);">The shift is significant. Your team goes from doing manual tasks to directing results. They stop being the people who enter data and start being the people who review outputs and make decisions. That's a capacity multiplier — and most people actually enjoy the change, because nobody signed up to do data entry.</p>
     </div>
-    <div class="win-item">
-      <div class="win-num">4</div>
-      <div class="win-content">
-        <h4>Create a Lead Response Template</h4>
-        <p>Write one response to your most common inbound inquiry. Make it on-brand with a clear next step. Load it into your assistant with instructions to personalize per lead. Your response time goes from days to minutes — and your close rate follows.</p>
-      </div>
-    </div>
-    <div class="win-item">
-      <div class="win-num">5</div>
-      <div class="win-content">
-        <h4>Batch One Week of Content</h4>
-        <p>Block 90 minutes. Give your content assistant your brand doc and ask for 5 LinkedIn post drafts. Edit for your voice. Schedule them. A full week of content in 90 minutes — not 5 hours. Run this weekly and your visibility starts compounding.</p>
-      </div>
+  </div>
+
+  <div class="step-card" style="background: rgba(0,0,0,0.02); border: 1px solid rgba(0,0,0,0.06);">
+    <div class="step-num" style="color: var(--magenta);">04</div>
+    <div class="step-body">
+      <h4 style="color: var(--light-text);">Refine &amp; Improve</h4>
+      <p style="color: var(--light-text-muted);">AI systems get better over time — but only if someone is paying attention to what's working and what isn't. Once your systems are running, review the outputs regularly. Where is the quality strong? Where does it need adjustment? What new tasks could be added now that the first ones are handled?</p>
+      <p style="margin-top: 10px; color: var(--light-text-muted);">This is an ongoing process, not a one-time project. Each week your systems learn more about your business, handle more tasks, and produce better results. You stay in control — nothing runs without your oversight — but the amount of work that requires your direct involvement keeps shrinking.</p>
+      <p style="margin-top: 10px; color: var(--light-text-muted);">Think of it as having a team member who gets better at their job every single week, never drops the ball, and works across every department simultaneously. That's what a well-maintained AI system becomes over time.</p>
     </div>
   </div>
 </div>
 </div>
 <div class="divider"></div>
-<!-- ── SECTION 08: TESTIMONIALS ── -->
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- ── SECTION 08: ROI PRIORITISATION MATRIX ── -->
+<!-- ══════════════════════════════════════════════ -->
 <div id="s8" class="section-dark">
 <div class="section-wrap">
   <div class="section-label">Section 08</div>
+  <h2>How to Prioritise: <span>The AI ROI Matrix</span></h2>
+  <p class="section-intro">Once you've mapped your operations, you'll find dozens of tasks AI could handle. The question is: which ones do you build first? This matrix shows you how to think about it. Every task in your business falls into one of four quadrants based on two things — how much effort it takes to build, and how much impact it delivers.</p>
+
+  <div style="display: flex; max-width: 720px; margin: 0 auto; gap: 16px; align-items: center;">
+    <div style="writing-mode: vertical-lr; transform: rotate(180deg); font-family:'Montserrat',sans-serif; font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.25); text-align: center; white-space: nowrap;">&larr; Low Impact &nbsp;&nbsp;&nbsp;&nbsp; High Impact &rarr;</div>
+  <div style="flex:1; display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);">
+    <!-- Q1: Quick Wins (top-left) -->
+    <div style="padding: 32px; background: rgba(218,63,246,0.12); border-right: 1px solid rgba(255,255,255,0.08); border-bottom: 1px solid rgba(255,255,255,0.08);">
+      <div style="font-family:'Montserrat',sans-serif; font-size:13px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--magenta); margin-bottom:8px;">&#9733; Start Here</div>
+      <h4 style="font-family:'Montserrat',sans-serif; font-size:20px; font-weight:800; color:#fff; margin-bottom:10px;">Quick Wins</h4>
+      <p style="font-size:17px; color:rgba(255,255,255,0.7); line-height:1.6; margin-bottom:12px;">Low effort, high impact. These are the tasks you automate first — they pay for themselves almost immediately and build momentum for everything else.</p>
+      <p style="font-size:15px; color:rgba(255,255,255,0.45); line-height:1.6;">Email replies, lead qualification, meeting notes to tasks, invoice data entry, content repurposing</p>
+    </div>
+    <!-- Q2: Core Systems (top-right) -->
+    <div style="padding: 32px; background: rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.08);">
+      <div style="font-family:'Montserrat',sans-serif; font-size:13px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:8px;">Build Next</div>
+      <h4 style="font-family:'Montserrat',sans-serif; font-size:20px; font-weight:800; color:#fff; margin-bottom:10px;">Core Systems</h4>
+      <p style="font-size:17px; color:rgba(255,255,255,0.7); line-height:1.6; margin-bottom:12px;">Higher effort, high impact. These take more time to set up, but they're the systems that fundamentally change how your business operates. Worth every hour invested.</p>
+      <p style="font-size:15px; color:rgba(255,255,255,0.45); line-height:1.6;">Full sales pipeline automation, client onboarding system, content engine, strategic briefing system</p>
+    </div>
+    <!-- Q3: Fill-Ins (bottom-left) -->
+    <div style="padding: 32px; background: rgba(255,255,255,0.04); border-right: 1px solid rgba(255,255,255,0.08);">
+      <div style="font-family:'Montserrat',sans-serif; font-size:13px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:8px;">Add Later</div>
+      <h4 style="font-family:'Montserrat',sans-serif; font-size:20px; font-weight:800; color:#fff; margin-bottom:10px;">Fill-Ins</h4>
+      <p style="font-size:17px; color:rgba(255,255,255,0.7); line-height:1.6; margin-bottom:12px;">Low effort, lower impact. Nice to have. These save small pockets of time and are easy to add once your core systems are running. Don't start here — but don't ignore them either.</p>
+      <p style="font-size:15px; color:rgba(255,255,255,0.45); line-height:1.6;">Calendar scheduling, simple template generation, file organisation, internal FAQ bots</p>
+    </div>
+    <!-- Q4: Big Bets (bottom-right) -->
+    <div style="padding: 32px; background: rgba(255,255,255,0.02);">
+      <div style="font-family:'Montserrat',sans-serif; font-size:13px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:8px;">Evaluate Carefully</div>
+      <h4 style="font-family:'Montserrat',sans-serif; font-size:20px; font-weight:800; color:#fff; margin-bottom:10px;">Big Bets</h4>
+      <p style="font-size:17px; color:rgba(255,255,255,0.7); line-height:1.6; margin-bottom:12px;">High effort, lower immediate impact. These are long-term infrastructure plays — custom IP tools, multi-agent systems, advanced integrations. Plan for them, but don't rush them.</p>
+      <p style="font-size:15px; color:rgba(255,255,255,0.45); line-height:1.6;">Custom assessment tools, multi-system workflows, proprietary AI-powered products, full business intelligence dashboards</p>
+    </div>
+  </div>
+
+  </div><!-- close flex wrapper -->
+  <div style="display: flex; justify-content: space-between; max-width: 720px; margin: 16px auto 0; padding-left: 32px; font-family:'Montserrat',sans-serif; font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.25);">
+    <span>&larr; Low Effort</span><span>High Effort &rarr;</span>
+  </div>
+
+  <div style="margin-top: 36px; padding: 22px 28px; background: rgba(255,255,255,0.04); border-radius: 12px; border-left: 3px solid var(--magenta);">
+    <p style="font-size: 17px; color: rgba(255,255,255,0.8); line-height: 1.7;">The smartest approach: start with 2&ndash;3 Quick Wins to prove the value and build confidence. Then use that momentum to invest in the Core Systems that create lasting change. Most businesses see ROI within 30&ndash;60 days of their first Quick Win going live.</p>
+  </div>
+</div>
+</div>
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- ── SECTION 09: YOUR NEXT STEP — ROADMAP ── -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="s9" class="section-light-alt">
+<div class="section-wrap" style="text-align: center;">
+  <div class="section-label" style="text-align: center;">Section 09</div>
+  <h2 style="font-family:'Montserrat',sans-serif; font-size:clamp(28px,4vw,44px); font-weight:800; color: var(--light-text);">Ready to find out where<br><span style="color:var(--magenta);">your biggest opportunity is?</span></h2>
+  <p style="color: var(--light-text-muted); max-width: 600px; margin: 20px auto 12px; font-size: 17px; line-height: 1.7;">Now you know the framework, the systems, and how to prioritise. If you want to move faster — or you'd rather have someone map it all out for you — that's exactly what the Roadmap is for.</p>
+  <p style="color: var(--light-text-muted); max-width: 600px; margin: 0 auto 44px; font-size: 17px; line-height: 1.7;">The AI Growth System Roadmap maps your business against all 6 systems, identifies your top 10 AI opportunities ranked by ROI using this exact matrix, and builds a phased plan for what to build and in what order.</p>
+
+  <!-- Roadmap CTA -->
+  <div style="max-width: 560px; margin: 0 auto 32px; padding: 32px 36px; border-radius: 16px; border: 1px solid rgba(0,0,0,0.08); background: #fff; text-align: left;">
+    <h4 style="font-family:'Montserrat',sans-serif; font-size:22px; font-weight:800; color: var(--light-text); margin-bottom: 14px;">AI Growth System Roadmap</h4>
+    <p style="color: var(--light-text-muted); font-size:17px; line-height:1.7; margin-bottom:10px;">Here's what you get:</p>
+    <ul style="color: var(--light-text-muted); font-size:17px; line-height:1.8; margin-bottom:22px; padding-left: 20px;">
+      <li>Full audit across all 6 Growth Systems</li>
+      <li>Top 10 AI opportunities ranked by ROI</li>
+      <li>Phased implementation roadmap</li>
+      <li>PPTX deck + 90-minute strategy presentation</li>
+    </ul>
+    <div style="text-align: center;">
+      <a href="https://weignitegrowth.com" class="cta-btn" style="font-size:15px;">Get Your AI Growth System Roadmap &rarr;</a>
+    </div>
+  </div>
+
+</div>
+</div>
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- ── SECTION 10: TESTIMONIALS ── -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="s10" class="section-dark">
+<div class="section-wrap">
+  <div class="section-label">Section 10</div>
   <h2>What <span>Founders</span> Are Saying</h2>
   <p class="section-intro">Founders who've built their AI Growth System with Poulomi — in their own words.</p>
   <div class="testimonials-grid">
     <div class="testimonial-card">
       <p class="testimonial-quote">"Poulomi helped us set up custom AIs tailored for the brand and LinkedIn. These AIs helped us generate content and build a clear brand presence, which was especially valuable since we weren't very familiar with marketing."</p>
-      <div class="testimonial-author">Fayaz Hassanly · Film Entrepreneur</div>
+      <div class="testimonial-author">Fayaz Hassanly &middot; Film Entrepreneur</div>
     </div>
     <div class="testimonial-card">
       <p class="testimonial-quote">"I've been truly impressed by the AI Systems and Assistants that Poulomi has created. It takes the often overwhelming process of branding and marketing and makes it accessible, practical, and incredibly effective."</p>
-      <div class="testimonial-author">Samantha Chokor · Social Media Strategist</div>
+      <div class="testimonial-author">Samantha Chokor &middot; Social Media Strategist</div>
     </div>
   </div>
-</div>
-</div>
-<div class="divider"></div>
-<!-- ── SECTION 09: FINAL CTA ── -->
-<div id="s9" class="section-light-alt">
-<div class="section-wrap" style="text-align: center;">
-  <div class="section-label" style="text-align: center;">Section 09</div>
-  <h2 style="font-family:'Montserrat',sans-serif; font-size:clamp(28px,4vw,44px); font-weight:800; color: var(--light-text);">Your Strategic Roadmap.<br><span style="color:var(--magenta)">Let's build it together.</span></h2>
-  <p style="color: var(--light-text-muted); max-width: 600px; margin: 20px auto 12px; font-size: 17px; line-height: 1.7;">Reading this blueprint is step one. But knowing the framework and actually building it are two very different things.</p>
-  <p style="color: var(--light-text-muted); max-width: 600px; margin: 0 auto 36px; font-size: 17px; line-height: 1.7;">In one focused hour, we map your business against the 6 systems and 8 levels. We identify your biggest bottleneck — and build a clear, personalised plan for what to build first and how.</p>
-  <!-- Power Hour CTA -->
-  <div style="max-width: 520px; margin: 0 auto 28px; padding: 28px 32px; border-radius: 16px; border: 1.5px solid rgba(218,63,246,0.3); background: rgba(218,63,246,0.04);">
-    <h4 style="font-family:'Montserrat',sans-serif; font-size:20px; font-weight:800; color: var(--light-text); margin-bottom: 4px;">Start with a Power Hour</h4>
-    <p style="color: var(--magenta); font-weight:600; font-size:15px; margin-bottom:14px;">&#8364;297 · 60 minutes · Your personalised Strategic Roadmap</p>
-    <p style="color: var(--light-text-muted); font-size:15px; line-height:1.7; margin-bottom:18px;">We audit your business, find your biggest bottleneck, and build your implementation plan. You leave with clarity on exactly what to build and where to start.</p>
-    <a href="https://weignitegrowth.com" class="cta-btn" style="font-size:15px;">Book Your Power Hour →</a>
-  </div>
-  <!-- Discovery Call CTA -->
-  <div style="max-width: 520px; margin: 0 auto; padding: 22px 32px; border-radius: 16px; background: rgba(218,63,246,0.06);">
-    <h4 style="font-family:'Montserrat',sans-serif; font-size:17px; font-weight:700; color: var(--light-text); margin-bottom: 8px;">Not sure yet? Let's talk first.</h4>
-    <p style="color: var(--light-text-muted); font-size:15px; line-height:1.7; margin-bottom:14px;">Book a free 20-minute discovery call. No pitch. Just a conversation about where you are and whether this is the right fit.</p>
-    <a href="https://weignitegrowth.com" style="color:var(--magenta); font-family:'Montserrat',sans-serif; font-weight:600; font-size:15px; text-decoration:none;">Book a Discovery Call →</a>
+  <div style="text-align: center; margin-top: 40px;">
+    <p style="font-size: 17px; color: rgba(255,255,255,0.7); margin-bottom: 20px;">Ready to see what AI can do for your business?</p>
+    <a href="https://weignitegrowth.com" class="cta-btn" style="font-size:15px;">Get Your AI Growth System Roadmap &rarr;</a>
   </div>
 </div>
 </div>
-<div class="divider"></div>
-<!-- ── SECTION 10: BUSINESS EFFICIENCY AUDIT ── -->
-<div id="s10" class="section-dark">
-<div class="section-wrap" style="text-align: center; padding-top: 80px; padding-bottom: 80px;">
-  <div class="section-label">Section 10</div>
-  <h2>Want to Get Started Yourself? <span>Take the Audit</span></h2>
-  <p class="section-intro" style="max-width: 560px; margin: 0 auto 48px;">The Business Efficiency Audit identifies exactly where AI infrastructure would make the biggest difference in your business — in about 3 minutes.</p>
-  <a href="https://poulomiignite.github.io/business-efficiency-audit/" target="_blank" rel="noopener noreferrer" style="display: inline-block; margin-top: 16px; padding: 14px 36px; border: 1.5px solid rgba(218,63,246,0.35); border-radius: 50px; color: rgba(255,255,255,0.65); font-family:'Montserrat',sans-serif; font-weight:600; font-size:14px; text-decoration:none; letter-spacing:0.5px; transition: all 0.2s;" onmouseover="this.style.borderColor='rgba(218,63,246,0.7)';this.style.color='rgba(255,255,255,0.9)'" onmouseout="this.style.borderColor='rgba(218,63,246,0.35)';this.style.color='rgba(255,255,255,0.65)'">Or take the Business Efficiency Audit first →</a>
-</div>
-</div>
+
 <!-- FOOTER -->
 <div class="footer">
-  <p>© 2025 Poulomi Basu · Ignite Growth · <a href="https://linkedin.com/in/brandpoulomi">LinkedIn</a> · <a href="https://youtube.com/@ignite_growth">YouTube</a></p>
+  <p>&copy; 2025 Poulomi Basu &middot; Ignite Growth &middot; <a href="https://linkedin.com/in/brandpoulomi">LinkedIn</a> &middot; <a href="https://youtube.com/@ignite_growth">YouTube</a></p>
 </div>
 <script>
+  // ── SYSTEM TABS ──
+  function showSystem(n) {
+    document.querySelectorAll('.sys-tab').forEach((t, i) => t.classList.toggle('active', i === n - 1));
+    document.querySelectorAll('.sys-panel').forEach(p => p.classList.toggle('active', p.dataset.panel == n));
+  }
   // ── COLLAPSIBLES ──
   document.querySelectorAll('.collapsible').forEach(el => {
     el.querySelector('.collapsible-header').addEventListener('click', () => {
@@ -1330,55 +971,21 @@
   });
   // ── LEVEL TRACKER ──
   const levelMessages = {
-    1: { title: "You're at Level 1 — AI as a search engine.", body: "You're getting value, but you're not scratching the surface. Every time you close that tab, you lose the context. The first step is building an assistant trained on your business — so you stop starting from zero every time." },
-    2: { title: "You're at Level 2 — Custom AI Assistant.", body: "You've got a trained assistant, which puts you ahead of most founders. But it's still reactive — you have to initiate every task. The next step is building workflows where AI acts on predictable triggers and starts multiplying your output without waiting for you." },
-    3: { title: "You're at Level 3 — AI Workflow.", body: "You have processes where AI plays a reliable role. This is real leverage. The gap to Level 4 is connecting those workflows to your existing tools so they run without a manual trigger from you — and your capacity scales automatically." },
-    4: { title: "You're at Level 4 — AI Automation.", body: "Your systems are running without you pressing buttons. This is significant. The jump to Level 5 is giving your AI the ability to reason and make decisions — not just execute predefined steps — which multiplies what it can handle independently." },
-    5: { title: "You're at Level 5 — AI Agent.", body: "Your AI can take multi-step actions and complete tasks independently. This is the target zone. Now the opportunity is connecting multiple agents into sequences — so entire business processes run end-to-end and your scaling capacity compounds." },
-    6: { title: "You're at Level 6 — Agentic Workflow.", body: "You have agents working in structured sequences. Entire processes are running end-to-end. The next evolution is specializing those agents by domain — so each part of your business has its own dedicated intelligence driving scale." },
-    7: { title: "You're at Level 7 — Multi-Agent System.", body: "You have specialized agents across multiple business domains. This is elite territory. The final step is moving from 'systems you've built' to 'infrastructure your business runs on' — where AI is as essential as your email platform and scaling is structural." },
-    8: { title: "You're at Level 8 — AI as Business Infrastructure.", body: "AI is woven into how your business operates at every level. You're in the top 1% of founders using AI strategically. The work now is optimization, expansion, and ensuring the infrastructure scales with your growth at every stage." }
+    1: { title: "You're at Level 1 — Exploring.", body: "You're using AI like a search engine. Ask a question, get an answer, close the tab, start from zero next time. The first step is giving AI some context about your business — so it stops being generic and starts being useful." },
+    2: { title: "You're at Level 2 — Experimenting.", body: "You've set up a Custom GPT or a simple workflow for a specific task. AI knows some context about your business. The next step is connecting those experiments into multi-step processes that actually run parts of your operations." },
+    3: { title: "You're at Level 3 — Operating.", body: "You have real workflows running — content pipelines, sales sequences, or ops processes with AI doing the heavy lifting across multiple steps. The jump to Level 4 is connecting AI to your actual tools so it takes action, not just generates text." },
+    4: { title: "You're at Level 4 — Systemising.", body: "AI agents are plugged into your CRM, email, calendar — taking action across your business. This is where most founders want to be. The final step is specialising AI across every department so it becomes how your business runs." },
+    5: { title: "You're at Level 5 — Infrastructure.", body: "AI is woven into every part of your business. Specialised systems across strategy, content, sales, delivery, and ops. You're in the top 1% of founders using AI strategically. The work now is optimisation, expansion, and compounding." }
   };
   function selectLevel(n) {
-    document.querySelectorAll('.level-item').forEach(el => {
-      el.classList.remove('selected');
-      const tag = el.querySelector('.level-tag');
-      if (tag && tag.classList.contains('tag-you')) {
-        tag.remove();
-      }
-    });
-    const selected = document.querySelector(`.level-item[data-level="${n}"]`);
-    selected.classList.add('selected');
+    document.querySelectorAll('.ladder-step').forEach(el => el.classList.remove('active'));
+    const selected = document.querySelector(`.ladder-step[data-level="${n}"]`);
+    selected.classList.add('active');
     const result = document.getElementById('level-result');
     document.getElementById('level-result-title').textContent = levelMessages[n].title;
     document.getElementById('level-result-body').textContent = levelMessages[n].body;
     result.classList.add('visible');
     result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  }
-  // ── DIAGNOSTIC ──
-  function toggleDiag(row) {
-    row.classList.toggle('checked');
-    updateScore();
-  }
-  function updateScore() {
-    const checked = document.querySelectorAll('.diag-question-row.checked').length;
-    const total = document.querySelectorAll('.diag-question-row').length;
-    const pct = Math.round((checked / total) * 100);
-    document.getElementById('diag-score').textContent = `${checked} / ${total}`;
-    document.getElementById('diag-bar').style.width = pct + '%';
-    let result = '';
-    if (checked === 0) {
-      result = 'Check the statements above to reveal your starting point.';
-    } else if (checked <= 3) {
-      result = '<strong>Low urgency — but don\'t get comfortable.</strong> You\'re managing well right now, but your business will hit a ceiling soon. Start with your Brand Voice document and your first custom assistant this week.';
-    } else if (checked <= 6) {
-      result = '<strong>Moderate urgency — clear opportunity for quick wins.</strong> You\'re losing hours to manual work that AI can handle. Pick the category with the most checkmarks — that\'s your first system to build.';
-    } else if (checked <= 9) {
-      result = '<strong>High urgency — you\'re leaving time and money on the table every week.</strong> The friction in your business is real and compounding. Start with either Visibility & Content or Sales & Pipeline — whichever has the most checkmarks above.';
-    } else {
-      result = '<strong>Critical — your growth is actively constrained by manual work.</strong> You need AI infrastructure, not just tools. The BrandAI Growth Accelerator is built for exactly where you are. Let\'s build your first system this month.';
-    }
-    document.getElementById('diag-result').innerHTML = result;
   }
   // ── ACTIVE NAV (sidebar) ──
   const sections = ['s1','s2','s3','s4','s5','s6','s7','s8','s9','s10'];
