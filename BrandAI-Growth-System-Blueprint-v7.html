@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BrandAI Growth System Blueprint</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --magenta: #DA3FF6;
+    --magenta-dark: #b020d0;
+    --magenta-light: #FF42F9;
+    --purple-deep: #1A1A1A;
+    --purple-mid: #222222;
+    --purple-card: #1E1E1E;
+    --lavender: #C28BFC;
+    --white: #FFFFFF;
+    --charcoal: #121212;
+    --light-bg: #FAFAFA;
+    --light-bg-alt: #F5F5F5;
+    --light-text: #1a1a2e;
+    --light-text-muted: #5a5a72;
+    --light-card-bg: #FFFFFF;
+    --light-card-border: rgba(0,0,0,0.08);
+    --light-card-border-hover: rgba(218,63,246,0.35);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--light-bg);
+    color: var(--light-text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 19px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+  .section-dark { background: var(--purple-deep); color: var(--white); }
+  .section-dark .section-label { color: var(--magenta); }
+  .section-dark h2 { color: var(--white); }
+  .section-dark h2 span { color: var(--magenta); }
+  .section-dark .section-intro { color: rgba(255,255,255,0.72); }
+  .section-light { background: var(--light-bg); color: var(--light-text); }
+  .section-light .section-label { color: var(--magenta-dark); }
+  .section-light h2 { color: var(--light-text); }
+  .section-light h2 span { color: var(--magenta); }
+  .section-light .section-intro { color: var(--light-text-muted); }
+  .section-light-alt { background: var(--light-bg-alt); color: var(--light-text); }
+  .section-light-alt .section-label { color: var(--magenta-dark); }
+  .section-light-alt h2 { color: var(--light-text); }
+  .section-light-alt h2 span { color: var(--magenta); }
+  .section-light-alt .section-intro { color: var(--light-text-muted); }
+  .page-layout { display: flex; min-height: 100vh; }
+  .main-content { flex: 1; margin-left: 220px; }
+  /* ── LEFT SIDEBAR ── */
+  .sidebar {
+    position: fixed; top: 0; left: 0; width: 220px; height: 100vh;
+    background: rgba(14,14,14,0.98); border-right: 1px solid rgba(255,255,255,0.06);
+    z-index: 200; display: flex; flex-direction: column; padding: 28px 0 24px; overflow-y: auto;
+  }
+  .sidebar::-webkit-scrollbar { width: 4px; }
+  .sidebar::-webkit-scrollbar-track { background: transparent; }
+  .sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+  .sidebar-logo { padding: 0 20px 28px; border-bottom: 1px solid rgba(255,255,255,0.06); margin-bottom: 20px; }
+  .sidebar-logo-text { font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 900; color: #fff; letter-spacing: 1.5px; text-transform: uppercase; line-height: 1.3; }
+  .sidebar-logo-sub { font-size: 14px; color: rgba(255,255,255,0.3); margin-top: 4px; font-weight: 400; }
+  .sidebar-nav { flex: 1; padding: 0 12px; }
+  .sidebar-label { font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.2); padding: 0 8px; margin-bottom: 8px; margin-top: 4px; }
+  .sidebar-link {
+    display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 10px;
+    text-decoration: none; color: rgba(255,255,255,0.45); font-size: 15px; font-weight: 500;
+    transition: all 0.2s; margin-bottom: 2px; border: 1px solid transparent; position: relative;
+  }
+  .sidebar-link:hover { color: rgba(255,255,255,0.85); background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.08); }
+  .sidebar-link.active { color: var(--magenta); background: rgba(218,63,246,0.06); border-color: rgba(218,63,246,0.15); font-weight: 600; }
+  .sidebar-link.active::before { content: ''; position: absolute; left: -12px; top: 50%; transform: translateY(-50%); width: 3px; height: 20px; background: var(--magenta); border-radius: 0 3px 3px 0; }
+  .sidebar-num { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.2); min-width: 18px; transition: color 0.2s; }
+  .sidebar-link.active .sidebar-num { color: var(--magenta); }
+  .sidebar-icon { min-width: 20px; text-align: center; display: flex; align-items: center; justify-content: center; }
+  .sidebar-icon svg { width: 16px; height: 16px; stroke: currentColor; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .sidebar-footer { padding: 20px 20px 0; border-top: 1px solid rgba(255,255,255,0.06); margin-top: 16px; }
+  .sidebar-cta-btn { display: block; background: var(--magenta); color: white; text-decoration: none; font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 11px 14px; border-radius: 10px; text-align: center; transition: all 0.2s; }
+  .sidebar-cta-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+  @media (max-width: 768px) { .sidebar { display: none; } .main-content { margin-left: 0; } .sticky-nav { display: flex; } }
+  @media (min-width: 769px) { .sticky-nav { display: none; } }
+  .sticky-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(18,18,18,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.06); padding: 0 32px; display: flex; align-items: center; justify-content: space-between; height: 54px; }
+  .sticky-nav::-webkit-scrollbar { display: none; }
+  .nav-logo { font-family: 'Montserrat', sans-serif; font-size: 19px; font-weight: 800; color: #fff; white-space: nowrap; letter-spacing: 0.5px; }
+  /* ── COVER ── */
+  .cover {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1A1A1A 40%, #222222 70%, #1A1A1A 100%);
+    display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+    padding: 100px 40px 60px; position: relative; overflow: hidden;
+  }
+  .cover::before { content: ''; position: absolute; top: -200px; left: -200px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(218,63,246,0.06) 0%, transparent 70%); border-radius: 50%; animation: pulse 6s ease-in-out infinite; }
+  .cover::after { content: ''; position: absolute; bottom: -100px; right: -100px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(194,139,252,0.04) 0%, transparent 70%); border-radius: 50%; animation: pulse 8s ease-in-out infinite reverse; }
+  @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.1); opacity: 0.7; } }
+  .cover-badge { display: inline-block; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.6); font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; padding: 8px 20px; border-radius: 50px; margin-bottom: 32px; position: relative; z-index: 1; }
+  .cover h1 { font-family: 'Montserrat', sans-serif; font-size: clamp(40px, 6vw, 76px); font-weight: 900; line-height: 1.05; margin-bottom: 24px; position: relative; z-index: 1; color: #ffffff; }
+  .cover h1 span { color: var(--magenta); }
+  .cover-subtitle { font-size: 21px; color: rgba(255,255,255,0.6); max-width: 640px; margin: 0 auto 48px; line-height: 1.6; position: relative; z-index: 1; }
+  .cover-author { display: flex; flex-direction: column; align-items: center; gap: 6px; position: relative; z-index: 1; }
+  .author-name { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 16px; color: rgba(255,255,255,0.7); }
+  .author-title { font-size: 16px; color: rgba(255,255,255,0.35); letter-spacing: 1px; }
+  .cover-divider { width: 60px; height: 2px; background: var(--magenta); margin: 28px auto; position: relative; z-index: 1; }
+  /* ── TOC ── */
+  .toc { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 18px; padding: 32px; max-width: 560px; margin: 0 auto; position: relative; z-index: 1; }
+  .toc h3 { font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--magenta); margin-bottom: 20px; }
+  .toc-item { display: flex; gap: 14px; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.04); text-decoration: none; transition: all 0.2s; }
+  .toc-item:last-child { border-bottom: none; }
+  .toc-item:hover .toc-label { color: rgba(255,255,255,0.9); }
+  .toc-n { font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700; color: var(--magenta); min-width: 24px; }
+  .toc-label { font-size: 20px; color: rgba(255,255,255,0.55); transition: color 0.2s; text-align: left; }
+  /* ── SECTIONS ── */
+  .section-wrap { max-width: 900px; margin: 0 auto; padding: 80px 40px; }
+  .section-label { font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--magenta); margin-bottom: 10px; text-align: center; }
+  .section-wrap h2 { font-family: 'Montserrat', sans-serif; font-size: clamp(28px, 4vw, 44px); font-weight: 800; line-height: 1.12; margin-bottom: 20px; text-align: center; }
+  .section-wrap h2 span { color: var(--magenta); }
+  .section-intro { font-size: 17px; max-width: 700px; margin-bottom: 44px; line-height: 1.7; text-align: center; margin-left: auto; margin-right: auto; }
+  .divider { width: 100%; height: 1px; background: rgba(0,0,0,0.06); }
+  /* ── HIGHLIGHT BOX ── */
+  .section-dark .highlight-box { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); color: var(--white); }
+  .section-light .highlight-box, .section-light-alt .highlight-box { background: #f0f0f0; border: 1px solid rgba(0,0,0,0.06); color: var(--light-text); }
+  .highlight-box { border-radius: 14px; padding: 28px 32px; margin: 32px 0; font-size: 17px; line-height: 1.7; }
+  .highlight-box strong { color: var(--magenta); }
+  /* ── COLLAPSIBLE ── */
+  .section-dark .collapsible { background: var(--purple-card); border: 1px solid rgba(255,255,255,0.08); }
+  .section-dark .collapsible:hover { border-color: rgba(255,255,255,0.15); }
+  .section-dark .collapsible.open { border-color: rgba(218,63,246,0.3); }
+  .section-dark .collapsible-title { color: var(--white); }
+  .section-dark .collapsible-subtitle { color: rgba(255,255,255,0.4); }
+  .section-dark .collapsible-content { border-top: 1px solid rgba(255,255,255,0.06); }
+  .section-dark .collapsible-content p { color: rgba(255,255,255,0.65); }
+  .section-light .collapsible, .section-light-alt .collapsible { background: var(--light-card-bg); border: 1px solid var(--light-card-border); box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
+  .section-light .collapsible:hover, .section-light-alt .collapsible:hover { border-color: rgba(0,0,0,0.15); box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+  .section-light .collapsible.open, .section-light-alt .collapsible.open { border-color: rgba(218,63,246,0.3); }
+  .section-light .collapsible-title, .section-light-alt .collapsible-title { color: var(--light-text); }
+  .section-light .collapsible-subtitle, .section-light-alt .collapsible-subtitle { color: var(--light-text-muted); }
+  .section-light .collapsible-content, .section-light-alt .collapsible-content { border-top: 1px solid rgba(0,0,0,0.06); }
+  .section-light .collapsible-content p, .section-light-alt .collapsible-content p { color: var(--light-text-muted); }
+  .collapsible { border-radius: 16px; margin-bottom: 12px; overflow: hidden; transition: border-color 0.2s, box-shadow 0.2s; }
+  .collapsible-header { display: flex; align-items: center; justify-content: space-between; padding: 22px 28px; cursor: pointer; user-select: none; gap: 16px; }
+  .collapsible-left { display: flex; align-items: center; gap: 16px; }
+  .collapsible-icon { min-width: 30px; display: flex; align-items: center; justify-content: center; }
+  .collapsible-icon svg { width: 22px; height: 22px; stroke: var(--magenta); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .collapsible-title { font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 700; }
+  .collapsible-subtitle { font-size: 17px; margin-top: 3px; }
+  .chevron { width: 24px; height: 24px; border: 1px solid rgba(255,255,255,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.4); font-size: 12px; transition: transform 0.3s; flex-shrink: 0; }
+  .section-light .chevron, .section-light-alt .chevron { border-color: rgba(0,0,0,0.1); color: rgba(0,0,0,0.3); }
+  .collapsible.open .chevron { transform: rotate(180deg); }
+  .collapsible-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+  .collapsible.open .collapsible-body { max-height: 2000px; }
+  .collapsible-content { padding: 24px 28px 28px; }
+  .collapsible-content p { font-size: 17px; line-height: 1.7; margin-bottom: 12px; }
+  /* ── SYSTEM TABS ── */
+  .sys-tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 36px; }
+  .sys-tab { display: flex; align-items: center; gap: 12px; padding: 18px 20px; border-radius: 12px; cursor: pointer; transition: all 0.2s; border: 1px solid rgba(0,0,0,0.12); background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+  .sys-tab:hover { border-color: rgba(218,63,246,0.3); box-shadow: 0 4px 16px rgba(218,63,246,0.1); }
+  .sys-tab.active { border-color: var(--magenta); background: rgba(218,63,246,0.04); box-shadow: 0 2px 12px rgba(218,63,246,0.1); }
+  .sys-tab-icon { min-width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; }
+  .sys-tab-icon svg { width: 20px; height: 20px; stroke: var(--magenta); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .sys-tab-name { font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 700; color: var(--light-text); }
+  .sys-tab.active .sys-tab-name { color: var(--magenta); }
+  .sys-tab-tag { font-size: 12px; color: var(--light-text-muted); margin-top: 2px; }
+  .sys-panel { display: none; border-radius: 16px; background: var(--light-card-bg); border: 1px solid rgba(218,63,246,0.15); padding: 36px; box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
+  .sys-panel.active { display: block; }
+  .sys-panel-title { font-family: 'Montserrat', sans-serif; font-size: 22px; font-weight: 800; color: var(--light-text); margin-bottom: 6px; }
+  .sys-panel-tag { font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--magenta); margin-bottom: 16px; }
+  .sys-panel p { font-size: 17px; line-height: 1.7; color: var(--light-text-muted); margin-bottom: 12px; }
+  .sys-panel ul { font-size: 17px; line-height: 2; color: var(--light-text-muted); padding-left: 20px; margin: 0 0 16px; }
+  .sys-panel .sys-solve { font-weight: 700; color: var(--magenta); font-size: 17px; margin: 20px 0 12px; }
+  @media (max-width: 700px) {
+    .sys-tabs { grid-template-columns: repeat(2, 1fr); }
+    .about-flex { flex-direction: column; align-items: center; text-align: center; }
+    .about-flex .about-links { justify-content: center; }
+  }
+  /* ── LADDER LEVELS ── */
+  .ladder { display: flex; flex-direction: column; gap: 0; margin-bottom: 32px; }
+  .ladder-step { display: grid; grid-template-columns: 64px 1fr; gap: 0; position: relative; }
+  .ladder-left { display: flex; flex-direction: column; align-items: center; position: relative; }
+  .ladder-num { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 900; background: var(--purple-card); border: 2px solid rgba(255,255,255,0.08); color: rgba(255,255,255,0.25); transition: all 0.25s; position: relative; z-index: 2; }
+  .ladder-line { width: 2px; flex: 1; background: rgba(255,255,255,0.06); }
+  .ladder-step:last-child .ladder-line { display: none; }
+  .ladder-card { border-radius: 14px; padding: 24px 28px; margin: 6px 0 6px 0; border: 2px solid rgba(255,255,255,0.06); background: var(--purple-card); }
+  .ladder-header { display: flex; align-items: center; gap: 14px; margin-bottom: 8px; }
+  .ladder-name { font-family: 'Montserrat', sans-serif; font-size: 19px; font-weight: 700; color: var(--white); }
+  .ladder-tag { font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; padding: 3px 10px; border-radius: 50px; }
+  .ladder-tag.tag-most { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.35); }
+  .ladder-tag.tag-vision { background: rgba(218,63,246,0.1); color: rgba(218,63,246,0.6); }
+  .ladder-what { font-size: 17px; line-height: 1.7; color: rgba(255,255,255,0.6); margin-bottom: 10px; }
+  .ladder-impl { font-size: 15px; line-height: 1.6; color: rgba(255,255,255,0.35); font-style: italic; }
+  .ladder-impl strong { color: rgba(255,255,255,0.5); font-style: normal; }
+  .level-result { border-radius: 14px; padding: 24px 28px; margin-top: 24px; display: none; animation: fadeIn 0.3s ease; background: rgba(218,63,246,0.04); border: 1px solid rgba(218,63,246,0.15); }
+  .level-result.visible { display: block; }
+  .level-result h4 { font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 700; color: var(--magenta); margin-bottom: 8px; }
+  .level-result p { font-size: 17px; color: rgba(255,255,255,0.7); line-height: 1.7; }
+  @media (max-width: 700px) {
+    .ladder-step { grid-template-columns: 48px 1fr; }
+    .ladder-num { width: 40px; height: 40px; font-size: 17px; }
+    .ladder-card { padding: 18px 20px; }
+    .ladder-name { font-size: 17px; }
+  }
+  /* ── 4-STEP PATH ── */
+  .step-card { display: flex; gap: 24px; align-items: flex-start; margin-bottom: 28px; padding: 28px; border-radius: 12px; }
+  .step-num { font-family: 'Montserrat', sans-serif; font-size: 48px; font-weight: 900; line-height: 1; min-width: 52px; color: rgba(255,255,255,0.08); }
+  .section-light .step-num, .section-light-alt .step-num { color: rgba(0,0,0,0.06); }
+  .step-body h4 { font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 800; margin-bottom: 8px; }
+  .section-dark .step-body h4 { color: var(--white); }
+  .section-light .step-body h4, .section-light-alt .step-body h4 { color: var(--light-text); }
+  .step-body p { font-size: 17px; line-height: 1.7; }
+  .section-dark .step-body p { color: rgba(255,255,255,0.65); }
+  .section-light .step-body p, .section-light-alt .step-body p { color: var(--light-text-muted); }
+  /* ── IMPACT CARDS ── */
+  .impact-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+  .impact-card { border-radius: 16px; padding: 32px; }
+  .section-dark .impact-card { background: var(--purple-card); border: 1px solid rgba(255,255,255,0.08); }
+  .section-light .impact-card, .section-light-alt .impact-card { background: var(--light-card-bg); border: 1px solid var(--light-card-border); box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
+  .impact-card .impact-icon { font-size: 32px; margin-bottom: 16px; }
+  .impact-card h4 { font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 800; margin-bottom: 12px; }
+  .section-dark .impact-card h4 { color: var(--white); }
+  .section-light .impact-card h4, .section-light-alt .impact-card h4 { color: var(--light-text); }
+  .impact-stat { font-family: 'Montserrat', sans-serif; font-size: 28px; font-weight: 900; color: var(--magenta); margin-bottom: 12px; }
+  .impact-card p { font-size: 17px; line-height: 1.7; }
+  .section-dark .impact-card p { color: rgba(255,255,255,0.65); }
+  .section-light .impact-card p, .section-light-alt .impact-card p { color: var(--light-text-muted); }
+  /* ── TESTIMONIALS ── */
+  .testimonials-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 36px; }
+  @media (max-width: 600px) { .testimonials-grid { grid-template-columns: 1fr; } }
+  .testimonial-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 28px; transition: border-color 0.2s; }
+  .testimonial-card:hover { border-color: rgba(255,255,255,0.15); }
+  .testimonial-quote { font-size: 18px; color: rgba(255,255,255,0.7); line-height: 1.7; margin-bottom: 18px; font-style: italic; }
+  .testimonial-author { font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: rgba(255,255,255,0.5); }
+  /* ── CTA ── */
+  .cta-btn { display: inline-block; background: var(--magenta); color: var(--white); font-family: 'Montserrat', sans-serif; font-size: 17px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; padding: 18px 48px; border-radius: 50px; transition: all 0.2s; }
+  .cta-btn:hover { opacity: 0.9; transform: translateY(-2px); }
+  /* ── FOOTER ── */
+  .footer { background: #0a0a0a; padding: 36px 40px; text-align: center; }
+  .footer p { font-size: 16px; color: rgba(255,255,255,0.25); }
+  .footer a { color: var(--magenta); text-decoration: none; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  .fade-in { animation: fadeIn 0.5s ease both; }
+</style>
+</head>
+<body>
+<!-- LEFT SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <div class="sidebar-logo-text">Growth Systems<br>Blueprint</div>
+    <div class="sidebar-logo-sub">by Poulomi Basu</div>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="sidebar-label">Contents</div>
+    <a href="#s1" class="sidebar-link active" data-section="s1">
+      <span class="sidebar-num">01</span>
+      <span class="sidebar-icon"><svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg></span>
+      <span>The Problem</span>
+    </a>
+    <a href="#s2" class="sidebar-link" data-section="s2">
+      <span class="sidebar-num">02</span>
+      <span class="sidebar-icon"><svg viewBox="0 0 24 24"><polyline points="13 17 18 12 13 7"></polyline><polyline points="6 17 11 12 6 7"></polyline></svg></span>
+      <span>The Solution</span>
+    </a>
+    <a href="#s3" class="sidebar-link" data-section="s3">
+      <span class="sidebar-num">03</span>
+      <span class="sidebar-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></span>
+      <span>6 Systems</span>
+    </a>
+    <a href="#s4" class="sidebar-link" data-section="s4">
+      <span class="sidebar-num">04</span>
+      <span class="sidebar-icon"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg></span>
+      <span>5 Levels</span>
+    </a>
+    <a href="#s5" class="sidebar-link" data-section="s5">
+      <span class="sidebar-num">05</span>
+      <span class="sidebar-icon"><svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg></span>
+      <span>The 6 Layers</span>
+    </a>
+    <a href="#s6" class="sidebar-link" data-section="s6">
+      <span class="sidebar-num">06</span>
+      <span class="sidebar-icon"><svg viewBox="0 0 24 24"><path d="M12 20V10"></path><path d="M18 20V4"></path><path d="M6 20v-4"></path></svg></span>
+      <span>The Impact</span>
+    </a>
+    <a href="#s7" class="sidebar-link" data-section="s7">
+      <span class="sidebar-num">07</span>
+      <span class="sidebar-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg></span>
+      <span>Getting Started</span>
+    </a>
+    <a href="#s8" class="sidebar-link" data-section="s8">
+      <span class="sidebar-num">08</span>
+      <span class="sidebar-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="12" x2="21" y2="12"></line><line x1="12" y1="3" x2="12" y2="21"></line></svg></span>
+      <span>ROI Matrix</span>
+    </a>
+    <a href="#s9" class="sidebar-link" data-section="s9">
+      <span class="sidebar-num">09</span>
+      <span class="sidebar-icon"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></span>
+      <span>Next Step</span>
+    </a>
+    <a href="#s10" class="sidebar-link" data-section="s10">
+      <span class="sidebar-num">10</span>
+      <span class="sidebar-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></span>
+      <span>Testimonials</span>
+    </a>
+  </nav>
+  <div class="sidebar-footer">
+    <a href="https://weignitegrowth.com/ai-growth-system-audit-roadmap/" class="sidebar-cta-btn">Get Your Roadmap &rarr;</a>
+  </div>
+</aside>
+<div class="main-content">
+<!-- STICKY NAV (mobile) -->
+<nav class="sticky-nav">
+  <span></span>
+  <a href="https://weignitegrowth.com/ai-growth-system-audit-roadmap/" target="_blank" rel="noopener noreferrer" style="display:inline-block; padding: 9px 22px; background: var(--magenta); border-radius: 50px; color: #fff; font-family:'Montserrat',sans-serif; font-weight:700; font-size:13px; text-decoration:none; letter-spacing:0.3px; white-space:nowrap;">Get Your AI Roadmap</a>
+</nav>
+<!-- COVER -->
+<div class="cover">
+  <h1>The AI<br><span>Growth Systems</span><br>Blueprint</h1>
+  <p class="cover-subtitle">How to use AI to free yourself/ your team from operational mess and build the systems that actually grow your business. — Without hiring more people or losing what makes your brand uniquely yours.</p>
+  <div class="cover-divider"></div>
+  <div class="cover-author">
+    <div class="author-name">Poulomi Basu</div>
+    <div class="author-title">Strategic AI Architect &middot; weignitegrowth.com</div>
+  </div>
+  <div style="margin-top: 52px; width: 100%;">
+    <div class="toc">
+      <h3>What's Inside</h3>
+      <a href="#s1" class="toc-item"><span class="toc-n">01</span><span class="toc-label">Why Most Businesses Are Stuck</span></a>
+      <a href="#s2" class="toc-item"><span class="toc-n">02</span><span class="toc-label">How AI Breaks the Growth Paradox</span></a>
+      <a href="#s3" class="toc-item"><span class="toc-n">03</span><span class="toc-label">The 6 Growth Systems (with examples)</span></a>
+      <a href="#s4" class="toc-item"><span class="toc-n">04</span><span class="toc-label">The 5 Levels of AI Implementation in Your Business</span></a>
+      <a href="#s5" class="toc-item"><span class="toc-n">05</span><span class="toc-label">The 6 Layers: How You Actually Build This</span></a>
+      <a href="#s6" class="toc-item"><span class="toc-n">06</span><span class="toc-label">The Real Impact (in Numbers)</span></a>
+      <a href="#s7" class="toc-item"><span class="toc-n">07</span><span class="toc-label">The 4-Step Path to Your Growth System</span></a>
+      <a href="#s8" class="toc-item"><span class="toc-n">08</span><span class="toc-label">How to Prioritize: The ROI Matrix</span></a>
+      <a href="#s9" class="toc-item"><span class="toc-n">09</span><span class="toc-label">Your Next Step</span></a>
+      <a href="#s10" class="toc-item"><span class="toc-n">10</span><span class="toc-label">What Founders Are Saying</span></a>
+    </div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- ── SECTION 01: THE PROBLEM ── -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="s1" class="section-light" style="background:#fff;">
+<div class="section-wrap">
+  <div class="section-label">Section 01</div>
+  <h2>You don't have a growth problem. <span>You have a capacity problem.</span></h2>
+  <p class="section-intro">Here's what I see again and again with service business founders: They're good at what they do. Really good. Clients love them. Results are strong. <strong style="color:var(--magenta)">But growth? It keeps getting pushed to tomorrow.</strong></p>
+  <div class="highlight-box" style="background: #1A1A1A; border-color: rgba(255,255,255,0.08);">
+    <h4 style="font-family:'Montserrat',sans-serif; color:var(--magenta); font-size:14px; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:16px;">The Growth Paradox</h4>
+    <p style="color: rgba(255,255,255,0.8); font-size:17px; line-height:1.8;">To grow, you need to do more growth activities — marketing, sales, content, lead gen, follow-ups, new offers.</p>
+    <p style="color: rgba(255,255,255,0.8); font-size:17px; line-height:1.8;">To do those activities, you need people. But you and your team are already stretched thin with the tasks they are managing.</p>
+    <p style="color: rgba(255,255,255,0.8); font-size:17px; line-height:1.8;">So you think: I need to hire. But to hire, you need more revenue. And to get more revenue, you need to grow.</p>
+    <p style="color:var(--magenta); font-weight:700; font-size:17px; margin-top:12px;">And there it is. The loop that keeps you stuck.</p>
+  </div>
+  <div style="margin-top: 36px;">
+    <h4 style="font-family:'Montserrat',sans-serif; font-size: 19px; font-weight: 700; color: var(--light-text); margin-bottom: 14px;">How many hours a week do you spend on work that shouldn't need you?</h4>
+    <p style="font-size: 17px; color: var(--light-text-muted); line-height: 1.8; margin-bottom: 16px;">You've probably adapted to it. The operational grind — the admin, the follow-ups, the repetitive tasks, the content scramble — it just becomes your normal. You don't even see it as a problem anymore. It's just... Tuesday.</p>
+    <p style="font-size: 17px; color: var(--light-text-muted); line-height: 1.8; margin-bottom: 16px;">Your processes were built ad hoc when you were a 2-person team. Now you've got 5&ndash;15 SaaS tools that don't talk to each other. No internal tech person. And the founder — you — is the bottleneck for everything.</p>
+    <p style="font-size: 19px; color: var(--magenta); font-weight: 700; line-height: 1.7;">Every hour spent on operational work is an hour not spent on growth.</p>
+  </div>
+</div>
+</div>
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- ── SECTION 02: THE SOLUTION ── -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="s2" class="section-dark">
+<div class="section-wrap">
+  <div class="section-label">Section 02</div>
+  <h2>AI runs your operations <span>and drives your growth.</span></h2>
+  <p class="section-intro">Most people use AI like a smarter Google. Type a question, get an answer, close the tab. That's fine. But it's maybe <strong style="color:var(--magenta)">5% of what's actually possible</strong>. Here's what changes when you build it as infrastructure:</p>
+  <div style="margin-top: 36px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+    <div style="padding: 28px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.03);">
+      <h4 style="font-family:'Montserrat',sans-serif; font-size:14px; letter-spacing:1.5px; text-transform:uppercase; color:var(--magenta); margin-bottom:14px;">Frees Your Team</h4>
+      <p style="font-size:17px; color:rgba(255,255,255,0.7); line-height:1.7;">Automates repetitive tasks so your team stops spending time on work that doesn't move the needle.</p>
+    </div>
+    <div style="padding: 28px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.03);">
+      <h4 style="font-family:'Montserrat',sans-serif; font-size:14px; letter-spacing:1.5px; text-transform:uppercase; color:var(--magenta); margin-bottom:14px;">Powers Your Growth</h4>
+      <p style="font-size:17px; color:rgba(255,255,255,0.7); line-height:1.7;">Does growth activities faster — content, outreach, proposals, follow-ups — at a scale one person never could.</p>
+    </div>
+  </div>
+  <div class="highlight-box" style="margin-top: 36px;">
+    <p style="font-size:19px; color:#fff; font-weight:700; line-height:1.6;">I help founders find where their team is losing time and money — then build the systems that fix it. <span style="color:var(--magenta);">AI is how we do it.</span></p>
+  </div>
+  <div style="margin-top: 28px;">
+    <p style="font-size:17px; color:rgba(255,255,255,0.65); line-height:1.8; margin-bottom:16px;">That means training AI on your business. Give it your brand voice, your workflows, your client data, your SOPs. Connect it to your tools. Set it up so it can run tasks repeatedly — just like an actual team member would.</p>
+    <p style="font-size:17px; color:rgba(255,255,255,0.65); line-height:1.8;">When you build it that way, AI doesn't just save you time on one task. It becomes the engine behind how your whole business operates.</p>
+  </div>
+</div>
+</div>
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- ── ABOUT ME ── -->
+<!-- ══════════════════════════════════════════════ -->
+<div style="max-width: 900px; margin: 0 auto; padding: 64px 40px;">
+  <div class="about-flex" style="display: flex; gap: 40px; align-items: flex-start;">
+    <div style="flex-shrink: 0;">
+      <img src="poulomi-headshot.png" alt="Poulomi Basu" style="width: 160px; height: 160px; border-radius: 50%; object-fit: cover; object-position: top; border: 3px solid rgba(218,63,246,0.25);">
+    </div>
+    <div>
+      <h3 style="font-family:'Montserrat',sans-serif; font-size: 24px; font-weight: 800; color: var(--light-text); margin-bottom: 14px;">About Me</h3>
+      <p style="font-size: 17px; color: var(--light-text-muted); line-height: 1.7; margin-bottom: 14px;">I'm <strong style="color: var(--light-text);">Poulomi Basu</strong> — AI Strategy Consultant & Architect. I've spent 17 years building business systems for companies of all sizes, from startups to global enterprises. Today I work exclusively with service business founders who have teams of 5&ndash;50 people.</p>
+      <p style="font-size: 17px; color: var(--light-text-muted); line-height: 1.7; margin-bottom: 18px;">This blueprint is the framework I use with every client. It's how I think about AI for service businesses — and it's yours to keep.</p>
+      <div class="about-links" style="display: flex; gap: 16px; flex-wrap: wrap;">
+        <a href="https://linkedin.com/in/brandpoulomi" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 8px; border: 1px solid rgba(0,0,0,0.1); text-decoration: none; font-family:'Montserrat',sans-serif; font-size: 14px; font-weight: 600; color: var(--light-text); transition: border-color 0.2s;">
+          <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:var(--magenta);"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          LinkedIn
+        </a>
+        <a href="https://youtube.com/@ignite_growth" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 8px; border: 1px solid rgba(0,0,0,0.1); text-decoration: none; font-family:'Montserrat',sans-serif; font-size: 14px; font-weight: 600; color: var(--light-text); transition: border-color 0.2s;">
+          <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:var(--magenta);"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.43z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" style="fill:#fff;"></polygon></svg>
+          YouTube
+        </a>
+        <a href="https://weignitegrowth.com" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 8px; border: 1px solid rgba(0,0,0,0.1); text-decoration: none; font-family:'Montserrat',sans-serif; font-size: 14px; font-weight: 600; color: var(--light-text); transition: border-color 0.2s;">
+          <svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:var(--magenta);stroke-width:2;fill:none;"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+          Website
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- ── SECTION 03: THE 6 GROWTH SYSTEMS ── -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="s3" class="section-light" style="background:#fff;">
+<div class="section-wrap">
+  <div class="section-label">Section 03</div>
+  <h2><span>The 6 Growth Systems.</span></h2>
+  <p style="font-size: 17px; color: var(--light-text-muted); line-height: 1.7; margin-bottom: 8px;">Each system tackles a different part of your operations.<br>Some are about growth — getting more visible, closing more deals, bringing in new business. <br>Others are about efficiency — streamlining what your team already does so they can do more of the work that actually matters. Most businesses start with the system that solves their biggest bottleneck, then expand from there.</p>
+  <p style="font-size: 17px; color: var(--light-text-muted); line-height: 1.7; margin-bottom: 36px;">Click any system to see the problem it solves and exactly what it can do.</p>
+
+  <!-- TAB BUTTONS -->
+  <div class="sys-tabs">
+    <div class="sys-tab active" onclick="showSystem(1)">
+      <div class="sys-tab-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg></div>
+      <div><div class="sys-tab-name">Clarity & Strategy</div><div class="sys-tab-tag">Operational + Growth</div></div>
+    </div>
+    <div class="sys-tab" onclick="showSystem(2)">
+      <div class="sys-tab-icon"><svg viewBox="0 0 24 24"><line x1="17" y1="10" x2="3" y2="10"></line><line x1="21" y1="6" x2="3" y2="6"></line><line x1="21" y1="14" x2="3" y2="14"></line><line x1="17" y1="18" x2="3" y2="18"></line></svg></div>
+      <div><div class="sys-tab-name">Visibility & Content</div><div class="sys-tab-tag">Growth</div></div>
+    </div>
+    <div class="sys-tab" onclick="showSystem(3)">
+      <div class="sys-tab-icon"><svg viewBox="0 0 24 24"><path d="m6 15-4-4 6.75-6.77a7.79 7.79 0 0 1 11 11L13 22l-4-4 6.39-6.36a2.14 2.14 0 0 0-3-3.07L6 15"></path></svg></div>
+      <div><div class="sys-tab-name">Sales & Pipeline</div><div class="sys-tab-tag">Growth</div></div>
+    </div>
+    <div class="sys-tab" onclick="showSystem(4)">
+      <div class="sys-tab-icon"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17 11 19 13 23 9"></polyline></svg></div>
+      <div><div class="sys-tab-name">Client Experience</div><div class="sys-tab-tag">Operational</div></div>
+    </div>
+    <div class="sys-tab" onclick="showSystem(5)">
+      <div class="sys-tab-icon"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg></div>
+      <div><div class="sys-tab-name">Operations & Admin</div><div class="sys-tab-tag">Operational</div></div>
+    </div>
+    <div class="sys-tab" onclick="showSystem(6)">
+      <div class="sys-tab-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div>
+      <div><div class="sys-tab-name">Custom IP Tools</div><div class="sys-tab-tag">Growth</div></div>
+    </div>
+  </div>
+
+  <!-- TAB PANELS -->
+  <div class="sys-panel active" data-panel="1">
+    <div class="sys-panel-title">Clarity & Strategy</div>
+    <div class="sys-panel-tag">Operational + Growth</div>
+    <p>Picture this: you've got a big pitch next week. You need competitor data, market trends, and your own numbers in one place. So you spend half a day digging through reports, scanning competitor websites, pulling up old spreadsheets, and trying to piece together a story. By the time you're done, you're exhausted — and you haven't even started the actual pitch deck.</p>
+    <p class="sys-solve">With a Clarity & Strategy system, AI does the research for you:</p>
+    <ul>
+      <li>Monitors your competitors automatically — tracking their positioning, pricing changes, and new service offerings</li>
+      <li>Pulls industry trends and market data into regular briefings you can scan in minutes</li>
+      <li>Analyses your own revenue patterns, client retention, and service profitability to surface insights you'd miss in raw data</li>
+      <li>Generates strategic briefing documents checked against your brand positioning — ready to share or present</li>
+      <li>Exports polished PDFs for board updates, pitch decks, and stakeholder presentations</li>
+      <li>Remembers your business context across sessions — every briefing builds on the last one, getting sharper over time</li>
+    </ul>
+    <p>What used to take half a day of digging takes minutes. And the quality of your decisions goes up because you're working from real data instead of instinct.</p>
+  </div>
+
+  <div class="sys-panel" data-panel="2">
+    <div class="sys-panel-title">Visibility & Content</div>
+    <div class="sys-panel-tag">Growth</div>
+    <p>It's Monday. You told yourself this would be the week you finally post consistently. But by 10am you're in client delivery, and by Friday, nothing went out. Again. Or worse — you ask ChatGPT to "write a LinkedIn post," get something generic that sounds nothing like you, spend 30 minutes rewriting it, and wonder why you bothered.</p>
+    <p class="sys-solve">With a Visibility & Content system, one idea becomes a full week of on-brand content:</p>
+    <ul>
+      <li>Takes a single insight, lesson, or point of view and turns it into blog posts, LinkedIn posts, social threads, and newsletters</li>
+      <li>Writes in your actual voice — trained on your tone, vocabulary, phrases you use and the ones you avoid</li>
+      <li>Builds full email sequences for nurture campaigns, launches, and weekly newsletters</li>
+      <li>Checks every draft against your brand voice and style rules — off-brand content gets flagged before you see it</li>
+      <li>Creates content calendars and plans cross-channel campaigns so you always know what's going out and when</li>
+      <li>Produces a full week of content in about 90 minutes instead of 5+ hours</li>
+    </ul>
+    <p>The quality stays consistent because the system works from the same foundation every time — not whatever energy level you happen to have on a Friday afternoon.</p>
+  </div>
+
+  <div class="sys-panel" data-panel="3">
+    <div class="sys-panel-title">Sales & Pipeline</div>
+    <div class="sys-panel-tag">Growth</div>
+    <p>Think about the last time a great lead came in while you were deep in client delivery. Maybe you saw the email, told yourself you'd reply after this meeting. Two days later you remembered — and by then they'd already talked to someone else. Multiply that by every lead, every week, all year. That's the real cost.</p>
+    <p class="sys-solve">With a Sales & Pipeline system, no lead falls through the cracks:</p>
+    <ul>
+      <li>Researches and qualifies inbound leads automatically — company size, industry, role, fit against your ideal client profile</li>
+      <li>Flags hot leads immediately and nurtures cold ones with personalised email sequences until they're ready</li>
+      <li>Writes outbound emails built from actual prospect research — not mail-merge templates that scream "mass email"</li>
+      <li>Builds 4&ndash;5 email nurture sequences per prospect that sound like you wrote them individually</li>
+      <li>Surfaces your top priorities every morning — who needs a follow-up, who opened your email three times, who visited your pricing page</li>
+      <li>Handles routine enquiries about services, pricing, and availability with consistent, on-brand replies</li>
+    </ul>
+    <p>You only step in for the conversations that actually require your expertise. Everything else runs on its own.</p>
+  </div>
+
+  <div class="sys-panel" data-panel="4">
+    <div class="sys-panel-title">Client Experience</div>
+    <div class="sys-panel-tag">Operational</div>
+    <p>A new client signs the contract on Thursday. On Friday, you're in back-to-back meetings. By Monday, they still haven't received a welcome email. The project setup hasn't started. The kickoff meeting doesn't have an agenda. The client is already wondering if they made the right choice — and you haven't even started the actual work yet.</p>
+    <p class="sys-solve">With a Client Experience system, every client gets white-glove treatment automatically:</p>
+    <ul>
+      <li>Reads signed contracts and extracts deliverables, milestones, and deadlines the moment a deal closes</li>
+      <li>Generates personalised welcome packets and onboarding checklists built from the actual contract terms</li>
+      <li>Creates polished kickoff meeting agendas so the first interaction feels professional and prepared</li>
+      <li>Sends status updates, progress reports, and check-in emails on a consistent schedule without anyone chasing them</li>
+      <li>Produces monthly reports showing clients exactly what's been delivered and what's coming next</li>
+      <li>Stores each client's goals, preferences, and communication style — so every touchpoint feels personal and specific</li>
+    </ul>
+    <p>Clients feel like they're your only client — even when you're managing ten at once. And your team isn't spending hours assembling update decks.</p>
+  </div>
+
+  <div class="sys-panel" data-panel="5">
+    <div class="sys-panel-title">Operations & Admin</div>
+    <div class="sys-panel-tag">Operational</div>
+    <p>Your ops manager just spent two hours manually entering invoice data into a spreadsheet. Your team lead is writing the same SOP for the third time because nobody can find the first version. Someone missed a task from last week's meeting because the notes were in a Google Doc nobody opened. This is the hidden tax on every growing business.</p>
+    <p class="sys-solve">With an Operations & Admin system, the back office runs itself:</p>
+    <ul>
+      <li>Extracts data from PDF invoices automatically — no more manual entry from supplier bills</li>
+      <li>Updates financial spreadsheets with pivot tables and charts so your numbers are always current</li>
+      <li>Tracks budget categories and flags when spending goes off track before it becomes a problem</li>
+      <li>Writes and formats SOPs from rough notes or verbal descriptions — you describe the process, it produces the document</li>
+      <li>Converts meeting transcripts into tracked tasks with owners and deadlines so nothing falls through the cracks</li>
+      <li>Builds role-specific onboarding plans and training materials for new hires so every person gets a consistent experience</li>
+    </ul>
+    <p>Your team stops spending hours on work that doesn't move the needle — and starts spending that time on work that does.</p>
+  </div>
+
+  <div class="sys-panel" data-panel="6">
+    <div class="sys-panel-title">Custom IP Tools</div>
+    <div class="sys-panel-tag">Growth</div>
+    <p>You've spent years developing your approach — the frameworks you use, the way you diagnose problems, the methodology that gets results. But right now, all of that lives in your head. It can't be delegated. It can't sell for you. Your team can't use it without asking you. That's a bottleneck — and a missed opportunity.</p>
+    <p class="sys-solve">With a Custom IP Tools system, your knowledge becomes a reusable business asset:</p>
+    <ul>
+      <li>Turns your methodology into shareable sales assets — something you hand a prospect that demonstrates your thinking before the first call</li>
+      <li>Designs visual lead magnets that showcase your actual approach, not generic advice</li>
+      <li>Packages your frameworks as polished PDFs, interactive tools, or Word documents you can share, embed, or sell</li>
+      <li>Lets your team apply your decision-making frameworks to client problems independently — without pulling you into the room</li>
+      <li>Stores and versions your IP so every new tool builds on your existing library of expertise</li>
+      <li>Creates assessment tools, calculators, and decision trees from your proprietary processes</li>
+    </ul>
+    <p>Your knowledge compounds over time instead of being limited by how many hours you can personally work.</p>
+  </div>
+
+</div>
+</div>
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- ── SECTION 04: 5 LEVELS ── -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="s4" class="section-dark">
+<div class="section-wrap">
+  <div class="section-label">Section 04</div>
+  <h2>The <span>5 Levels</span> of AI in Your Business.</h2>
+  <p class="section-intro">There's a spectrum — from 'I've heard of ChatGPT' to 'AI runs our operations.' Most founders are at Level 1 or 2. See where you think you are to see what it means — and what's next.</p>
+  <div class="ladder">
+    <div class="ladder-step" data-level="1">
+      <div class="ladder-left"><div class="ladder-num">1</div><div class="ladder-line"></div></div>
+      <div class="ladder-card">
+        <div class="ladder-header"><span class="ladder-name">Exploring</span><span class="ladder-tag tag-most">Most founders here</span></div>
+        <div class="ladder-what">You know AI exists. You open ChatGPT, ask a question, get an answer, close the tab. Next time you start from zero — no memory, no context, no system.</div>
+        <div class="ladder-impl"><strong>What this means:</strong> Every interaction is one-off. You're getting maybe 5% of what AI can actually do for your business. It feels useful, but nothing compounds.</div>
+      </div>
+    </div>
+    <div class="ladder-step" data-level="2">
+      <div class="ladder-left"><div class="ladder-num">2</div><div class="ladder-line"></div></div>
+      <div class="ladder-card">
+        <div class="ladder-header"><span class="ladder-name">Experimenting</span></div>
+        <div class="ladder-what">You've set up a Custom GPT or a simple workflow for a specific task. AI knows some context about your business — your tone, your offer, your audience.</div>
+        <div class="ladder-impl"><strong>What this means:</strong> You're getting better outputs, but you're still the one running everything. Each task still needs you to initiate it, prompt it, review it. It saves minutes, not hours.</div>
+      </div>
+    </div>
+    <div class="ladder-step" data-level="3">
+      <div class="ladder-left"><div class="ladder-num">3</div><div class="ladder-line"></div></div>
+      <div class="ladder-card">
+        <div class="ladder-header"><span class="ladder-name">Operating</span></div>
+        <div class="ladder-what">Multi-step workflows are running real processes — content production, sales outreach sequences, client onboarding. AI handles the heavy lifting across multiple steps.</div>
+        <div class="ladder-impl"><strong>What this means:</strong> You're seeing real time savings — hours, not minutes. Your team produces more without growing headcount. Processes that used to need 3 people now need 1 person and a workflow.</div>
+      </div>
+    </div>
+    <div class="ladder-step" data-level="4">
+      <div class="ladder-left"><div class="ladder-num">4</div><div class="ladder-line"></div></div>
+      <div class="ladder-card">
+        <div class="ladder-header"><span class="ladder-name">Systemizing</span></div>
+        <div class="ladder-what">AI agents are connected to your actual tools — CRM, email, calendar, project management. They take action in the real world, not just generate text you copy-paste.</div>
+        <div class="ladder-impl"><strong>What this means:</strong> AI becomes a team member, not a tool. It books meetings, updates your CRM, sends follow-ups, flags issues — without waiting for you. Your business runs faster even when you're not in it.</div>
+      </div>
+    </div>
+    <div class="ladder-step" data-level="5">
+      <div class="ladder-left"><div class="ladder-num">5</div><div class="ladder-line"></div></div>
+      <div class="ladder-card">
+        <div class="ladder-header"><span class="ladder-name">Infrastructure</span><span class="ladder-tag tag-vision">The vision</span></div>
+        <div class="ladder-what">Specialised AI across every department — strategy, content, sales, delivery, ops. Woven into how the business runs, the same way email or your CRM is.</div>
+        <div class="ladder-impl"><strong>What this means:</strong> Your business has multiplied its capacity without multiplying its headcount. AI handles the predictable work, your team handles the human work. Growth becomes structural, not dependent on hiring.</div>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top: 28px; padding: 18px 24px; background: rgba(255,255,255,0.04); border-radius: 12px; border-left: 3px solid var(--magenta);">
+    <p style="font-size:17px; color:var(--magenta); font-weight:700; line-height:1.6;">Most businesses think they're at Level 3. In reality, they're at Level 1 or 2. That gap is the opportunity.</p>
+  </div>
+</div>
+</div>
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- ── SECTION 05: THE 6 LAYERS ── -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="s5" class="section-light-alt">
+<div class="section-wrap">
+  <div class="section-label">Section 05</div>
+  <h2>The 6 Layers: <span>How You Actually Build This.</span></h2>
+  <p class="section-intro" style="color: var(--light-text-muted);">You've seen what the 6 systems can do. But how do you actually build them? How do you go from "I use AI sometimes" to "AI runs half my operations"?</p>
+  <p style="font-size: 17px; color: var(--light-text-muted); line-height: 1.7; margin-bottom: 8px;">It comes down to 6 layers — the architecture behind every AI growth system that actually works. Think of them as the components of an AI Operating System for your business. Miss one, and the system underperforms. Get all 6 right, and you have something that genuinely multiplies your team's capacity.</p>
+  <p style="font-size: 17px; color: var(--light-text-muted); line-height: 1.7; margin-bottom: 40px;">Click each layer to understand what it means and why it matters.</p>
+
+  <!-- 6 LAYERS HEXAGON DIAGRAM -->
+  <div style="margin-bottom: 48px;">
+    <svg viewBox="0 0 780 580" style="width:100%; max-width:700px; display:block; margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+
+      <!-- Glow filter -->
+      <defs>
+        <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+          <feGaussianBlur stdDeviation="5" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+
+      <!-- Outer guide circle -->
+      <circle cx="390" cy="280" r="155" fill="none" stroke="rgba(218,63,246,0.07)" stroke-width="1"/>
+
+      <!-- Hexagon outline -->
+      <polygon points="390,120 545,200 545,360 390,440 235,360 235,200"
+        fill="none" stroke="#DA3FF6" stroke-width="1.5" stroke-opacity="0.3"/>
+
+      <!-- Spoke lines from center -->
+      <g stroke="#DA3FF6" stroke-width="1.5" stroke-opacity="0.2">
+        <line x1="390" y1="280" x2="390" y2="120"/>
+        <line x1="390" y1="280" x2="545" y2="200"/>
+        <line x1="390" y1="280" x2="545" y2="360"/>
+        <line x1="390" y1="280" x2="390" y2="440"/>
+        <line x1="390" y1="280" x2="235" y2="360"/>
+        <line x1="390" y1="280" x2="235" y2="200"/>
+      </g>
+
+      <!-- Center circle -->
+      <circle cx="390" cy="280" r="44" fill="var(--light-bg-alt)" stroke="#DA3FF6" stroke-width="2.5"/>
+      <text x="390" y="275" text-anchor="middle" font-family="Montserrat,sans-serif" font-weight="900" font-size="13" fill="#1a1a1a">AI Growth</text>
+      <text x="390" y="292" text-anchor="middle" font-family="Montserrat,sans-serif" font-weight="900" font-size="13" fill="#DA3FF6">System</text>
+
+      <!-- NODE 1: Boss (top) -->
+      <circle cx="390" cy="98" r="28" fill="#DA3FF6" filter="url(#glow)"/>
+      <text x="390" y="104" text-anchor="middle" font-family="Montserrat,sans-serif" font-weight="900" font-size="16" fill="white">1</text>
+      <text x="390" y="52" text-anchor="middle" font-family="Montserrat,sans-serif" font-weight="800" font-size="14" fill="#1a1a1a">Boss</text>
+      <text x="390" y="70" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="11" fill="#888">Rules &amp; guardrails</text>
+
+      <!-- NODE 2: Information (top-right) -->
+      <circle cx="567" cy="200" r="28" fill="rgba(218,63,246,0.08)" stroke="#DA3FF6" stroke-width="2"/>
+      <text x="567" y="206" text-anchor="middle" font-family="Montserrat,sans-serif" font-weight="900" font-size="16" fill="#DA3FF6">2</text>
+      <text x="612" y="194" text-anchor="start" font-family="Montserrat,sans-serif" font-weight="800" font-size="14" fill="#1a1a1a">Information</text>
+      <text x="612" y="212" text-anchor="start" font-family="Montserrat,sans-serif" font-size="11" fill="#888">Context &amp; memory</text>
+
+      <!-- NODE 3: Team (bottom-right) -->
+      <circle cx="567" cy="360" r="28" fill="rgba(218,63,246,0.08)" stroke="#DA3FF6" stroke-width="2"/>
+      <text x="567" y="366" text-anchor="middle" font-family="Montserrat,sans-serif" font-weight="900" font-size="16" fill="#DA3FF6">3</text>
+      <text x="612" y="354" text-anchor="start" font-family="Montserrat,sans-serif" font-weight="800" font-size="14" fill="#1a1a1a">Team</text>
+      <text x="612" y="372" text-anchor="start" font-family="Montserrat,sans-serif" font-size="11" fill="#888">Skills &amp; agents</text>
+
+      <!-- NODE 4: Connectors (bottom) -->
+      <circle cx="390" cy="462" r="28" fill="rgba(218,63,246,0.08)" stroke="#DA3FF6" stroke-width="2"/>
+      <text x="390" y="468" text-anchor="middle" font-family="Montserrat,sans-serif" font-weight="900" font-size="16" fill="#DA3FF6">4</text>
+      <text x="390" y="510" text-anchor="middle" font-family="Montserrat,sans-serif" font-weight="800" font-size="14" fill="#1a1a1a">Connectors</text>
+      <text x="390" y="528" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="11" fill="#888">Tools &amp; integrations</text>
+
+      <!-- NODE 5: Automation (bottom-left) -->
+      <circle cx="213" cy="360" r="28" fill="rgba(218,63,246,0.08)" stroke="#DA3FF6" stroke-width="2"/>
+      <text x="213" y="366" text-anchor="middle" font-family="Montserrat,sans-serif" font-weight="900" font-size="16" fill="#DA3FF6">5</text>
+      <text x="168" y="354" text-anchor="end" font-family="Montserrat,sans-serif" font-weight="800" font-size="14" fill="#1a1a1a">Automation</text>
+      <text x="168" y="372" text-anchor="end" font-family="Montserrat,sans-serif" font-size="11" fill="#888">Scheduled workflows</text>
+
+      <!-- NODE 6: Distribution (top-left) -->
+      <circle cx="213" cy="200" r="28" fill="rgba(218,63,246,0.08)" stroke="#DA3FF6" stroke-width="2" stroke-dasharray="4 3"/>
+      <text x="213" y="206" text-anchor="middle" font-family="Montserrat,sans-serif" font-weight="900" font-size="16" fill="#DA3FF6">6</text>
+      <text x="168" y="194" text-anchor="end" font-family="Montserrat,sans-serif" font-weight="800" font-size="14" fill="#1a1a1a">Distribution</text>
+      <text x="168" y="212" text-anchor="end" font-family="Montserrat,sans-serif" font-size="11" fill="#888">Share with your team</text>
+
+    </svg>
+
+    <div style="text-align: center; font-size: 13px; color: var(--light-text-muted); font-style: italic; margin-top: 20px;">Miss any one and the system underperforms. Get all 6 right and it compounds.</div>
+  </div>
+  <!-- END 6 LAYERS DIAGRAM -->
+
+  <div class="arch-layers">
+    <div class="collapsible open" data-id="arch1">
+      <div class="collapsible-header">
+        <div class="collapsible-left">
+          <div class="collapsible-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg></div>
+          <div>
+            <div class="collapsible-title">#1 Boss</div>
+            <div class="collapsible-subtitle">Rules, commands, and guardrails</div>
+          </div>
+        </div>
+        <div class="chevron">&#9660;</div>
+      </div>
+      <div class="collapsible-body">
+        <div class="collapsible-content">
+          <p>This is the foundation layer — the one that turns a generic AI into <em>your</em> AI growth system. The Boss layer is where you define who's in charge and how AI is allowed to operate inside your business.</p>
+          <p style="margin-top: 10px;">Think of it like the management instructions you'd give a new employee on their first day. You tell them: here's what you're responsible for. Here's how we do things around here. Here are the things you should never do without checking with me first. Here are the standards everything needs to meet before it goes out the door.</p>
+          <p style="margin-top: 10px;">In practical terms, this means setting up a core instruction file that AI reads every single time it starts a new session. That file contains your operating rules — things like "always write in US English," "never send an email without my approval," "check the brand voice guidelines before producing any content," "always save files in the correct project folder." These aren't suggestions. They're non-negotiable rules that govern every action AI takes.</p>
+          <p style="margin-top: 10px;">The Boss layer also includes guardrails — safety boundaries that protect your business. Things like: never expose API keys or client data. Never delete files without confirmation. Never make external calls that could cost money without asking first. These guardrails mean you can give AI significant autonomy without worrying it'll do something destructive or embarrassing.</p>
+          <p style="margin-top: 10px;">Here's why this layer matters so much: without it, every AI interaction is a blank slate. You'd have to re-explain your expectations every single time. With a properly built Boss layer, AI already knows the rules before you even start talking. It operates within your boundaries automatically. That's the difference between a tool you babysit and a system you can actually trust.</p>
+        </div>
+      </div>
+    </div>
+    <div class="collapsible" data-id="arch2" style="border-top: none; border-radius: 0;">
+      <div class="collapsible-header">
+        <div class="collapsible-left">
+          <div class="collapsible-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg></div>
+          <div>
+            <div class="collapsible-title">#2 Information</div>
+            <div class="collapsible-subtitle">Context, memory, and brand voice</div>
+          </div>
+        </div>
+        <div class="chevron">&#9660;</div>
+      </div>
+      <div class="collapsible-body">
+        <div class="collapsible-content">
+          <p>The Boss layer tells AI how to behave. The Information layer tells AI who you are. This is everything AI needs to know about your business to produce work that actually sounds like you and reflects how you operate.</p>
+          <p style="margin-top: 10px;">That means your brand voice: how you talk, what words you use, what phrases you avoid, what tone feels right. Your positioning: what you stand for, what makes you different, who you serve and who you don't. Your client personas: who your ideal customers are, what keeps them up at night, what language resonates with them. Your business model: your offers, pricing, delivery process, how revenue flows.</p>
+          <p style="margin-top: 10px;">But it goes deeper than that. The Information layer also includes your memory — the accumulated knowledge that builds over time. Past projects, case studies, client feedback, proposals that won deals, campaigns that worked and ones that didn't. The more context AI has about what's worked for you before, the smarter it operates going forward. It stops generating generic content and starts producing output that actually sounds like your business — because it genuinely knows your business.</p>
+          <p style="margin-top: 10px;">Here's the thing most people miss: this isn't a one-time setup. Your Information layer grows with every interaction. Every client project, every campaign result, every strategic decision adds to what AI knows. The system gets sharper the longer you use it. That's what makes this fundamentally different from asking a chatbot a one-off question — there's no memory, no accumulation, no compounding value in that approach. With a properly built Information layer, every session picks up where the last one left off.</p>
+          <p style="margin-top: 10px;">This is also where your SOPs, workflows, process documentation, templates, and checklists live — all the operational knowledge that currently exists in people's heads or scattered across Google Docs. When AI has access to these, it doesn't just know what your business is. It knows how your business works. Your onboarding process, your proposal format, your content rhythm — all of it becomes part of how AI operates, not something you have to re-explain every time.</p>
+        </div>
+      </div>
+    </div>
+    <div class="collapsible" data-id="arch3" style="border-top: none; border-radius: 0;">
+      <div class="collapsible-header">
+        <div class="collapsible-left">
+          <div class="collapsible-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div>
+          <div>
+            <div class="collapsible-title">#3 Team</div>
+            <div class="collapsible-subtitle">Skills and agents that do the work</div>
+          </div>
+        </div>
+        <div class="chevron">&#9660;</div>
+      </div>
+      <div class="collapsible-body">
+        <div class="collapsible-content">
+          <p>This is where AI stops being a single chatbot and becomes an actual team. The Team layer is made up of two things: <strong style="color:var(--magenta);">skills</strong> (repeatable workflows for specific tasks) and <strong style="color:var(--magenta);">agents</strong> (specialized AI team members that handle entire domains of work).</p>
+          <p style="margin-top: 10px;">A skill is a packaged workflow that AI can run on command. Think of it like a standard operating procedure that AI executes perfectly every time. "Write a LinkedIn post" is a skill. "Research a competitor and produce a battlecard" is a skill. "Process meeting notes, extract action items, draft a follow-up email, and log everything to the CRM" — that's a skill too. Each one is built once, then runs on demand with a single command. No re-prompting, no re-explaining, no variation in quality.</p>
+          <p style="margin-top: 10px;">An agent is a step beyond. Agents are specialized AI team members that own an entire area of your business. You might have a content agent that handles your entire content pipeline — from ideation to drafting to SEO optimization to scheduling. A sales agent that researches leads, qualifies them against your ideal client profile, and drafts personalized outreach. An ops agent that processes meeting transcripts, creates tasks, and keeps your project management tool updated.</p>
+          <p style="margin-top: 10px;">The real power is in how these work together. Your sales agent might research a lead, then hand off to your content agent to create a personalized case study to send them. Your ops agent processes a client meeting, creates the follow-up tasks, and triggers your client experience agent to send a progress update. Each agent is a specialist, but together they function like a coordinated team.</p>
+          <p style="margin-top: 10px;">Without the Team layer, you have a smart assistant that can do one thing at a time. With it, you have a workforce that can handle complex, multi-step processes across your entire business — simultaneously, consistently, and without dropping the ball.</p>
+        </div>
+      </div>
+    </div>
+    <div class="collapsible" data-id="arch4" style="border-top: none; border-radius: 0;">
+      <div class="collapsible-header">
+        <div class="collapsible-left">
+          <div class="collapsible-icon"><svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg></div>
+          <div>
+            <div class="collapsible-title">#4 Connectors</div>
+            <div class="collapsible-subtitle">Tools and integrations</div>
+          </div>
+        </div>
+        <div class="chevron">&#9660;</div>
+      </div>
+      <div class="collapsible-body">
+        <div class="collapsible-content">
+          <p>This is where the magic really happens. An AI that lives inside one chat window can answer questions and write drafts. An AI that's connected to your actual business tools can run your operations.</p>
+          <p style="margin-top: 10px;">The Connectors layer links your AI system to every platform you already use — your CRM, email, Google Workspace, calendar, project management tools, invoicing software, design tools, Slack, Notion, and more. When these connections are in place, AI doesn't just generate text — it takes action. It can create a proposal in your Google Docs, update a deal in your CRM, send a follow-up email through your email platform, schedule a meeting on your calendar, or design a presentation in your design tool.</p>
+          <p style="margin-top: 10px;">Without connectors, every AI output requires manual copy-pasting, reformatting, and transferring between tools. That might save you some thinking time, but it doesn't save you much actual time. With connectors, the entire workflow happens end-to-end. AI researches a lead, drafts a personalized email, queues it in your outreach tool, and logs the activity in your CRM — all without you touching three different platforms.</p>
+          <p style="margin-top: 10px;">The connector ecosystem is growing fast. Today you can connect AI to Gmail, Google Calendar, Google Drive, HubSpot, Salesforce, Notion, Slack, Canva, Zapier, Make, and dozens more. And because connectors are modular, adding a new tool to your AI system is as simple as plugging in a new connection — no custom development required.</p>
+          <p style="margin-top: 10px;">This is the layer that separates "using AI" from "having AI infrastructure." Most businesses stop at the chat window. The ones that see real transformation connect AI to everything it needs to actually do the job from start to finish.</p>
+        </div>
+      </div>
+    </div>
+    <div class="collapsible" data-id="arch5" style="border-top: none; border-radius: 0;">
+      <div class="collapsible-header">
+        <div class="collapsible-left">
+          <div class="collapsible-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
+          <div>
+            <div class="collapsible-title">#5 Automation</div>
+            <div class="collapsible-subtitle">Scheduled workflows that run on their own</div>
+          </div>
+        </div>
+        <div class="chevron">&#9660;</div>
+      </div>
+      <div class="collapsible-body">
+        <div class="collapsible-content">
+          <p>The first four layers give you an AI system you can command. The Automation layer makes it a system that works without you.</p>
+          <p style="margin-top: 10px;">This is where AI stops waiting for you to type a prompt and starts running tasks on a schedule — automatically, reliably, whether you're at your desk or not. Think of it as the difference between having an assistant who only works when you're in the room versus one who handles their responsibilities independently, day after day.</p>
+          <p style="margin-top: 10px;">In practice, this means setting up scheduled workflows that execute at specific times or in response to specific triggers. Your AI system can run a daily prospecting workflow every morning — pulling new leads, qualifying them against your ideal client profile, researching each one, and drafting personalized outreach emails. All before you've finished your first coffee.</p>
+          <p style="margin-top: 10px;">It can process every new meeting automatically — the moment a transcript becomes available, AI summarizes the conversation, extracts action items, creates tasks in your project management tool, drafts a follow-up email, and logs everything to your CRM. No manual trigger required. It can publish your weekly newsletter draft every Thursday, generate a competitive intelligence briefing every Monday, or send client progress updates every Friday.</p>
+          <p style="margin-top: 10px;">The real shift here is psychological as much as practical. When you know your AI system is handling the repeatable, predictable work — the daily prospecting, the meeting follow-ups, the content scheduling, the data entry, the status updates — you stop carrying that mental load. You stop waking up thinking "I need to remember to follow up with that lead" or "I haven't sent the weekly update yet." The system handles it. Your brain gets freed up for the strategic, creative, human work that actually requires you.</p>
+          <p style="margin-top: 10px;">This is what it means for your business to keep running even when you're not running it. Not in theory — in practice, every single day.</p>
+        </div>
+      </div>
+    </div>
+    <div class="collapsible" data-id="arch6" style="border-top: none; border-radius: 0 0 16px 16px;">
+      <div class="collapsible-header">
+        <div class="collapsible-left">
+          <div class="collapsible-icon"><svg viewBox="0 0 24 24"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg></div>
+          <div>
+            <div class="collapsible-title">#6 Distribution</div>
+            <div class="collapsible-subtitle">Share workflows with your team</div>
+          </div>
+        </div>
+        <div class="chevron">&#9660;</div>
+      </div>
+      <div class="collapsible-body">
+        <div class="collapsible-content">
+          <p>The first five layers build a powerful AI growth system for you. The Distribution layer is what turns it into a system for your entire team.</p>
+          <p style="margin-top: 10px;">Here's the challenge most founders face: you've built incredible AI workflows that save you hours every week. But your team is still doing things the old way because those workflows live on your machine, in your setup, with your configuration. Every time a team member needs to use AI, they either come to you or fumble through a chatbot on their own. The knowledge stays bottlenecked — just in a different way than before.</p>
+          <p style="margin-top: 10px;">The Distribution layer solves this by making your AI workflows shareable and deployable across your team. The skills you've built, the agents you've configured, the connectors you've set up — all of it can be packaged and distributed to team members so they can run the same high-quality workflows independently. Your content writer gets access to the content skill that produces on-brand posts. Your sales person gets the prospecting agent that researches and qualifies leads. Your ops manager gets the meeting processing workflow that turns transcripts into tasks.</p>
+          <p style="margin-top: 10px;">This is where the economics get really interesting. Instead of each team member spending hours figuring out how to use AI effectively — or worse, using it poorly and creating more work — they get access to battle-tested workflows that already produce consistent, high-quality results. The investment you made in building layers 1 through 5 gets multiplied across every person on your team.</p>
+          <p style="margin-top: 10px;">Distribution also means standardization. When everyone on your team is using the same AI-powered workflows, the quality of output becomes consistent across the board. Your brand voice stays on-brand whether it's you writing or your newest team member. Your client onboarding is flawless whether you're handling it or someone else is. Your proposals follow the same winning structure regardless of who creates them.</p>
+          <p style="margin-top: 10px;">This is the layer that takes AI from being a personal productivity boost to being genuine business infrastructure — the kind that scales with your team and compounds as your business grows.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top: 32px; padding: 22px 28px; background: rgba(0,0,0,0.03); border-radius: 12px; border: 1px solid rgba(0,0,0,0.06);">
+    <p style="font-size: 17px; color: var(--light-text); font-weight: 700; line-height: 1.7;">When all 6 layers work together, you don't have an AI tool. <span style="color:var(--magenta);">You have an AI Growth System.</span> Each layer reinforces the others — and the system gets smarter every time you use it.</p>
+  </div>
+</div>
+</div>
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- ── SECTION 06: THE REAL IMPACT ── -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="s6" class="section-light" style="background:#fff;">
+<div class="section-wrap">
+  <div class="section-label">Section 06</div>
+  <h2>The Difference Between Using AI <span>and Using It to Grow Your Business</span></h2>
+  <p class="section-intro">I know what you're thinking. "Poulomi, I barely have time to eat lunch. Why would I add another project to my plate?"</p>
+  <p style="font-size: 19px; color: var(--light-text); font-weight: 700; line-height: 1.7; margin-bottom: 20px;">Here's why: because these systems are how you STOP being the person who does everything.</p>
+  <p style="font-size: 17px; color: var(--light-text-muted); line-height: 1.7; margin-bottom: 12px;">Most founders resist adding anything new to their plate. That's rational. You're already stretched. But here's the thing — you're stretched precisely because you don't have these systems. Every hour you spend on admin, follow-ups, content creation, and manual processes is an hour you're not spending on growth, strategy, or the high-value work that only you can do.</p>
+  <p style="font-size: 17px; color: var(--light-text-muted); line-height: 1.7; margin-bottom: 36px;">Here's the most honest way I can show you what these systems actually change:</p>
+
+  <!-- BEFORE / AFTER -->
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 40px;">
+
+    <!-- BEFORE -->
+    <div style="background: #fafafa; border: 1px solid rgba(0,0,0,0.08); border-radius: 16px; padding: 32px;">
+      <div style="font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: rgba(0,0,0,0.3); margin-bottom: 16px;">Before</div>
+      <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 14px;">
+        <li style="display: flex; gap: 12px; align-items: flex-start; font-size: 16px; color: var(--light-text-muted); line-height: 1.5;">
+          <span style="color: rgba(0,0,0,0.2); font-size: 18px; flex-shrink: 0; margin-top: 1px;">—</span>
+          Your week starts with a mental list of things that should've been done last week
+        </li>
+        <li style="display: flex; gap: 12px; align-items: flex-start; font-size: 16px; color: var(--light-text-muted); line-height: 1.5;">
+          <span style="color: rgba(0,0,0,0.2); font-size: 18px; flex-shrink: 0; margin-top: 1px;">—</span>
+          Every question, decision, and next step flows through you — even when it shouldn't
+        </li>
+        <li style="display: flex; gap: 12px; align-items: flex-start; font-size: 16px; color: var(--light-text-muted); line-height: 1.5;">
+          <span style="color: rgba(0,0,0,0.2); font-size: 18px; flex-shrink: 0; margin-top: 1px;">—</span>
+          You spend half your day on work that keeps the business running instead of work that grows it
+        </li>
+        <li style="display: flex; gap: 12px; align-items: flex-start; font-size: 16px; color: var(--light-text-muted); line-height: 1.5;">
+          <span style="color: rgba(0,0,0,0.2); font-size: 18px; flex-shrink: 0; margin-top: 1px;">—</span>
+          Leads go cold. Follow-ups don't happen. Content doesn't go out.
+        </li>
+        <li style="display: flex; gap: 12px; align-items: flex-start; font-size: 16px; color: var(--light-text-muted); line-height: 1.5;">
+          <span style="color: rgba(0,0,0,0.2); font-size: 18px; flex-shrink: 0; margin-top: 1px;">—</span>
+          You know things need to change — you just don't have the bandwidth to change them
+        </li>
+      </ul>
+    </div>
+
+    <!-- AFTER -->
+    <div style="background: #f9f5ff; border: 1px solid rgba(218,63,246,0.15); border-radius: 16px; padding: 32px;">
+      <div style="font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--magenta); margin-bottom: 16px;">After</div>
+      <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 14px;">
+        <li style="display: flex; gap: 12px; align-items: flex-start; font-size: 16px; color: var(--light-text); line-height: 1.5;">
+          <span style="color: var(--magenta); font-size: 18px; flex-shrink: 0; margin-top: 1px;">→</span>
+          Your morning starts with a briefing — what's happening, what needs attention, what's already been handled
+        </li>
+        <li style="display: flex; gap: 12px; align-items: flex-start; font-size: 16px; color: var(--light-text); line-height: 1.5;">
+          <span style="color: var(--magenta); font-size: 18px; flex-shrink: 0; margin-top: 1px;">→</span>
+          Your team operates independently because the systems give them the context and tools they need
+        </li>
+        <li style="display: flex; gap: 12px; align-items: flex-start; font-size: 16px; color: var(--light-text); line-height: 1.5;">
+          <span style="color: var(--magenta); font-size: 18px; flex-shrink: 0; margin-top: 1px;">→</span>
+          Proposals go out faster. Content gets published. Every inquiry gets a reply — on brand, on time, without you writing it
+        </li>
+        <li style="display: flex; gap: 12px; align-items: flex-start; font-size: 16px; color: var(--light-text); line-height: 1.5;">
+          <span style="color: var(--magenta); font-size: 18px; flex-shrink: 0; margin-top: 1px;">→</span>
+          Your business stays responsive even when you're in client delivery, travelling, or just not working
+        </li>
+        <li style="display: flex; gap: 12px; align-items: flex-start; font-size: 16px; color: var(--light-text); line-height: 1.5;">
+          <span style="color: var(--magenta); font-size: 18px; flex-shrink: 0; margin-top: 1px;">→</span>
+          You're doing more — because the hours you used to spend doing routine work are now yours to use strategically
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- Understated proof -->
+  <div style="background: rgba(218,63,246,0.05); border-left: 3px solid var(--magenta); border-radius: 0 12px 12px 0; padding: 24px 28px; margin-bottom: 12px;">
+    <p style="font-size: 17px; color: var(--light-text); line-height: 1.7; margin: 0;">For what it's worth: the businesses I work with typically get back <strong>5–7 hours per employee per week</strong>. Personally, I get through at least 5x the work I used to. I'm not leading with those numbers because they almost sound too good — but that's been the consistent experience. The before and after speaks more clearly than any stat.</p>
+  </div>
+</div>
+</div>
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- ── SECTION 07: TESTIMONIALS ── -->
+<!-- ══════════════════════════════════════════════ -->
+<!-- ══════════════════════════════════════════════ -->
+<!-- ── SECTION 07: 4-STEP PATH (HOW TO GET STARTED) ── -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="s7" class="section-light" style="background:#fff;">
+<div class="section-wrap">
+  <div class="section-label">Section 07</div>
+  <h2>How to Get Started: <span>4 Steps to Building Your Growth System</span></h2>
+  <p class="section-intro">Building AI systems for your business isn't as complicated as it sounds. It follows a clear, logical process. Here's how it works — whether you do it yourself or bring in help.</p>
+
+  <div class="step-card" style="background: rgba(0,0,0,0.02); border: 1px solid rgba(0,0,0,0.06);">
+    <div class="step-num" style="color: var(--magenta);">01</div>
+    <div class="step-body">
+      <h4 style="color: var(--light-text);">Map Your Operations</h4>
+      <p style="color: var(--light-text-muted);">Before you touch any AI tool, you need to understand where your time and energy are actually going. Start by listing every recurring task across your team — the admin work, the follow-ups, the reporting, the content creation, the client communication. Write down who does each task, how long it takes, and how often it happens.</p>
+      <p style="margin-top: 10px; color: var(--light-text-muted);">Then look for patterns. Where are the bottlenecks? Which tasks eat the most hours but create the least value? What processes were cobbled together when you were a 3-person team and never updated? Where do things fall through the cracks — leads that go cold, follow-ups that don't happen, deliverables that slip?</p>
+      <p style="margin-top: 10px; color: var(--light-text-muted);">This step is about getting honest visibility into your operations. Most founders are surprised by what they find. The goal is to identify the 3&ndash;5 areas where AI would have the biggest immediate impact — the ones that would save the most time or recover the most revenue.</p>
+    </div>
+  </div>
+
+  <div class="step-card" style="background: rgba(0,0,0,0.02); border: 1px solid rgba(0,0,0,0.06);">
+    <div class="step-num" style="color: var(--magenta);">02</div>
+    <div class="step-body">
+      <h4 style="color: var(--light-text);">Design &amp; Build Your Systems</h4>
+      <p style="color: var(--light-text-muted);">Once you know where the biggest gaps are, you start building. Pick the system that solves your most painful bottleneck first — the one your team complains about, the one that costs you the most time or money every week.</p>
+      <p style="margin-top: 10px; color: var(--light-text-muted);">This is where the 6 layers come in. You set the Boss rules (operating instructions, guardrails, quality standards). You load the Information (brand voice, positioning, SOPs, client details). You build the Team (skills for repeatable tasks, agents for entire domains). You plug in the Connectors (linking AI to your CRM, email, calendar, and other tools). You set up Automation (scheduled workflows that run without you). And you plan for Distribution (sharing those workflows across your team).</p>
+      <p style="margin-top: 10px; color: var(--light-text-muted);">The key is that this plugs into the way you already work. You're not learning new software or switching platforms. Your AI systems work inside and alongside the tools your team already uses — they just start handling the repetitive work that used to eat everyone's time.</p>
+    </div>
+  </div>
+
+  <div class="step-card" style="background: rgba(0,0,0,0.02); border: 1px solid rgba(0,0,0,0.06);">
+    <div class="step-num" style="color: var(--magenta);">03</div>
+    <div class="step-body">
+      <h4 style="color: var(--light-text);">Train Your Team</h4>
+      <p style="color: var(--light-text-muted);">The best system in the world is worthless if your team doesn't use it. Once a system is built, everyone who interacts with it needs to understand how it works, how to use it, and how to spot when something needs adjusting.</p>
+      <p style="margin-top: 10px; color: var(--light-text-muted);">This doesn't mean a 200-slide training deck. It means hands-on, practical walkthroughs: "Here's what used to take you 45 minutes. Here's how it works now. Here's what you check, and here's what you approve." Each person sees exactly how their daily work changes — and why it's better.</p>
+      <p style="margin-top: 10px; color: var(--light-text-muted);">The shift is significant. Your team goes from doing manual tasks to directing results. They stop being the people who enter data and start being the people who review outputs and make decisions. That's a capacity multiplier — and most people actually enjoy the change, because nobody signed up to do data entry.</p>
+    </div>
+  </div>
+
+  <div class="step-card" style="background: rgba(0,0,0,0.02); border: 1px solid rgba(0,0,0,0.06);">
+    <div class="step-num" style="color: var(--magenta);">04</div>
+    <div class="step-body">
+      <h4 style="color: var(--light-text);">Refine &amp; Improve</h4>
+      <p style="color: var(--light-text-muted);">AI systems get better over time — but only if someone is paying attention to what's working and what isn't. Once your systems are running, review the outputs regularly. Where is the quality strong? Where does it need adjustment? What new tasks could be added now that the first ones are handled?</p>
+      <p style="margin-top: 10px; color: var(--light-text-muted);">This is an ongoing process, not a one-time project. Each week your systems learn more about your business, handle more tasks, and produce better results. You stay in control — nothing runs without your oversight — but the amount of work that requires your direct involvement keeps shrinking.</p>
+      <p style="margin-top: 10px; color: var(--light-text-muted);">Think of it as having a team member who gets better at their job every single week, never drops the ball, and works across every department simultaneously. That's what a well-maintained AI system becomes over time.</p>
+    </div>
+  </div>
+</div>
+</div>
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- ── SECTION 08: ROI PRIORITISATION MATRIX ── -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="s8" class="section-dark">
+<div class="section-wrap">
+  <div class="section-label">Section 08</div>
+  <h2>How to Prioritize: <span>The AI ROI Matrix</span></h2>
+  <p class="section-intro">Once you've mapped your operations, you'll find dozens of tasks AI could handle. The question is: which ones do you build first? This matrix shows you how to think about it. Every task in your business falls into one of four quadrants based on two things — how much effort it takes to build, and how much impact it delivers.</p>
+
+  <div style="display: flex; max-width: 720px; margin: 0 auto; gap: 16px; align-items: center;">
+    <div style="writing-mode: vertical-lr; transform: rotate(180deg); font-family:'Montserrat',sans-serif; font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.25); text-align: center; white-space: nowrap;">&larr; Low Impact &nbsp;&nbsp;&nbsp;&nbsp; High Impact &rarr;</div>
+  <div style="flex:1; display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);">
+    <!-- Q1: Quick Wins (top-left) -->
+    <div style="padding: 32px; background: rgba(218,63,246,0.12); border-right: 1px solid rgba(255,255,255,0.08); border-bottom: 1px solid rgba(255,255,255,0.08);">
+      <div style="font-family:'Montserrat',sans-serif; font-size:13px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--magenta); margin-bottom:8px;">&#9733; Start Here</div>
+      <h4 style="font-family:'Montserrat',sans-serif; font-size:20px; font-weight:800; color:#fff; margin-bottom:10px;">Quick Wins</h4>
+      <p style="font-size:17px; color:rgba(255,255,255,0.7); line-height:1.6; margin-bottom:12px;">Low effort, high impact. These are the tasks you automate first — they pay for themselves almost immediately and build momentum for everything else.</p>
+      <p style="font-size:15px; color:rgba(255,255,255,0.45); line-height:1.6;">Email replies, lead qualification, meeting notes to tasks, invoice data entry, content repurposing</p>
+    </div>
+    <!-- Q2: Core Systems (top-right) -->
+    <div style="padding: 32px; background: rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.08);">
+      <div style="font-family:'Montserrat',sans-serif; font-size:13px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:8px;">Build Next</div>
+      <h4 style="font-family:'Montserrat',sans-serif; font-size:20px; font-weight:800; color:#fff; margin-bottom:10px;">Core Systems</h4>
+      <p style="font-size:17px; color:rgba(255,255,255,0.7); line-height:1.6; margin-bottom:12px;">Higher effort, high impact. These take more time to set up, but they're the systems that fundamentally change how your business operates. Worth every hour invested.</p>
+      <p style="font-size:15px; color:rgba(255,255,255,0.45); line-height:1.6;">Full sales pipeline automation, client onboarding system, content engine, strategic briefing system</p>
+    </div>
+    <!-- Q3: Fill-Ins (bottom-left) -->
+    <div style="padding: 32px; background: rgba(255,255,255,0.04); border-right: 1px solid rgba(255,255,255,0.08);">
+      <div style="font-family:'Montserrat',sans-serif; font-size:13px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:8px;">Add Later</div>
+      <h4 style="font-family:'Montserrat',sans-serif; font-size:20px; font-weight:800; color:#fff; margin-bottom:10px;">Fill-Ins</h4>
+      <p style="font-size:17px; color:rgba(255,255,255,0.7); line-height:1.6; margin-bottom:12px;">Low effort, lower impact. Nice to have. These save small pockets of time and are easy to add once your core systems are running. Don't start here — but don't ignore them either.</p>
+      <p style="font-size:15px; color:rgba(255,255,255,0.45); line-height:1.6;">Calendar scheduling, simple template generation, file organization, internal FAQ bots</p>
+    </div>
+    <!-- Q4: Big Bets (bottom-right) -->
+    <div style="padding: 32px; background: rgba(255,255,255,0.02);">
+      <div style="font-family:'Montserrat',sans-serif; font-size:13px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:8px;">Evaluate Carefully</div>
+      <h4 style="font-family:'Montserrat',sans-serif; font-size:20px; font-weight:800; color:#fff; margin-bottom:10px;">Big Bets</h4>
+      <p style="font-size:17px; color:rgba(255,255,255,0.7); line-height:1.6; margin-bottom:12px;">High effort, lower immediate impact. These are long-term infrastructure plays — custom IP tools, multi-agent systems, advanced integrations. Plan for them, but don't rush them.</p>
+      <p style="font-size:15px; color:rgba(255,255,255,0.45); line-height:1.6;">Custom assessment tools, multi-system workflows, proprietary AI-powered products, full business intelligence dashboards</p>
+    </div>
+  </div>
+
+  </div><!-- close flex wrapper -->
+  <div style="display: flex; justify-content: space-between; max-width: 720px; margin: 16px auto 0; padding-left: 32px; font-family:'Montserrat',sans-serif; font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.25);">
+    <span>&larr; Low Effort</span><span>High Effort &rarr;</span>
+  </div>
+
+  <div style="margin-top: 36px; padding: 22px 28px; background: rgba(255,255,255,0.04); border-radius: 12px; border-left: 3px solid var(--magenta);">
+    <p style="font-size: 17px; color: rgba(255,255,255,0.8); line-height: 1.7;">The smartest approach: start with 2&ndash;3 Quick Wins to test that it works. Then use that momentum to invest in the Core Systems that create lasting change. Most businesses see ROI within 30&ndash;60 days of their first Quick Win going live.</p>
+  </div>
+</div>
+</div>
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- ── SECTION 09: YOUR NEXT STEP — ROADMAP ── -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="s9" class="section-light-alt">
+<div class="section-wrap" style="text-align: center;">
+  <div class="section-label" style="text-align: center;">Section 09</div>
+  <h2 style="font-family:'Montserrat',sans-serif; font-size:clamp(28px,4vw,44px); font-weight:800; color: var(--light-text);">Ready to find out where<br><span style="color:var(--magenta);">your biggest opportunity is?</span></h2>
+  <p style="color: var(--light-text-muted); max-width: 600px; margin: 20px auto 12px; font-size: 17px; line-height: 1.7;">Now you know the framework, the systems, and how to prioritize. If you want to move faster — or you'd rather have someone map it all out for you — that's exactly what the Roadmap is for.</p>
+  <p style="color: var(--light-text-muted); max-width: 600px; margin: 0 auto 44px; font-size: 17px; line-height: 1.7;">The AI Growth System Roadmap maps your business against all 6 systems, identifies your top 10 AI opportunities ranked by ROI using this exact matrix, and builds a phased plan for what to build and in what order.</p>
+
+  <!-- Roadmap CTA -->
+  <div style="max-width: 560px; margin: 0 auto 32px; padding: 32px 36px; border-radius: 16px; border: 1px solid rgba(0,0,0,0.08); background: #fff; text-align: left;">
+    <h4 style="font-family:'Montserrat',sans-serif; font-size:22px; font-weight:800; color: var(--light-text); margin-bottom: 14px;">AI Growth System Roadmap</h4>
+    <p style="color: var(--light-text-muted); font-size:17px; line-height:1.7; margin-bottom:10px;">Here's what you get:</p>
+    <ul style="color: var(--light-text-muted); font-size:17px; line-height:1.8; margin-bottom:22px; padding-left: 20px;">
+      <li>Full audit across all 6 Growth Systems</li>
+      <li>Top 10 AI opportunities ranked by ROI</li>
+      <li>Phased implementation roadmap</li>
+      <li>PPTX deck + 90-minute strategy presentation</li>
+    </ul>
+    <div style="text-align: center;">
+      <a href="https://weignitegrowth.com/ai-growth-system-audit-roadmap/" class="cta-btn" style="font-size:15px;">Get Your AI Growth System Roadmap &rarr;</a>
+    </div>
+  </div>
+
+</div>
+</div>
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- ── SECTION 10: TESTIMONIALS ── -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="s10" class="section-dark">
+<div class="section-wrap">
+  <div class="section-label">Section 10</div>
+  <h2>What <span>Founders</span> Are Saying</h2>
+  <p class="section-intro">Founders who've built their AI Growth System with Poulomi — in their own words.</p>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <p class="testimonial-quote">"Poulomi helped us set up custom AIs tailored for the brand and LinkedIn. These AIs helped us generate content and build a clear brand presence, which was especially valuable since we weren't very familiar with marketing."</p>
+      <div class="testimonial-author">Fayaz Hassanly &middot; Film Entrepreneur</div>
+    </div>
+    <div class="testimonial-card">
+      <p class="testimonial-quote">"I've been truly impressed by the AI Systems and Assistants that Poulomi has created. It takes the often overwhelming process of branding and marketing and makes it accessible, practical, and incredibly effective."</p>
+      <div class="testimonial-author">Samantha Chokor &middot; Social Media Strategist</div>
+    </div>
+  </div>
+  <div style="text-align: center; margin-top: 40px;">
+    <p style="font-size: 17px; color: rgba(255,255,255,0.7); margin-bottom: 20px;">Ready to see what AI can do for your business?</p>
+    <a href="https://weignitegrowth.com/ai-growth-system-audit-roadmap/" class="cta-btn" style="font-size:15px;">Get Your AI Growth System Roadmap &rarr;</a>
+  </div>
+</div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p>&copy; 2025 Poulomi Basu &middot; Ignite Growth &middot; <a href="https://linkedin.com/in/brandpoulomi">LinkedIn</a> &middot; <a href="https://youtube.com/@ignite_growth">YouTube</a></p>
+</div>
+<script>
+  // ── SYSTEM TABS ──
+  function showSystem(n) {
+    document.querySelectorAll('.sys-tab').forEach((t, i) => t.classList.toggle('active', i === n - 1));
+    document.querySelectorAll('.sys-panel').forEach(p => p.classList.toggle('active', p.dataset.panel == n));
+  }
+  // ── COLLAPSIBLES ──
+  document.querySelectorAll('.collapsible').forEach(el => {
+    el.querySelector('.collapsible-header').addEventListener('click', () => {
+      el.classList.toggle('open');
+    });
+  });
+  // ── ACTIVE NAV (sidebar) ──
+  const sections = ['s1','s2','s3','s4','s5','s6','s7','s8','s9','s10'];
+  const navLinks = document.querySelectorAll('.nav-link');
+  const sidebarLinks = document.querySelectorAll('.sidebar-link');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        navLinks.forEach(l => l.classList.remove('active'));
+        const topLink = document.querySelector(`.nav-link[href="#${id}"]`);
+        if (topLink) topLink.classList.add('active');
+        sidebarLinks.forEach(l => l.classList.remove('active'));
+        const sideLink = document.querySelector(`.sidebar-link[data-section="${id}"]`);
+        if (sideLink) sideLink.classList.add('active');
+      }
+    });
+  }, { threshold: 0.25 });
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) observer.observe(el);
+  });
+</script>
+</div><!-- end main-content -->
+</body>
+</html>
